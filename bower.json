@@ -1,0 +1,18 @@
+{
+  "name": "TeamUp",
+  "version": "1.0.0",
+  "authors": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib"
+  ],
+  "dependencies": {
+    "angular-material-icons":"^0.5.0",
+    "angular": "latest",
+    "angular-route": "latest",
+    "angular-mocks": "latest",
+    "angular-material": "latest"
+}
