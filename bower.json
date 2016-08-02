@@ -1,5 +1,5 @@
 {
-  "name": "TeamUp",
+  "name": "teamup",
   "version": "1.0.0",
   "authors": [],
   "license": "MIT",
@@ -15,4 +15,5 @@
     "angular-route": "latest",
     "angular-mocks": "latest",
     "angular-material": "latest"
+  }
 }
