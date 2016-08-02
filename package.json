@@ -1,26 +1,24 @@
 {
   "name": "TeamUp",
   "version": "1.1.0",
-  "description": "",
-  "author": "",
+  "description": "A web app that connects players with upcomming games within their area.",
+  "author": "StirTech",
   "contributors": [
-    "",
-    "",
-    "",
-    ""
+    "Rana Kelani",
+    "Tawfik Kahwaje",
+    "Ibrahim Tamimi",
+    "Saif Elokour"
   ],
   "scripts": {
     "start": "./node_modules/.bin/nodemon --ignore node_modules server.js",
     "test": "./node_modules/.bin/mocha   server/spec/serverSpec.js",
-    "postinstall": "npm install -g bower; bower install"
+    "postinstall": "bower install"
+
   },
   "pre-commit": "lint",
   "repository": {
     "type": "git",
-    "url": ""
-  },
-  "bugs": {
-    "url": ""
+    "url": "https://github.com/StirTech/TeamUp"
   },
   "license": "UNLICENSED",
   "devDependencies": {
