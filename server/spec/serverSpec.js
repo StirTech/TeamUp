@@ -2,9 +2,43 @@ var path = require('path');
 var expect = require('chai').expect;
 
 var server = require(path.join(__dirname, '..', './server.js'));
+
+var userController = require(path.join(__dirname, '..', '../server/users/userController.js'));
+var gameController = require(path.join(__dirname,'..','../server/games/gameController.js'))
+
+
+/*                       USER CONTROLLER                              */
+//=====================================================================
+describe('userController', function () {
+  'use strict';
+
+  it('have function signin', function () {
+    expect(userController.signin).to.be.a('function');
+  });
+
+  it('have function signup', function () {
+    expect(userController.signup).to.be.a('function');
+  });  
+
+  it('have function getUser', function () {
+    expect(userController.getUser).to.be.a('function');
+  });
+
+  it('have function editUser', function () {
+    expect(userController.editUser).to.be.a('function');
+  });
+
+  it('have function getPlayers', function () {
+    expect(userController.getPlayers).to.be.a('function');
+  });
+
+});
+
+
 //=====================================================================
 /*                       GAME CONTROLLER                              */
 //=====================================================================
+
 describe('gameController', function () {
   'use strict';
   it('have function getAllGames', function () {
@@ -29,9 +63,8 @@ describe('gameController', function () {
 
   it('have function removePlayer', function () {
     expect(gameController.removePlayer).to.be.a('function');
-  });  
+  });
+
 });
-
-
 
 //=====================================================================
