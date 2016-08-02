@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start": "./node_modules/.bin/nodemon --ignore node_modules server.js",
-    "test": "./node_modules/.bin/mocha --bail --reporter nyan test/ServerSpec.js",
+    "test": "./node_modules/.bin/mocha   server/spec/serverSpec.js",
     "postinstall": "npm install -g bower; bower install"
   },
   "pre-commit": "lint",
