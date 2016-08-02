@@ -5,9 +5,9 @@ mongoose.promise = global.Promise;
 var app = express();
 var server = require ('http').createServer(app);
 
-var mongoURI = 'mongod://localhost/teamup';
+var mongoURI = 'mongodb://localhost/teamup';
 
-var port = 8000;
+var port = 3333;
 
 mongoose.connect(mongoURI);
 
