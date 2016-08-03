@@ -1,77 +1,64 @@
-var Q = require('q');
 var User = require('./userModel.js');
-var findOneUser = Q.nbind(User.findOne, User);
-var findAllUser = Q.nbind(User.find, User);
-var createUser = Q.nbind(User.create, User);
 
 module.exports = {
 	
 	signin: function(req, res, next){
 		var username = req.body.username;
-    	var password = req.body.password;
-    	findOneUser({username:username})
-    	.then(function (user) {
-    		if(!user){
-    			next(new Error("this user does not exist"))
-    		}else{
-    			return comparePasswords(password)
-    			.then(function(foundUser){
-    				if(foundUser){
-    					var tokenData = jwt.encode(user,'secret');
-    					res.json({tokenData:tokenData,user:user.username})
-    				}else{
-    					return next(new Error('this user not exist'));
-    				}
-    			})
-    		}
-    	})
-    	.fail(function (error) {
-         next(error);
-      });
+		var password = req.body.password;
+		User.findOne({username: username})
+      		.exec(function (error, user) {
+       			if (!user) {
+     		 	    res.status(500).send(new Error('User does not exist'));
+    		    } else {
+       			    User.comparePassword(password,user.password, res, function(found){
+        		        if(!found){
+       				       res.status(500).send('Wrong Password');
+      			        } else {
+     			            var token = jwt.encode(user, 'secret');
+         			        res.setHeader('x-access-token',token);
+                            res.json({token: token});
+                        }
+                    });
+                }
+            });
 	},
 
 	signup: function(){
 		var username = req.body.username;
 	    var password = req.body.password;
-	    findOneUser({username: username})
-	      .then(function (user) {
-	        if (user) {
-	          next(new Error('User already exist!'));
-	        } else {
-	          return createUser({
-	            username: username,
-	            password: password
-	          });
-	        }
-	      })
-	      .then(function (user) {
-	        var token = jwt.encode(user, 'secret');
-	        res.json({token: token, user:user.username});
-	      })
-	      .fail(function (error) {
-	        next(error);
-	      });
+	    User.findOne({username: username})
+	 		.exec(function (error, user) {
+	 		if(user){
+	 			next(new Error('User already exist!'));
+	 		}else{
+	 			return User.create({
+					username: username,
+			        password: password
+					})
+	 		}
+	 		})
+	 
 	},
 	checkAuth: function (req, res, next) {
-    var token = req.headers['x-access-token'];
-    if (!token) {
-      next(new Error('No token'));
-    } else { 
-      //decoded user token
-      var user = jwt.decode(token, 'secret');
-      // find user from his name
-      findOneUser({username: user.username})
-        .then(function (foundUser) {
-          if (foundUser) {
-            res.send(200);
-          } else {
-            res.send(401);
-          }
-        })
-        .fail(function (error) {
-          next(error);
-        });
-    }
+    // var token = req.headers['x-access-token'];
+    // if (!token) {
+    //   next(new Error('No token'));
+    // } else { 
+    //   //decoded user token
+    //   var user = jwt.decode(token, 'secret');
+    //   // find user from his name
+    //   User.findOne({username: user.username})
+    //     .then(function (foundUser) {
+    //       if (foundUser) {
+    //         res.send(200);
+    //       } else {
+    //         res.send(401);
+    //       }
+    //     })
+    //     .fail(function (error) {
+    //       next(error);
+    //     });
+    // }
   },
 
 	getUser: function(req, res, next){
