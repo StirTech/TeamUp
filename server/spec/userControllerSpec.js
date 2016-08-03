@@ -50,27 +50,27 @@ describe('userController', function () {
     expect(userController.getPlayers).to.be.a('function');
   }); 
 
-  describe('userController', function () {
-    beforeEach(function(done){
-      clearDB(function(){
-        var users = [{
-          username: "fakeUser",
-          firstName: "fake",
-          lastName: "McFaker",
-          password: "password",
-          email: "fake@faker.com",
-        }];
+  // describe('userController', function () {
+  //   beforeEach(function(done){
+  //     clearDB(function(){
+  //       var users = [{
+  //         username: "fakeUser",
+  //         firstName: "fake",
+  //         lastName: "McFaker",
+  //         password: "password",
+  //         email: "fake@faker.com",
+  //       }];
 
-        User.create(users, done)
-      });
-    });
+  //       User.create(users, done)
+  //     });
+  //   });
 
-    it('getUser should return a User by ID', function () {
-      userController.getUser({params: {id: "57a1ee80b9da087424a06257"}}, {status: 200}, function(err, user){
-        expect(user.username).to.equal('fakeUser');
-        done()
-      })
-    });
-  });
+  //   it('getUser should return a User by ID', function () {
+  //     userController.getUser({params: {id: "57a1ee80b9da087424a06257"}}, {status: 200}, function(err, user){
+  //       expect(user.username).to.equal('fakeUser');
+  //       done()
+  //     })
+  //   });
+  // });
  
 });
