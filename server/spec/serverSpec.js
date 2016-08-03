@@ -3,7 +3,7 @@ var expect = require('chai').expect;
 
 var server = require(path.join(__dirname, '..', './server.js'));
 var userController = require(path.join(__dirname, '..', '../server/users/userController.js'));
-var gameController = require(path.join(__dirname,'..','../server/games/gameController.js'))
+var gameController = require(path.join(__dirname, '..', '../server/games/gameController.js'));
 
 
 /*                       USER CONTROLLER                              */
