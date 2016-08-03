@@ -7,7 +7,7 @@ var server = require ('http').createServer(app);
 
 var mongoURI = 'mongodb://localhost/teamup';
 
-var port = 3333;
+var port = 3000;
 
 mongoose.connect(mongoURI);
 
