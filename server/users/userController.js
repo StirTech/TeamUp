@@ -74,12 +74,17 @@ module.exports = {
     }
   },
 
-	getUser: function(){
-
+	getUser: function(req, res, next){
+		User.findOne({_id: req.params.id}, function(err, user){
+			if(err) {
+				res.status(500).send(err)
+			}
+			res.json(user)
+		})
 	},
 
 	editUser: function(){
-
+		
 	},
 
 	getPlayers: function(){
