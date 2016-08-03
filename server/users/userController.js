@@ -1,8 +1,8 @@
 var Q = require('q');
 var User = require('./userModel.js');
-var findOneUser = Q.nbind(User.findOne, User);
-var findAllUser = Q.nbind(User.find, User);
-var createUser = Q.nbind(User.create, User);
+var findOneUser = Q.denodeify(User.findOne, User);
+var findAllUser = Q.denodeify(User.find, User);
+var createUser = Q.denodeify(User.create, User);
 
 module.exports = {
 	
