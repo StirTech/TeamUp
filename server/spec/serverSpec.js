@@ -5,7 +5,7 @@ var server = require(path.join(__dirname, '..', './server.js'));
 var userController = require(path.join(__dirname, '..', '../server/users/userController.js'));
 var gameController = require(path.join(__dirname,'..','../server/games/gameController.js'))
 
-
+//=====================================================================
 /*                       USER CONTROLLER                              */
 //=====================================================================
 describe('userController', function () {
@@ -17,7 +17,10 @@ describe('userController', function () {
 
   it('have function signup', function () {
     expect(userController.signup).to.be.a('function');
-  });  
+  });
+   it('have function Auth', function () {
+    expect(userController.checkAuth).to.be.a('function');
+  });    
 });
 
 //=====================================================================
