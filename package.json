@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
-    "test": "./node_modules/.bin/mocha   server/spec/serverSpec.js",
+    "test": "./node_modules/.bin/mocha server/spec/userModelSpec.js server/spec/gameModelSpec.js server/spec/userControllerSpec.js server/spec/gameControllerSpec.js",
     "postinstall": "bower install"
 
   },
