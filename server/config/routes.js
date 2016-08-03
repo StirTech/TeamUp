@@ -6,6 +6,7 @@ var helpers = require('./helpers.js');
 module.exports = function(app, express) {
 	app.post('api/users/signup', user.signup);
 	app.post('api/users/singin', user.signin);
+	
 	/*app.get('api/user/:id', user.getUser);
 	app.post('api/users', user.getPlayers);
 	app.put('api/user/:id', user.editUser );
