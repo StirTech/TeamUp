@@ -1,6 +1,5 @@
 var User = require('./userModel.js');
 
-
 module.exports = {
 	
 	signin: function(req, res, next){
