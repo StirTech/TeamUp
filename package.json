@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
-    "test": "./node_modules/.bin/mocha server/spec/userModelSpec.js server/spec/gameModelSpec.js server/spec/userControllerSpec.js server/spec/gameControllerSpec.js",
+    "test": "./node_modules/.bin/mocha server/spec/userModelSpec.js server/spec/gameModelSpec.js server/spec/userControllerSpec.js server/spec/gameControllerSpec.js ",
     "postinstall": "npm install -g bower; bower install"
   },
   "pre-commit": "lint",

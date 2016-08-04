@@ -3,7 +3,6 @@ var User = require('./userModel.js');
 module.exports = {
 	
 	signin: function(req, res, next){
-		console.log('oooooooooooooooooooooooooooooooooooooooooooooooooo')
 		var username = req.body.username;
 		var password = req.body.password;
 		User.findOne({username: username})
@@ -17,6 +16,7 @@ module.exports = {
       			        } else {
      			            var token = jwt.encode(user, 'secret');
          			        res.setHeader('x-access-token',token);
+         			        res.status(200).send('it signin');
                             res.json({token: token});
                         }
                     });
