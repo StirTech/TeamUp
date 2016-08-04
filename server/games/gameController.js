@@ -1,8 +1,13 @@
 var Game = require('./gameModel.js');
 
 module.exports = {
-	getAllGames: function (argument) {
-		// body...
+	getAllGames: function (req,res) {
+		Game.find().exec(function (err,allGames) {
+			if(err){
+				res.status(500).send('err');
+			}
+			res.status(200).send(allGames);
+		});
 	},
 	getGame: function(){
 
