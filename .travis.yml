@@ -5,3 +5,8 @@ node_js:
 services:
   - mongodb
 
+<<<<<<< a1041491bef81071d0bed7ed07af6c01fa405f36
+=======
+before_script:
+  - sleep 15
+>>>>>>> Restore files
