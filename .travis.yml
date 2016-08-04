@@ -7,4 +7,3 @@ services:
 
 before_script:
   - sleep 15
-
