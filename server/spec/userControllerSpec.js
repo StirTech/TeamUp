@@ -1,31 +1,15 @@
 var path = require('path');
 var expect = require('chai').expect;
-var mongoose = require('mongoose');
 
 var server = require(path.join(__dirname, '..', './server.js'));
 var userController = require(path.join(__dirname, '..', '../server/users/userController.js'));
 var User = require(path.join(__dirname, '..', '../server/users/userModel.js'));
-
-var dbURI = 'mongodb://localhost/teamupTEST';
-
-// The `clearDB` helper function, when invoked, will clear the database
-var clearDB = function (done) {
-  mongoose.connection.collections['users'].remove(done);
-  //done()
-};
 
 //=====================================================================
 /*                       USER CONTROLLER                              */
 //=====================================================================
 describe('userController', function () {
   'use strict';
-
-  before(function(done){
-    if(mongoose.connection.db) {
-      return done();
-    }
-    mongoose.connect(dbURI, done);
-  });
 
   it('have function signin', function () {
     expect(userController.signin).to.be.a('function');
