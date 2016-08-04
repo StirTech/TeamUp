@@ -18,12 +18,7 @@ describe('gameController', function () {
 
         request(app)
           .get('/api/games')
-          .expect(200)
-          .end(function(err,res){
-            if(err) return done(err);
-            console.log(res.body);
-            done();
-          })
+          .expect(200,done);
 
       });
 
