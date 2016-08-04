@@ -1,6 +1,5 @@
 var express = require('express');
 var mongoose = require('mongoose');
-mongoose.promise = global.Promise;
 
 var app = express();
 var server = require ('http').createServer(app);
@@ -9,7 +8,7 @@ var mongoURI = 'mongodb://localhost/teamup';
 mongoose.connect(mongoURI);
 db = mongoose.connection;
 
-var port = 3000;
+var port = 3003;
 db.once('open',function () {
 	console.log('mongoDB is open');
 });

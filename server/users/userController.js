@@ -3,7 +3,7 @@ var User = require('./userModel.js');
 module.exports = {
 	
 	signin: function(req, res, next){
-		console.log('hoooooooooooooooooooooooooo')
+		console.log('oooooooooooooooooooooooooooooooooooooooooooooooooo')
 		var username = req.body.username;
 		var password = req.body.password;
 		User.findOne({username: username})
@@ -24,7 +24,7 @@ module.exports = {
             });
 	},
 
-	signup: function(){
+	signup: function(req, res, next){
 		var username = req.body.username;
 	    var password = req.body.password;
 	    User.findOne({username: username})
@@ -32,36 +32,29 @@ module.exports = {
 	 		if(user){
 	 			next(new Error('User already exist!'));
 	 		}else{
-	 			return User.create({
+ 				var newUser = new User ({
 					username: username,
-			        password: password
-					})
+			        password: password,
+			        firstName:req.body.firstName,
+			        lastName:req.body.lastName,
+			        city:req.body.city,
+			        country:req.body.country,
+			        rate:req.body.rate,
+			        interests:req.body.interests,
+			        picture:req.body.picture,
+			        game:req.body.game,
+				})
 	 		}
 	 		})
+	 		newUser.save(function(err, newUser){
+	            if(err){
+	                res.status(500).send(err);
+	            } else {
+	              res.status(200).send(newUser);
+	            };
+	        });
 	 
 	},
-	checkAuth: function (req, res, next) {
-    // var token = req.headers['x-access-token'];
-    // if (!token) {
-    //   next(new Error('No token'));
-    // } else { 
-    //   //decoded user token
-    //   var user = jwt.decode(token, 'secret');
-    //   // find user from his name
-    //   User.findOne({username: user.username})
-    //     .then(function (foundUser) {
-    //       if (foundUser) {
-    //         res.send(200);
-    //       } else {
-    //         res.send(401);
-    //       }
-    //     })
-    //     .fail(function (error) {
-    //       next(error);
-    //     });
-    // }
-  },
-
 	getUser: function(req, res, next){
 		User.findOne({_id: req.params.id}, function(err, user){
 			if(err) {
@@ -72,6 +65,7 @@ module.exports = {
 	},
 
 	editUser: function(){
+
 		
 	},
 
