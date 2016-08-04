@@ -3,6 +3,7 @@ node_js:
   - 4.4.5
 
 services:
+<<<<<<< 4e65992a7c7f0f6f30338e47e61a9fa1787d5241
   - mongodb
 
 <<<<<<< a1041491bef81071d0bed7ed07af6c01fa405f36
@@ -10,3 +11,6 @@ services:
 before_script:
   - sleep 15
 >>>>>>> Restore files
+=======
+  - mongodb
+>>>>>>> Add mongodb service in travis.yml
