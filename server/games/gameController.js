@@ -31,7 +31,6 @@ module.exports = {
 			if(err)
 				res.status(500).send('err');
 			else{
-				console.log(game);
 				res.status(201).send(game)
 			}
 		})
@@ -47,7 +46,6 @@ module.exports = {
 
 		Player.findOneAndUpdate({_id : userId},{ $pull : {games : gameId } } ).exec();
 		Game.findOneAndUpdate({ _id : gameId},{$pull: {players : userId}}).exec(function (err , data) {
-			console.log(data)
 			if(err)
 				res.status(204).send(err);
 			else

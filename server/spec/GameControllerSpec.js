@@ -15,6 +15,9 @@ chai.use(chaiHttp);
 //=====================================================================
 describe('gameController', function () {
   'use strict';
+
+  
+
   it('have function getAllGames', function () {
     expect(gameController.getAllGames).to.be.a('function');
   });
@@ -92,4 +95,48 @@ describe('gameController', function () {
   it('have function removePlayer', function () {
     expect(gameController.removePlayer).to.be.a('function');
   });  
+
+  it('should post id of player in players array in gameModel responds with a 201', function (done) {
+
+    // create newGame fot test 
+    var newGame = new Game({
+     name : "Test GAME",
+     description : "test description",
+     type : "sport",
+     owner : "57a4d2e78f9d3afc0f576031",
+     numOfPlayers : 12,
+     locationID : " Syria , Damascus",
+     country : "Syria",
+     city : "Damascus",
+     date : new Date()
+    });
+    // create newUser for test
+    var newUser= new User({
+      username : "Test username",
+      firstName : "test firstName",
+      lastName : "tes lastName",
+      password : "test password",
+      email : "test email",
+
+    });
+
+    newUser.save();
+    newGame.save(function (err , data) {
+      request(app)
+        // add Game _id in params
+        .delete('/api/game/'+data._id)
+        // add User _id in req.body
+        .send({userId : newUser._id})
+        .end(function (err , res) {
+          res.should.have.status(200);
+          res.should.be.json;
+          res.body.should.be.a('object');
+          // remove newGame and newUser after finsh test
+          newGame.remove();
+          newUser.remove();
+          done();
+        });
+    });
+  });
+
 });
