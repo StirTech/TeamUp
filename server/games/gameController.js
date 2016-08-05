@@ -18,7 +18,6 @@ module.exports = {
 	},
 
 	insertPlayer: function(req , res){
-		console.log('asd')
 		var gameId=req.params.id;
 		var userId=req.body.userId;
 		console.log(userId);
@@ -41,7 +40,19 @@ module.exports = {
 	editGame: function(){
 
 	},
-	removePlayer: function(){
-		
+
+	removePlayer: function(req , res){
+		var gameId=req.params.id;
+		var userId=req.body.userId;
+
+		Player.findOneAndUpdate({_id : userId},{ $pull : {games : gameId } } ).exec();
+		Game.findOneAndUpdate({ _id : gameId},{$pull: {players : userId}}).exec(function (err , data) {
+			console.log(data)
+			if(err)
+				res.status(204).send(err);
+			else
+				res.status(200).send(data);
+		});
+
 	}
 }
