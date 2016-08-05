@@ -39,7 +39,7 @@ var UserSchema = new mongoose.Schema({
   picture: {
     type: String
   },
-  game:[{
+  games:[{
     type: mongoose.Schema.Types.ObjectId,
     ref:'Game'
   }]
@@ -84,4 +84,19 @@ UserSchema.pre('save', function (next) {
 });
 
 var User = mongoose.model('User', UserSchema);
+
+// Test user
+
+// var newUser= new User({
+//   username : "test username",
+//   firstName : "test firstName",
+//   lastName : "tes lastName",
+//   password : "test password",
+//   email : "test email",
+
+// });
+
+// newUser.save(function (err , newUser) {
+//   console.log(newUser);
+// })
 module.exports = User;
