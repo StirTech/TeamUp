@@ -14,11 +14,11 @@ module.exports = function(app, express) {
 
 	app.get('api/game/:id', game.getGame);
 	app.post('api/game', game.createGame);
-	app.post('api/game', game.insertPlayer);
 	app.put('api/game/:id', game.editGame);
 	app.delete('api/game/:id', game.removePlayer);*/
 	
 	app.get('/api/games', game.getAllGames);
+	app.post('/api/game/:id', game.insertPlayer);
 
 
 	app.use(helpers.errorLogger);
