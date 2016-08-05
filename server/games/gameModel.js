@@ -14,8 +14,8 @@ var GameSchema= new mongoose.Schema({
 		required: true
 	}, 
 	owner: {
-		type: String,
-		required: true
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
 	},
 	players: [{
 		type: mongoose.Schema.Types.ObjectId,
@@ -46,4 +46,22 @@ var GameSchema= new mongoose.Schema({
 	} 
 });
 var Game = mongoose.model('Game',GameSchema);
+
+// Test Game
+
+// var newGame=new Game({
+// 	name : "new Game",
+// 	description : "test description",
+// 	type : "sport",
+// 	owner : "57a4d2e78f9d3afc0f576031",
+// 	numOfPlayers : 12,
+// 	locationID : " Syria , Damascus",
+// 	country : "Syria",
+// 	city : "Damascus",
+// 	date : new Date()
+// });
+
+// newGame.save(function (err , newGame) {
+// 	console.log(newGame);
+// })
 module.exports=Game;
