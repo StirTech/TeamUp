@@ -3,10 +3,10 @@ var Game = require('./gameModel.js');
 module.exports = {
 	getAllGames: function (req,res) {
 		Game.find().exec(function (err,allGames) {
-			if(err){
+			if(err)
 				res.status(500).send('err');
-			}
-			res.status(200).send(allGames);
+			else
+				res.status(200).send(allGames);
 		});
 	},
 	getGame: function(){

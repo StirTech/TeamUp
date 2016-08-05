@@ -1,9 +1,13 @@
 var chai = require('chai');
+var chaiHttp = require('chai-http');
 var expect = chai.expect;
-var request = require('supertest');
+var request = require("supertest");
 var app = require('../server.js');
 var GAME = require('../games/gameModel.js');
-var gameController=require('../games/gameController.js')
+var gameController=require('../games/gameController.js');
+var mongoose = require('mongoose')
+var should = chai.should();
+chai.use(chaiHttp);
 
 //=====================================================================
 /*                       GAME CONTROLLER                              */
@@ -18,7 +22,13 @@ describe('gameController', function () {
 
         request(app)
           .get('/api/games')
-          .expect(200,done);
+          .end(function (err , res) {
+            res.should.have.status(200);
+            res.should.be.json;
+            res.body.should.be.a('array');
+            done();
+          })
+
 
       });
 
