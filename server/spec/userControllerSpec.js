@@ -1,9 +1,13 @@
 var path = require('path');
-var expect = require('chai').expect;
-
+var chai = require('chai');
+var chaiHttp = require('chai-http');
+var expect = chai.expect;
+var request = require("supertest");
+var app = require('../server.js');
 var server = require(path.join(__dirname, '..', './server.js'));
 var userController = require(path.join(__dirname, '..', '../server/users/userController.js'));
 var User = require(path.join(__dirname, '..', '../server/users/userModel.js'));
+var should = chai.should();
 
 //=====================================================================
 /*                       USER CONTROLLER                              */
@@ -13,10 +17,26 @@ describe('userController', function () {
 
   it('have function signin', function () {
     expect(userController.signin).to.be.a('function');
+    chai.request(server)
+    .post('/api/users/signin') 
+    .end(function(err, res){
+      res.should.have.status(200);
+      res.should.be.json;
+      res.body.should.be.a('object');
+      done();
+    });
   });
 
   it('have function signup', function () {
     expect(userController.signup).to.be.a('function');
+    chai.request(server)
+    .post('api/users/singup')
+    .end(function(err, res){
+      res.should.have.status(200);
+      res.should.be.json;
+      res.body.should.be.a('object');
+      done();
+    });
   });
    xit('have function Auth', function () {
     expect(userController.checkAuth).to.be.a('function');
