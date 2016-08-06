@@ -3,6 +3,7 @@ var User = require('./userModel.js');
 module.exports = {
 	
 	signin: function(req, res, next){
+		//console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
 		var username = req.body.username;
 		var password = req.body.password;
 		User.findOne({username: username})
@@ -25,26 +26,27 @@ module.exports = {
 	},
 
 	signup: function(req, res, next){
+		//console.log("sssssssssssssssssssssssssssssssssssssss")
 		var username = req.body.username;
 	    var password = req.body.password;
 	    User.findOne({username: username})
 	 		.exec(function (error, user) {
-	 		if(user){
-	 			next(new Error('User already exist!'));
-	 		}else{
- 				var newUser = new User ({
-					username: username,
-			        password: password,
-			        firstName:req.body.firstName,
-			        lastName:req.body.lastName,
-			        city:req.body.city,
-			        country:req.body.country,
-			        rate:req.body.rate,
-			        interests:req.body.interests,
-			        picture:req.body.picture,
-			        game:req.body.game,
-				})
-	 		}
+		 		if(user){
+		 			next(new Error('User already exist!'));
+		 		}else{
+	 				var newUser = new User ({
+						username: username,
+				        password: password,
+				        firstName:req.body.firstName,
+				        lastName:req.body.lastName,
+				        city:req.body.city,
+				        country:req.body.country,
+				        rate:req.body.rate,
+				        interests:req.body.interests,
+				        picture:req.body.picture,
+				        game:req.body.game,
+					})
+		 		}
 	 		})
 	 		newUser.save(function(err, newUser){
 	            if(err){
