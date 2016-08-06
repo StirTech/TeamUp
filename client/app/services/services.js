@@ -1,4 +1,4 @@
-angular.module('teamUp',[])
+angular.module('TeamUp.services',[])
 .factory('UserAuth',function ($http, $window) {
 
 	//this function to add new user 
