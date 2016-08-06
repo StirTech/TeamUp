@@ -10,7 +10,7 @@ module.exports = function(app, express) {
 	
 	app.get('/api/user/:id', user.getUser);
 	app.put('/api/user/:id/edit', user.editUser );
-	app.post('/api/user/players', user.getPlayers);
+	app.post('/api/game/players', user.getPlayers);
 	
 	/*
 	app.post('api/game', game.createGame);
