@@ -53,6 +53,7 @@ describe('gameController', function () {
 	function checkDelete(url , type , done) {
 		request(app)
 		.delete(url)
+		.send({userId : newUser._id})
 		.end(function (req , res) {
 			res.should.have.status(200);
 			res.should.be.json;
@@ -155,31 +156,30 @@ describe('gameController', function () {
 				});
 			});
 		});
-	})
+	});
 
-
-  it('have function removePlayer', function () {
-    expect(gameController.removePlayer).to.be.a('function');
-  });
-
-  it('should post id of player in players array in gameModel responds with a 201', function (done) {
-    newUser.save();
-    newGame.save(function (err , data) {
-      request(app)
-        // add Game _id in params
-        .delete('/api/game/'+data._id)
-        // add User _id in req.body
-        .send({userId : newUser._id})
-        .end(function (err , res) {
-          res.should.have.status(200);
-          res.should.be.json;
-          res.body.should.be.a('object');
-          // remove newGame and newUser after finsh test
-          newGame.remove();
-          newUser.remove();
-          done();
-        });
-    });
-  });
-
+	describe('removePlayer', function(){
+		it('have function removePlayer', function () {
+			expect(gameController.removePlayer).to.be.a('function');
+		});
+		it('should remove player and responds with a 200 status code', function (done) {
+			newUser.save();
+			newGame.save(function (err , data) {
+				request(app)
+				// add Game _id in params
+				.delete('/api/game/'+data._id)
+				// add User _id in req.body
+				.send({userId : newUser._id})
+				.end(function (err , res) {
+					res.should.have.status(200);
+					res.should.be.json;
+					res.body.should.be.a('object');
+					// remove newGame and newUser after finsh test
+					newGame.remove();
+					newUser.remove();
+					done();
+				});
+			});
+		});
+	});
 });
