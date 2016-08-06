@@ -19,7 +19,7 @@ describe('userController', function () {
 
   it('have function signin', function () {
     expect(userController.signin).to.be.a('function');
-    chai.request(server)
+    chai.request(app)
     .post('/api/users/signin') 
     .end(function(err, res){
       res.should.have.status(200);
@@ -31,7 +31,7 @@ describe('userController', function () {
 
   it('have function signup', function () {
     expect(userController.signup).to.be.a('function');
-    chai.request(server)
+    chai.request(app)
     .post('/api/users/singup')
     .end(function(err, res){
       res.should.have.status(200);
@@ -50,24 +50,35 @@ describe('userController', function () {
     });
 
     it('should get user by id and respond with a 200', function (done) {
+      var newUser = new User({
+        username: "faker",
+        firstName: "fake",
+        lastName: "user",
+        password: "123",
+        email: "fake@user.com"
+      })
+      .save(function(err, data){
+        console.log(data, err)
         request(app)
-          .get('/api/user/57a215575964e67c0a6d8e1f')
+          .get('/api/user/'+data._id)
           .end(function (err , res) {
             res.should.have.status(200);
             res.should.be.json;
             res.body.should.be.a('object');
             done();
-          })
-      });
+          })  
+      })    
+    });
 
-      it('should respond with a 500 if user not found', function (done) {
+    it('should respond with a 500 if user not found', function (done) {
         request(app)
           .get('/api/user/:id')
           .end(function (err , res) {
             res.should.have.status(500);
             done();
           })
-      });
+    });
+
   })
 
   it('have function editUser', function () {
