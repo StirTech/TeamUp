@@ -10,7 +10,13 @@ module.exports = {
 				res.status(200).send(allGames);
 		});
 	},
-	getGame: function(){
+	getGame: function(req, res){
+		Game.findOne({_id:req.params.id}).exec(function (err, game){
+			if(err)
+				res.status(500).send('err');
+			else
+				res.status(200).send(game);
+		})
 
 	},
 	createGame: function(){
