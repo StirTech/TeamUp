@@ -16,7 +16,7 @@ module.exports = function(app, express) {
 	app.put('api/game/:id', game.editGame);
 	*/
 	
-	app.get('/api/games', game.getAllGames);
+	app.get('/api/games', game.getAllGames,helpers.errorHandler);
 	app.get('/api/game/:id', game.getGame);
 	app.post('/api/game/:id', game.insertPlayer);
 	app.delete('/api/game/:id', game.removePlayer);
