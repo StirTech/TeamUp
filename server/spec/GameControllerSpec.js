@@ -106,7 +106,8 @@ describe('gameController', function () {
 		it('should get an object of one game responds with a 200 status code', function (done) {  
 			newGame.save(function(err, data){
 				checkGet('/api/game/'+data._id, 'object' ,done);
-			})
+			});
+			newGame.remove();
 		}); 	
 	});
 	describe('createGame', function(){
@@ -116,7 +117,8 @@ describe('gameController', function () {
 		it('should create a new game and respond with a 201 status code', function(done){
 			newGame.save(function(){
 				checkPost('/api/game', 'object', done);
-			})
+			});
+			newGame.remove();
 		})
 	});
 	describe('editGame', function(){
@@ -126,43 +128,39 @@ describe('gameController', function () {
 		it('should edit a game by id and respond with a 200', function(done){
 			newGame.save(function(err, data){
 				checkPut('/api/game/'+data._id+'/edit', 'object', done)
-			})
+			});
+			newGame.remove();
 		})
+	});
+
+	describe('insertPlayer', function(){
+		it('have function insertPlayer', function () {
+			expect(gameController.insertPlayer).to.be.a('function');
+		});
+		it('should post id of player in players array in gameModel responds with a 201', function (done) {
+			newGame.save(function (err , data) {
+				request(app)
+				// add Game _id in params
+				.post('/api/game/'+data._id)
+				// add User _id in req.body
+				.send({userId : newUser._id})
+				.end(function (err , res) {
+					res.should.have.status(201);
+					res.should.be.json;
+					res.body.should.be.a('object');
+					// remove newGame and newUser after finsh test
+					newGame.remove();
+					newUser.remove();
+					done();
+				});
+			});
+		});
 	})
 
-  it('have function insertPlayer', function () {
-    expect(gameController.insertPlayer).to.be.a('function');
-  });
 
   it('have function removePlayer', function () {
     expect(gameController.removePlayer).to.be.a('function');
   });
-
-
-
-  it('should post id of player in players array in gameModel responds with a 201', function (done) {
-
-    // create newUser for test
-    
-    newGame.save(function (err , data) {
-      request(app)
-        // add Game _id in params
-        .post('/api/game/'+data._id)
-        // add User _id in req.body
-        .send({userId : newUser._id})
-        .end(function (err , res) {
-          res.should.have.status(201);
-          res.should.be.json;
-          res.body.should.be.a('object');
-          // remove newGame and newUser after finsh test
-          newGame.remove();
-          newUser.remove();
-          done();
-        });
-    });
-  });
-
-    
 
   it('should post id of player in players array in gameModel responds with a 201', function (done) {
     newUser.save();
