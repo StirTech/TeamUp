@@ -16,13 +16,8 @@ module.exports = function(app, express) {
 	
 	/*
 	app.post('api/game', game.createGame);
-	app.put('api/game/:id', game.editGame);
-	app.get('/api/game/:id', game.getGame);
-	app.post('/api/game', game.createGame);
-	app.put('/api/game/:id', game.editGame);
 	*/
 	
-	//app.post('/api/game', game.createGame);
 	app.get('/api/games', game.getAllGames);
 	app.get('/api/game/:id', game.getGame);
 	app.put('/api/game/:id', game.editGame);
