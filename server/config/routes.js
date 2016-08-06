@@ -12,13 +12,12 @@ module.exports = function(app, express) {
 	
 	app.get('/api/user/:id', user.getUser);
 	app.put('/api/user/:id/edit', user.editUser );
-	app.post('/api/users', user.getPlayers);
-	/*app.get('/api/game/:id', game.getGame);
-	app.post('/api/game', game.createGame);
-	app.put('/api/game/:id', game.editGame);
+	app.post('/api/game/players', user.getPlayers);
+	
+	/*
+	app.post('api/game', game.createGame);
 	*/
 	
-	//app.post('/api/game', game.createGame);
 	app.get('/api/games', game.getAllGames);
 	app.get('/api/game/:id', game.getGame);
 	app.put('/api/game/:id', game.editGame);
