@@ -42,8 +42,27 @@ module.exports = {
 		})
 
 	},
-	editGame: function(){
-
+	editGame: function(req, res){
+		var game=req.body;
+		Game.findOneAndUpdate({_id:req.params.id},{$set:{
+			name: game.name, 
+			description : game.description, 
+			type: game.type, 
+			owner: game.owner, 
+			players: game.players, 
+			numOfPlayers: game.numOfPlayers, 
+			locationID: game.locationID, 
+			country: game.country, 
+			city: game.city, 
+			picture: game.picture, 
+			date: game.date
+			}})
+		.exec(function(err, data){
+			if(err)
+				res.status(500).send(err);
+			else
+				res.status(200).send(data);
+		})
 	},
 
 	removePlayer: function(req , res){
