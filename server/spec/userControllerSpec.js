@@ -16,6 +16,18 @@ chai.use(chaiHttp);
 //=====================================================================
 describe('userController', function () {
   'use strict';
+  
+  var newUser;
+
+  beforeEach(function(){
+    newUser = new User({
+        username: "faker",
+        firstName: "fake",
+        lastName: "user",
+        password: "123",
+        email: "fake@user.com"
+      })
+  })
 
   it('have function signin', function () {
     expect(userController.signin).to.be.a('function');
@@ -51,13 +63,6 @@ describe('userController', function () {
     });
 
     it('should get user by id and respond with a 200', function (done) {
-      var newUser = new User({
-        username: "faker",
-        firstName: "fake",
-        lastName: "user",
-        password: "123",
-        email: "fake@user.com"
-      })
 
       newUser.save(function(err, data){
         request(app)
@@ -90,13 +95,6 @@ describe('userController', function () {
     });
 
     it('should edit user by id and respond with a 200', function (done) {
-      var newUser = new User({
-        username: "faker",
-        firstName: "fake",
-        lastName: "user",
-        password: "123",
-        email: "fake@user.com"
-      })
 
       newUser.save(function(err, data){
         request(app)
@@ -126,10 +124,34 @@ describe('userController', function () {
   describe('getPlayers', function () { 
     it('have function getPlayers', function () {
       expect(userController.getPlayers).to.be.a('function');
-    }); 
+    });
+
+    it('should get players by id and respond with a 201', function (done) {
+
+      newUser.save(function(err, data){
+        request(app)
+          .post('/api/game/players')
+          .send({playerIds: [data._id]})
+          .end(function (err , res) {
+            res.should.have.status(201);
+            res.should.be.json;
+            res.body.should.be.a('array');
+
+            newUser.remove();
+            done();
+          })  
+      })    
+    });
+
+    it('should respond with a 500 if players not found', function (done) {
+        request(app)
+          .post('/api/game/players')
+          .end(function (err , res) {
+            res.should.have.status(500);
+            done();
+          })
+    });     
 
   });
-
-  
 
 });
