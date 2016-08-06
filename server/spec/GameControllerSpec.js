@@ -33,9 +33,35 @@ describe('gameController', function () {
       })
     });
 
+
   it('have function getGame', function () {
     expect(gameController.getGame).to.be.a('function');
+
   });
+  it('should get an object of one game responds with a 200 status code', function (done) {
+    var newGame = new Game({
+     name : "Test GAME",
+     description : "test description",
+     type : "sport",
+     owner : "57a4d2e78f9d3afc0f576031",
+     numOfPlayers : 12,
+     locationID : " Syria , Damascus",
+     country : "Syria",
+     city : "Damascus",
+     date : new Date()
+    })
+    .save(function(err, data){
+	    request(app)
+	      .get('/api/game/'+data._id)
+	      .end(function (err , res) {
+	        res.should.have.status(200);
+	        res.should.be.json;
+	        res.body.should.be.a('object');
+	        done();
+	      })	
+    })
+
+    });
 
   it('have function createGame', function () {
     expect(gameController.createGame).to.be.a('function');
