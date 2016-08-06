@@ -26,7 +26,6 @@ module.exports = {
 	},
 
 	signup: function(req, res, next){
-		//console.log("sssssssssssssssssssssssssssssssssssssss")
 		var username = req.body.username;
 	    var password = req.body.password;
 	    User.findOne({username: username})
@@ -45,16 +44,18 @@ module.exports = {
 				        interests:req.body.interests,
 				        picture:req.body.picture,
 				        game:req.body.game,
+				        email : req.body.email
 					})
+			 		newUser.save(function(err, newUser){
+			            if(err){
+			            	console.log(err)
+			                res.status(500).send(err);
+			            } else {
+			              res.status(200).send(newUser);
+			            };
+			        });
 		 		}
 	 		})
-	 		newUser.save(function(err, newUser){
-	            if(err){
-	                res.status(500).send(err);
-	            } else {
-	              res.status(200).send(newUser);
-	            };
-	        });
 	 
 	},
 	getUser: function(req, res, next){
