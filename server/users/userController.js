@@ -3,7 +3,6 @@ var User = require('./userModel.js');
 module.exports = {
 	
 	signin: function(req, res, next){
-		//console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
 		var username = req.body.username;
 		var password = req.body.password;
 		User.findOne({username: username})
@@ -48,7 +47,6 @@ module.exports = {
 					})
 			 		newUser.save(function(err, newUser){
 			            if(err){
-			            	console.log(err)
 			                res.status(500).send(err);
 			            } else {
 			              res.status(200).send(newUser);
@@ -58,6 +56,7 @@ module.exports = {
 	 		})
 	 
 	},
+	
 	getUser: function(req, res, next){
 		User.findOne({_id: req.params.id}, function(err, user){
 			if(err) {
@@ -67,8 +66,30 @@ module.exports = {
 		})
 	},
 
-	editUser: function(){
+	editUser: function(req, res, next){
+		User.findOne({_id: req.params.id}, function(err, user){
+      if(err){
+        res.status(500).send(err);
+      } else if (!user){
+        res.status(500).send(new Error ('User does not exist'));
+      } else {
 
+        user.firstName = req.body.firstName || user.firstName;
+        user.lastName = req.body.lastname || user.lastName;
+        user.email = req.body.email || user.email;
+        user.country = req.body.country || user.country;
+        user.city = req.body.city || user.city;
+        user.interests = req.body.interests || user.interests;
+
+        user.save(function(err, savedUser){
+          if(err){
+            res.status(500).send(error);
+          } else {
+            res.json(savedUser);
+          }
+        });
+      }
+    })
 		
 	},
 
