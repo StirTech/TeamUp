@@ -57,8 +57,8 @@ describe('userController', function () {
         password: "123",
         email: "fake@user.com"
       })
-      .save(function(err, data){
-        console.log(data, err)
+
+      newUser.save(function(err, data){
         request(app)
           .get('/api/user/'+data._id)
           .end(function (err , res) {
