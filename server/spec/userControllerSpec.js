@@ -30,7 +30,7 @@ describe('userController', function () {
   it('have function signup', function () {
     expect(userController.signup).to.be.a('function');
     chai.request(server)
-    .post('api/users/singup')
+    .post('/api/users/singup')
     .end(function(err, res){
       res.should.have.status(200);
       res.should.be.json;
