@@ -29,16 +29,6 @@ angular.module('TeamUp.services',[])
 		})
 	}
 
-	var getPlayers = function (userArray) {
-		return $http({
-			method:'POST',
-			url:,
-			data:{userArray:userArray}
-		})
-		.then(function (resp) {
-			return resp.data
-		})
-	}
 
 	return{
 		addNewUser:addNewUser,
@@ -74,9 +64,20 @@ angular.module('TeamUp.services',[])
 		});
 	};
 
+	var getPlayers = function (userArray) {
+		return $http({
+			method:'POST',
+			url:,
+			data:{userArray:userArray}
+		})
+		.then(function (resp) {
+			return resp.data
+		})
+	}
 	return {
 		getUser:getUser,
-		editUser:editUser
+		editUser:editUser,
+		getPlayers:getPlayers
 	}
 }
 
