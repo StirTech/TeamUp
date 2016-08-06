@@ -1,4 +1,5 @@
 var User = require('./userModel.js');
+var Game = require('../games/gameModel.js');
 
 module.exports = {
 	
@@ -67,7 +68,7 @@ module.exports = {
 	},
 
 	editUser: function(req, res, next){
-		User.findOne({_id: req.params.id}, function(err, user){
+	User.findOne({_id: req.params.id}, function(err, user){
       if(err){
         res.status(500).send(err);
       } else if (!user){
@@ -93,7 +94,21 @@ module.exports = {
 		
 	},
 
-	getPlayers: function(){
+	getPlayers: function(req, res){
+		var playerIds = req.body.playerIds;
+		var players = [];
+		for (var i = 0; i < playerIds.length; i++) {
+			User.findOne({ _id: playerIds[i] }).exec(function (err, player) {
+				players.push(player);
+				
+				if(err){
+					res.status(500).send(err);
+				} else if (players.length === playerIds.length){
+					res.status(201).send(players);
+				}
+				
+			})
+		}
 		
 	}
 }
