@@ -94,6 +94,7 @@ module.exports = {
 		
 	},
 
+
 	getPlayers: function(req, res, next){
 		var playerIds = req.body.playerIds;
 		var players = [];
