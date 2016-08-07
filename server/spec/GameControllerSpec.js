@@ -26,8 +26,8 @@ describe('gameController', function () {
 				country : "Syria",
 				city : "Damascus",
 				date : new Date()
-			}
-	beforeEach(function (done) {
+	}
+	beforeEach(function(done){
 		newGame = new Game({
 			name : "Test GAME",
 			description : "test description",
@@ -38,7 +38,16 @@ describe('gameController', function () {
 			country : "Syria",
 			city : "Damascus",
 			date : new Date()
-		});
+		});	
+		done();	
+	});
+	afterEach(function(done){
+		//delete the game from the database
+		Game.remove({name :'Test GAME'}).exec();
+		Game.remove({name :'test edit game'}).exec();
+		done();
+	});
+	before(function (done) {
 	    newUser = new User({
 			username : "Test username",
 			firstName : "test firstName",
@@ -50,7 +59,6 @@ describe('gameController', function () {
     	done();
 	});
 	after(function(done){
-		newGame.remove();
 		newUser.remove();
 		done();
 	});
@@ -72,18 +80,6 @@ describe('gameController', function () {
 			done();
 	    });
 	}
-	function checkDelete(url , type , done) {
-		request(app)
-		.delete(url)
-		.send({userId : newUser._id})
-		.end(function (req , res) {
-			res.should.have.status(200);
-			res.should.be.json;
-			res.body.should.be.a(type);
-			newGame.remove();
-			done();
-		});
-	};
 
 	describe('getAllGames', function(){
 		it('have function getAllGames', function () {
@@ -108,10 +104,7 @@ describe('gameController', function () {
 			expect(gameController.createGame).to.be.a('function');
 		});
 		it('should create a new game and respond with a 201 status code', function(done){
-			newGame.save(function(){
-				checkVerb('/api/game', 'object', 'POST' , 201 , done , newGame);
-			});
-			newGame.remove();
+			checkVerb('/api/game', 'object', 'POST' , 201 , done , newGame);
 		})
 	});
 	describe('editGame', function(){
@@ -144,22 +137,6 @@ describe('gameController', function () {
 			newGame.save(function(err, data){
 				checkVerb('/api/game/'+data._id, 'object', 'DELETE' , 200 , done , {userId : newUser._id})
 			});			
-			/*newGame.save(function (err , data) {
-				request(app)
-				// add Game _id in params
-				.delete('/api/game/'+data._id)
-				// add User _id in req.body
-				.send({userId : newUser._id})
-				.end(function (err , res) {
-					res.should.have.status(200);
-					res.should.be.json;
-					res.body.should.be.a('object');
-					// remove newGame and newUser after finsh test
-					newGame.remove();
-					newUser.remove();
-					done();
-				});
-			});*/
 		});
 	});
 });
