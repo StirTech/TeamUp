@@ -79,7 +79,7 @@ angular.module('TeamUp.services',[])
 		editUser:editUser,
 		getPlayers:getPlayers
 	}
-}
+})
 
 //========================================================================
 /*                        Game Factory                                   */
