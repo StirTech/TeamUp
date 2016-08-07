@@ -1,4 +1,3 @@
-
 angular.module('TeamUp', [
   'TeamUp.services',
   'TeamUp.auth',
