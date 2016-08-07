@@ -33,6 +33,7 @@ describe('userController', function () {
 
   after(function(done){
     newUser.remove()
+    User.remove({username: 'fakest'}).exec()
     done()
   })
 
@@ -62,18 +63,16 @@ describe('userController', function () {
       done()
     });
 
-    xit('should respond with 200 at user signup', function(done){
-      newUser = new User()
+    it('should respond with 200 at user signup', function(done){
       
-      newUser.save(function(err, data){
-        checkVerb('/api/users/signup', 'object', 'POST', 200, done, {
-          username: "faker",
-          firstName: "fake",
-          lastName: "user",
-          password: "123",
-          email: "fake@user.com"
-        })
+      checkVerb('/api/users/signup', 'object', 'POST', 200, done, {
+        username: "fakest",
+        firstName: "fake",
+        lastName: "user",
+        password: "123",
+        email: "fake@user.com"
       })
+
     })
 
   })
@@ -84,10 +83,10 @@ describe('userController', function () {
       done()
     });
 
-    xit('should respond with 200 at user signin', function(done){
-      newUser.save(function(err, data){
-        checkVerb('/api/users/signin', 'object', 'POST', 200, done, {usename: 'faker', password: '123'})
-      })
+    it('should respond with 200 at user signin', function(done){
+
+      checkVerb('/api/users/signin', 'object', 'POST', 200, done, {username: 'fakest', password: '123'})
+
     })
 
   })
