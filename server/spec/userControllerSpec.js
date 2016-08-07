@@ -19,7 +19,7 @@ describe('userController', function () {
   
   var newUser;
 
-  beforeEach(function(){
+  before(function(done){
     newUser = new User({
         username: "faker",
         firstName: "fake",
@@ -27,31 +27,70 @@ describe('userController', function () {
         password: "123",
         email: "fake@user.com"
       })
+
+    done()
   })
 
-  it('have function signin', function () {
-    expect(userController.signin).to.be.a('function');
-    // chai.request(app)
-    // .post('/api/users/signin') 
-    // .end(function(err, res){
-    //   res.should.have.status(200);
-    //   res.should.be.json;
-    //   res.body.should.be.a('object');
-    //   done();
-    // });
-  });
+  after(function(done){
+    newUser.remove()
+    done()
+  })
 
-  it('have function signup', function () {
-    expect(userController.signup).to.be.a('function');
-    // chai.request(app)
-    // .post('/api/users/signup')
-    // .end(function(err, res){
-    //   res.should.have.status(200);
-    //   res.should.be.json;
-    //   res.body.should.be.a('object');
-    //   done();
-    // });
-  });
+  function checkVerb(url , type, REST, status, done, json) {
+
+    var api = {
+      GET:  request(app).get(url),
+      POST: request(app).post(url).send(json),
+      PUT: request(app).put(url).send(json),
+      DELETE: request(app).delete(url).send(json)
+    }
+
+    api[REST]
+      .end(function (err , res) {
+        res.should.have.status(status);
+        if(type){
+          res.should.be.json;
+          res.body.should.be.a(type);
+        }
+        done();
+      });
+  }
+
+  describe('signup', function () {
+    it('have function signup', function (done) {
+      expect(userController.signup).to.be.a('function');
+      done()
+    });
+
+    xit('should respond with 200 at user signup', function(done){
+      newUser = new User()
+      
+      newUser.save(function(err, data){
+        checkVerb('/api/users/signup', 'object', 'POST', 200, done, {
+          username: "faker",
+          firstName: "fake",
+          lastName: "user",
+          password: "123",
+          email: "fake@user.com"
+        })
+      })
+    })
+
+  })
+
+  describe('signin', function () {
+    it('have function signin', function (done) {
+      expect(userController.signin).to.be.a('function');
+      done()
+    });
+
+    xit('should respond with 200 at user signin', function(done){
+      newUser.save(function(err, data){
+        checkVerb('/api/users/signin', 'object', 'POST', 200, done, {usename: 'faker', password: '123'})
+      })
+    })
+
+  })
 
    xit('have function Auth', function () {
     expect(userController.checkAuth).to.be.a('function');
@@ -65,26 +104,13 @@ describe('userController', function () {
     it('should get user by id and respond with a 200', function (done) {
 
       newUser.save(function(err, data){
-        request(app)
-          .get('/api/user/'+data._id)
-          .end(function (err , res) {
-            res.should.have.status(200);
-            res.should.be.json;
-            res.body.should.be.a('object');
-            
-            newUser.remove();
-            done();
-          })  
-      })    
+        checkVerb('/api/user/'+data._id, 'object', 'GET', 200, done)
+      })   
+
     });
 
     it('should respond with a 500 if user not found', function (done) {
-        request(app)
-          .get('/api/user/:id')
-          .end(function (err , res) {
-            res.should.have.status(500);
-            done();
-          })
+        checkVerb('/api/user/:id', false, 'GET', 500, done)
     });
 
   });
@@ -97,27 +123,12 @@ describe('userController', function () {
     it('should edit user by id and respond with a 200', function (done) {
 
       newUser.save(function(err, data){
-        request(app)
-          .put('/api/user/'+data._id+"/edit")
-          .send({firstName: "test"})
-          .end(function (err , res) {
-            res.should.have.status(200);
-            res.should.be.json;
-            res.body.should.be.a('object');
-            
-            newUser.remove();
-            done();
-          })  
+        checkVerb('/api/user/'+data._id+'/edit', 'object', 'PUT', 200, done)
       })    
     });
 
     it('should respond with a 500 if user not found', function (done) {
-        request(app)
-          .put('/api/user/:id/edit')
-          .end(function (err , res) {
-            res.should.have.status(500);
-            done();
-          })
+      checkVerb('/api/user/:id/edit', false, 'PUT', 500, done, {'username': "text"})
     });
   });
 
@@ -129,27 +140,12 @@ describe('userController', function () {
     it('should get players by id and respond with a 201', function (done) {
 
       newUser.save(function(err, data){
-        request(app)
-          .post('/api/game/players')
-          .send({playerIds: [data._id]})
-          .end(function (err , res) {
-            res.should.have.status(201);
-            res.should.be.json;
-            res.body.should.be.a('array');
-
-            newUser.remove();
-            done();
-          })  
+        checkVerb('/api/game/players', 'array', 'POST', 201, done, {playerIds: [data._id]})
       })    
     });
 
     it('should respond with a 500 if players not found', function (done) {
-        request(app)
-          .post('/api/game/players')
-          .end(function (err , res) {
-            res.should.have.status(500);
-            done();
-          })
+      checkVerb('/api/game/players', false, 'POST', 500, done)
     });     
 
   });
