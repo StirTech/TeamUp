@@ -46,19 +46,15 @@ var UserSchema = new mongoose.Schema({
 });
 
 
+var User = mongoose.model('User', UserSchema);
 
-
- //user methods for comparing password in signing 
-UserSchema.methods.comparePasswords = function (candidatePassword) {
-  var savedPassword = this.password;
-  return Q.Promise(function (resolve, reject) {
-    bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(isMatch);
-      }
-    });
+User.comparePassword = function(candidatePassword, savedPassword, res, cb){
+  bcrypt.compare( candidatePassword, savedPassword, function(err, isMatch){
+    if(err){
+      res.status(500).send('Error');
+    } else if(cb){
+      cb(isMatch);
+    }
   });
 };
 
@@ -83,20 +79,4 @@ UserSchema.pre('save', function (next) {
   });
 });
 
-var User = mongoose.model('User', UserSchema);
-
-// Test user
-
-// var newUser= new User({
-//   username : "test username",
-//   firstName : "test firstName",
-//   lastName : "tes lastName",
-//   password : "test password",
-//   email : "test email",
-
-// });
-
-// newUser.save(function (err , newUser) {
-//   console.log(newUser);
-// })
 module.exports = User;
