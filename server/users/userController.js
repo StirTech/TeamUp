@@ -1,4 +1,5 @@
 var User = require('./userModel.js');
+var jwt = require('jwt-simple');
 var Game = require('../games/gameModel.js');
 
 module.exports = {
@@ -16,9 +17,8 @@ module.exports = {
        				       res.status(500).send('Wrong Password');
       			        } else {
      			            var token = jwt.encode(user, 'secret');
-         			        res.setHeader('x-access-token',token);
-         			        res.status(200).send('it signin');
-                            res.json({token: token});
+				            res.setHeader('x-access-token',token);
+				            res.json({token: token, userId : user._id});
                         }
                     });
                 }
