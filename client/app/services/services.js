@@ -12,8 +12,8 @@ angular.module('TeamUp.services',[])
 	      url:'/api/users/signup',
 	      data: user
 	     })
-	    .then(function(resp){
-	      return resp.data;
+	    .then(function(res){
+	      return res.data;
 	    })
 	}
 
@@ -24,8 +24,8 @@ angular.module('TeamUp.services',[])
 			url:'/api/users/signin',
 			data:user
 		})
-		.then(function (resp) {
-			return resp.data;
+		.then(function (res) {
+			return res.data;
 		})
 	}
 
@@ -47,8 +47,8 @@ angular.module('TeamUp.services',[])
 			method:'GET',
 			url:'/api/user/'+userId
 		})
-		.then(function (resp) {
-			return resp.data;
+		.then(function (res) {
+			return res.data;
 		})
 	}
 
@@ -56,22 +56,22 @@ angular.module('TeamUp.services',[])
 	var editUser = function (user) {
 		return $http({
 			method:'PUT',
-			url:'/api/user/'+user.id+'/edit',
+			url:'/api/user/'+user._id+'/edit',
 			data:{user:user}
 		})
-		.then(function (resp) {
-			return resp.data.user
+		.then(function (res) {
+			return res.data
 		});
 	};
 
-	var getPlayers = function (userArray) {
+	var getPlayers = function (playerIds) {
 		return $http({
 			method:'POST',
-			url:,
-			data:{userArray:userArray}
+			url: '/api/game/players',
+			data: { playerIds:playerIds }
 		})
-		.then(function (resp) {
-			return resp.data
+		.then(function (res) {
+			return res.data
 		})
 	}
 	return {
@@ -85,5 +85,64 @@ angular.module('TeamUp.services',[])
 /*                        Game Factory                                   */
 //========================================================================
 .factory('Game',function ($http, $window) {
-	return{}
+	return {
+		getAll : function () {
+			return $http({
+				method : 'GET',
+				url : '/api/games'
+			})
+			.then(function (res) {
+				return res.data;
+			});
+		},
+		getOne : function (gameId) {
+			return $http({
+				method : 'GET',
+				url : '/api/game/'+gameId
+			})
+			.then(function (res) {
+				return res.data;
+			});
+		},
+		addOne : function (game) {
+			return $http({
+				method : 'POST',
+				url : '/api/game',
+				data : game
+			})
+			.then(function (res) {
+				return res.data
+			})
+		},
+		editOne : function (gameId, game) {
+			return $http({
+				method : 'PUT',
+				url : '/api/game/'+gameId+'/edit',
+				data : game
+			})
+			.then(function (res) {
+				return res.data
+			});
+		},
+		insertPlayer : function (gameId, userId) {
+			return $http({
+				method : 'POST',
+				url : '/api/game/'+gameId,
+				data : { userId : userId}
+			})
+			.then(function (res) {
+				return res.data
+			});
+		},
+		removePlayer : function (gameId, userId) {
+			return $http({
+				method : 'DELETE',
+				url : '/api/game/'+gameId,
+				data : { userId : userId}
+			})
+			.then(function (res) {
+				return res.data
+			});
+		}
+	}
 })
