@@ -103,9 +103,7 @@ module.exports = {
 				User.findOne({ _id: playerIds[i] }).exec(function (err, player) {
 					players.push(player);
 					
-					if(err){
-						res.status(500).send(err);
-					} else if (players.length === playerIds.length){
+					if (players.length === playerIds.length){
 						res.status(201).send(players);
 					}
 					
