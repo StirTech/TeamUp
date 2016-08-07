@@ -17,6 +17,16 @@ describe('gameController', function () {
 	'use strict';
 	var newGame;
 	var newUser;
+	var test = {name : "test edit game",
+				description : "test description",
+				type : "sport",
+				owner : "57a4d2e78f9d3afc0f576031",
+				numOfPlayers : 12,
+				locationID : " Syria , Damascus",
+				country : "Syria",
+				city : "Damascus",
+				date : new Date()
+			}
 	beforeEach(function (done) {
 		newGame = new Game({
 			name : "Test GAME",
@@ -39,17 +49,29 @@ describe('gameController', function () {
     	newUser.save();
     	done();
 	});
+	after(function(done){
+		newGame.remove();
+		newUser.remove();
+		done();
+	});
 
-	function checkGet(url , type , done) {
-		request(app)
-		.get(url)
-		.end(function (err , res) {
-			res.should.have.status(200);
-			res.should.be.json;
-			res.body.should.be.a(type);
+	function checkVerb(url , type, REST, status, done, json) {
+	    var api = {
+	    	GET:  request(app).get(url),
+	    	POST: request(app).post(url).send(json),
+	    	PUT: request(app).put(url).send(json),
+	    	DELETE: request(app).delete(url).send(json)
+	    }
+	    api[REST]
+			.end(function (err , res) {
+			res.should.have.status(status);
+				if(type){
+					res.should.be.json;
+					res.body.should.be.a(type);
+				}
 			done();
-		});
-	};
+	    });
+	}
 	function checkDelete(url , type , done) {
 		request(app)
 		.delete(url)
@@ -58,46 +80,17 @@ describe('gameController', function () {
 			res.should.have.status(200);
 			res.should.be.json;
 			res.body.should.be.a(type);
+			newGame.remove();
 			done();
 		});
 	};
-	function checkPost(url , type , done) {
-		request(app)
-		.post(url)
-		.send(newGame)
-		.end(function (req , res) {
-			res.should.have.status(201);
-			res.should.be.json;
-			res.body.should.be.a(type);
-			done();
-		});
-	};
-	function checkPut(url , type , done) {
-		request(app)
-		.put(url)
-		.send({	name : "test edit game",
-				description : "test description",
-				type : "sport",
-				owner : "57a4d2e78f9d3afc0f576031",
-				numOfPlayers : 12,
-				locationID : " Syria , Damascus",
-				country : "Syria",
-				city : "Damascus",
-				date : new Date()
-			})
-		.end(function (req , res) {
-			res.should.have.status(200);
-			res.should.be.json;
-			res.body.should.be.a(type);
-			done();
-		});
-	};
+
 	describe('getAllGames', function(){
 		it('have function getAllGames', function () {
 			expect(gameController.getAllGames).to.be.a('function');
 		});
 		it('should get array of games responds with a 200 status code', function (done) {
-			checkGet('/api/games', 'array' , done);
+			checkVerb( '/api/games', 'array' , 'GET' , 200 , done);
 		});
 	});
 	describe('getGame', function(){
@@ -106,9 +99,8 @@ describe('gameController', function () {
 		});
 		it('should get an object of one game responds with a 200 status code', function (done) {  
 			newGame.save(function(err, data){
-				checkGet('/api/game/'+data._id, 'object' ,done);
+				checkVerb('/api/game/'+data._id, 'object' ,'GET', 200 ,done);
 			});
-			newGame.remove();
 		}); 	
 	});
 	describe('createGame', function(){
@@ -117,7 +109,7 @@ describe('gameController', function () {
 		});
 		it('should create a new game and respond with a 201 status code', function(done){
 			newGame.save(function(){
-				checkPost('/api/game', 'object', done);
+				checkVerb('/api/game', 'object', 'POST' , 201 , done , newGame);
 			});
 			newGame.remove();
 		})
@@ -128,9 +120,8 @@ describe('gameController', function () {
 		});
 		it('should edit a game by id and respond with a 200', function(done){
 			newGame.save(function(err, data){
-				checkPut('/api/game/'+data._id+'/edit', 'object', done)
+				checkVerb('/api/game/'+data._id+'/edit', 'object', 'PUT' , 200 , done , test)
 			});
-			newGame.remove();
 		})
 	});
 
@@ -139,21 +130,8 @@ describe('gameController', function () {
 			expect(gameController.insertPlayer).to.be.a('function');
 		});
 		it('should post id of player in players array in gameModel responds with a 201', function (done) {
-			newGame.save(function (err , data) {
-				request(app)
-				// add Game _id in params
-				.post('/api/game/'+data._id)
-				// add User _id in req.body
-				.send({userId : newUser._id})
-				.end(function (err , res) {
-					res.should.have.status(201);
-					res.should.be.json;
-					res.body.should.be.a('object');
-					// remove newGame and newUser after finsh test
-					newGame.remove();
-					newUser.remove();
-					done();
-				});
+			newGame.save(function(err, data){
+				checkVerb('/api/game/'+data._id, 'object', 'POST' , 201 , done , {userId : newUser._id})
 			});
 		});
 	});
@@ -163,8 +141,10 @@ describe('gameController', function () {
 			expect(gameController.removePlayer).to.be.a('function');
 		});
 		it('should remove player and responds with a 200 status code', function (done) {
-			newUser.save();
-			newGame.save(function (err , data) {
+			newGame.save(function(err, data){
+				checkVerb('/api/game/'+data._id, 'object', 'DELETE' , 200 , done , {userId : newUser._id})
+			});			
+			/*newGame.save(function (err , data) {
 				request(app)
 				// add Game _id in params
 				.delete('/api/game/'+data._id)
@@ -179,7 +159,7 @@ describe('gameController', function () {
 					newUser.remove();
 					done();
 				});
-			});
+			});*/
 		});
 	});
 });
