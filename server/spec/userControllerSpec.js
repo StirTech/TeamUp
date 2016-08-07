@@ -75,6 +75,10 @@ describe('userController', function () {
 
     })
 
+    it('should respond with a 500 if user already exists', function (done) {
+        checkVerb('/api/user/:id', false, 'GET', 500, done, {username: "faker", password: "123"})
+    });
+
   })
 
   describe('signin', function () {
@@ -88,6 +92,14 @@ describe('userController', function () {
       checkVerb('/api/users/signin', 'object', 'POST', 200, done, {username: 'fakest', password: '123'})
 
     })
+
+    it('should respond with a 500 if user doea not exist', function (done) {
+        checkVerb('/api/user/:id', false, 'GET', 500, done, {username: "fake", password: "123"})
+    });
+
+    it('should respond with a 500 if wrong passoword', function (done) {
+        checkVerb('/api/user/:id', false, 'GET', 500, done, {username: "fakest", password: "1234"})
+    });
 
   })
 
