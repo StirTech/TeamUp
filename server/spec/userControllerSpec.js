@@ -19,7 +19,7 @@ describe('userController', function () {
   
   var newUser;
 
-  beforeEach(function(){
+  before(function(done){
     newUser = new User({
         username: "faker",
         firstName: "fake",
@@ -27,7 +27,25 @@ describe('userController', function () {
         password: "123",
         email: "fake@user.com"
       })
+
+    done()
   })
+
+  after(function(done){
+    newUser.remove()
+    done()
+  })
+
+  function checkGet(url , type , done) {
+    request(app)
+      .get(url)
+      .end(function (err , res) {
+        res.should.have.status(200);
+        res.should.be.json;
+        res.body.should.be.a(type);
+        done();
+      });
+  }
 
   it('have function signin', function () {
     expect(userController.signin).to.be.a('function');
@@ -65,17 +83,9 @@ describe('userController', function () {
     it('should get user by id and respond with a 200', function (done) {
 
       newUser.save(function(err, data){
-        request(app)
-          .get('/api/user/'+data._id)
-          .end(function (err , res) {
-            res.should.have.status(200);
-            res.should.be.json;
-            res.body.should.be.a('object');
-            
-            newUser.remove();
-            done();
-          })  
-      })    
+        checkGet('/api/user/'+data._id, 'object', done)
+      })   
+
     });
 
     it('should respond with a 500 if user not found', function (done) {
@@ -105,7 +115,6 @@ describe('userController', function () {
             res.should.be.json;
             res.body.should.be.a('object');
             
-            newUser.remove();
             done();
           })  
       })    
@@ -137,7 +146,6 @@ describe('userController', function () {
             res.should.be.json;
             res.body.should.be.a('array');
 
-            newUser.remove();
             done();
           })  
       })    
