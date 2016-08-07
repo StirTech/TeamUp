@@ -70,8 +70,6 @@ angular.module('TeamUp.auth', [])
 	email:''
   }
 
-
-
   $scope.createUser=function () {
     UserAuth.addNewUser(userData)
   }
