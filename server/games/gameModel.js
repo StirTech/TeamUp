@@ -50,15 +50,15 @@ var Game = mongoose.model('Game',GameSchema);
 // Test Game
 
 // var newGame=new Game({
-// 	name : "new Game",
-// 	description : "test description",
-// 	type : "sport",
-// 	owner : "57a4d2e78f9d3afc0f576031",
-// 	numOfPlayers : 12,
-// 	locationID : " Syria , Damascus",
-// 	country : "Syria",
-// 	city : "Damascus",
-// 	date : new Date()
+/*	name : "new Game",
+	description : "test description",
+	type : "sport",
+	owner : "57a4d2e78f9d3afc0f576031",
+	numOfPlayers : 12,
+	locationID : " Syria , Damascus",
+	country : "Syria",
+	city : "Damascus",
+	date : new Date()*/
 // });
 
 // newGame.save(function (err , newGame) {
