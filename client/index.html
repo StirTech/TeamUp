@@ -5,13 +5,21 @@
 	<link rel="stylesheet" type="text/css" href="styles/style.css" />
 </head>
 <body>
-	<ul>
-	  <li><a href="#/home">Home</a></li>
-	  <li><a href="#/auth">Auth</a></li>
-	  <li><a href="#/profile">User Profile</a></li>
-	  <li><a href="#/editUser">Edit User Profile</a></li>
-	  <li><a href="#/createGame">Create Game</a></li>
-	  <li><a href="#/editGame">Edit Game</a></li>
-	</ul>
+	<div>
+		<ul>
+		  <li><a href="#/home">Home</a></li>
+		  <li><a href="#/auth">Auth</a></li>
+		  <li><a href="#/profile">User Profile</a></li>
+		  <li><a href="#/editUser">Edit User Profile</a></li>
+		  <li><a href="#/createGame">Create Game</a></li>
+		  <li><a href="#/editGame">Edit Game</a></li>
+		</ul>
+	</div>
+
+
+	<div class="container">
+        <div ng-view class='col-xs-12'> 
+        </div>
+    </div> 
 </body>
 </html>
