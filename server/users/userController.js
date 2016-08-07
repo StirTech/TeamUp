@@ -98,17 +98,21 @@ module.exports = {
 	getPlayers: function(req, res, next){
 		var playerIds = req.body.playerIds;
 		var players = [];
-		for (var i = 0; i < playerIds.length; i++) {
-			User.findOne({ _id: playerIds[i] }).exec(function (err, player) {
-				players.push(player);
-				
-				if(err){
-					res.status(500).send(err);
-				} else if (players.length === playerIds.length){
-					res.status(201).send(players);
-				}
-				
-			})
+		if(Array.isArray(playerIds)){
+			for (var i = 0; i < playerIds.length; i++) {
+				User.findOne({ _id: playerIds[i] }).exec(function (err, player) {
+					players.push(player);
+					
+					if(err){
+						res.status(500).send(err);
+					} else if (players.length === playerIds.length){
+						res.status(201).send(players);
+					}
+					
+				})
+			}
+		} else {
+			res.status(500).send('playerIds not defined');
 		}
 		
 	}
