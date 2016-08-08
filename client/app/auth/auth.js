@@ -53,7 +53,6 @@ angular.module('TeamUp.auth', [])
     }
     
 
-
     //=====================================================================
     $scope.signin=function (username,password) {
       console.log($scope.signinUserData.a)
