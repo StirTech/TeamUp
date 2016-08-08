@@ -1,11 +1,9 @@
-
-
 filter by type :<input type="text" ng-model="type">
 <div ng-repeat="game in data.games | filter : type">
 	<h2>{{game.name}}</h2>
-	<img ng-src={{game.picture}} width="25%" /><br>
+	<a href="#/game/{{game._id}}"><img ng-src={{game.picture}} width="25%" /><br></a>
 	<h3>{{game.type}}</h3>
 	<h3>{{game.description}}</h3>
 	# of Players : <h3>{{game.numOfPlayers}}</h3>
 	Date : <h3>{{game.date}}</h3>
-</div>
+	<button ng-click="viewGame(game._id)">More Details</button>
