@@ -1,24 +1,26 @@
 
 <div class="signup">
-	<center>
-		<button class="hvr-sweep-to-left" >HIDE</button>
-		<input class="hvr-sweep-to-left" type="button" name="">	
-	</center>
 	
 	<div  id="signupForm">
 		<div >
-			<span> Username
-			<input type="textbox" name="">							
-			</span>
-			<span> password
-			<input type="textbox" name="">							
-			</span>
-			<span> email
-			<input type="textbox" name="">							
-			</span>
+			<p> firstName
+			<input type="textbox" ng-model="firstName">							
+			</p>
+			<p> lastName
+			<input type="textbox" ng-model="lastName">							
+			</p>
+			<p> Username
+			<input type="textbox" ng-model="username">							
+			</p>
+			<p> password
+			<input type="textbox" ng-model="password">							
+			</p>
+			<p> email
+			<input type="textbox" ng-model="email">							
+			</p>
 		</div>
-		<div>
-			
+		<button ng-click="setcreateUserData(firstName,lastName,username,password,email)">create</button>
+		<div>		
 		</div>
 	</div>
 </div>

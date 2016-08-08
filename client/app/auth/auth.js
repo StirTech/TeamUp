@@ -1,18 +1,32 @@
 angular.module('TeamUp.auth', [])
 
   .controller('AuthController', function ($scope, $window, $location, UserAuth) {
-  
+    $scope.createUserData={};
+    $scope.signinUserData={};
 
-  $scope.createUser=function () {
-    // dont forget to declare Userrrrrrr Data
-    UserAuth.addNewUser(userData)
-  }
+    $scope.setcreateUserData = function (firstName, lastName, username, password, email) {
+      console.log("sssssssssssssssssssssssss")
+      $scope.createUserData.username = username;
+      $scope.createUserData.password = password;
+      $scope.createUserData.email = email;
+      $scope.createUserData.firstName = firstName;
+      $scope.createUserData.lastName = lastName;
+      $scope.createUser($scope.createUserData)
+    }
+
+    $scope.createUser=function (userD) {
+      console.log(userD)
+      UserAuth.addNewUser(userD)
+    }
+    
 
 
-
-  $scope.signin=function () {
-    //dont forget to declare User
-    UserAuth.signUser(user)
-  }
+    //=====================================================================
+    $scope.signin=function (username,password) {
+      console.log($scope.signinUserData.a)
+      $scope.signinUserData.username = username;
+      $scope.signinUserData.password = password;
+      UserAuth.signUser($scope.signinUserData)
+    }
   
 })
