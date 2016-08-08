@@ -1,30 +1,25 @@
 angular.module('TeamUp.editGame',[])
 
-.controller('editGameController',function($scope,$routeParams, Game){
-	$scope.editGame = {};
-	$scope.getNewData = function(name, type, description, locationID, country, city, picture, date, players, numOfPlayers){
-		console.log($scope.editGame);
-		$scope.editGame.owner = $window.localStorage.token.userid;
-		$scope.editGame.name = name;
-		$scope.editGame.type = type;
-		$scope.editGame.description = description;
-		$scope.editGame.locationID = locationID;
-		$scope.editGame.country = country;
-		$scope.editGame.city = city;
-		$scope.editGame.picture	= picture;
-		$scope.editGame.date = date;
-		$scope.editGame.numOfPlayers = numOfPlayers;
-		$scope.updateGame($scope.editGame);
+.controller('editGameController',function($scope,$routeParams, Game,$location){
+	$scope.game={};
+	$scope.initialize = function () {
+		Game.getOne($routeParams.id)
+		.then(function (game) {
+			console.log(game);
+			$scope.game=game;
+		})
+		.catch(function (err) {
+			console.log(err);
+		})
+	};
+	$scope.editGame = function () {
+		Game.editOne($routeParams.id,$scope.game)
+		.then(function (game) {
+			$location.path('/game/'+$routeParams.id)
+		})
+		.catch(function (err) {
+			console.log(err)
+		})
 	}
-	$scope.getGame = function(gameId){
-		console.log(game);
-		Game.getOne(gameId);
-	}
-	$scope.updateGame = function(gameId, game){
-		Game.editOne(gameId, game)
-	}
-	getGame($routeParams.id)
-	.then(function(resp){
-		console.log(resp)
-	})
+	$scope.initialize();
 });
