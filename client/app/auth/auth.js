@@ -1,4 +1,4 @@
-angular.module('TeamUp.Auth', [])
+angular.module('TeamUp.auth', [])
 
   .controller('AuthController', function ($scope, $window, $location, UserAuth) {
   $scope.userData={
