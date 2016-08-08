@@ -1,12 +1,12 @@
 angular.module('TeamUp.editProfile',[])
 
-.controller('editProfileController', function($scope, User, $location, $routeParams){
+.controller('editProfileController', function($scope, User, $location, $window, $routeParams){
 
 	$scope.user = {}
 	$scope.newUser = {}
 
 	$scope.intialize = function(){
-		Users.getUser($routeParams.id)
+		User.getUser($window.localStorage.userId)
 		.then(function(user){
 			if(!user){
 				$location.path('/404');
@@ -20,9 +20,9 @@ angular.module('TeamUp.editProfile',[])
 	}
 
 	$scope.save = function(){
-		Users.editUser($scope.newUser, $routeParams.id)
+		User.editUser($scope.newUser, $window.localStorage.userId)
 		.then(function(result){
-			$location.path('/user/'+$routeParams.id)
+			$location.path('/profile/'+$window.localStorage.userId)
 		})
 		.catch(function(error){
 			console.log(error)
