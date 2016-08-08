@@ -15,17 +15,6 @@ angular.module('TeamUp.games',[])
 		console.log('asdsa')
 		$location.path('/game/'+gameId);
 	}
-	// $scope.getPlayers = function (players) {
-	// 	User.getPlayers(players)
-	// 	.then(function (players) {
-	// 		console.log(players)
-	// 		return players;
-	// 	})
-	// 	.catch(function (err) {
-	// 		console.log(err);
-	// 	})
-	// }
-
 	$scope.initaize();
 	
 });
