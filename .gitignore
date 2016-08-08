@@ -17,6 +17,7 @@ Icon
 node_modules/
 db/
 client/lib/
+client/dist/
 coverage/
 
 # Build files
