@@ -40,7 +40,7 @@ angular.module('TeamUp', [
       templateUrl: 'app/game/game.html',
       controller: 'gameController'
     })
-    .when('/editGame/:id/edit', {
+    .when('/game/:id/edit', {
       templateUrl: 'app/game/editGame.html',
       controller: 'editGameController'
     })

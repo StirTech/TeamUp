@@ -1,1 +1,10 @@
-<div>Game Page</div>
+<div>{{game.name}}</div>
+<img ng-src="{{game.picture}}" width="50%">
+<div>Created By : {{game.owner}}</div>
+<div>description : {{game.description}}</div>
+<div>location : {{game.locationID}}</div>
+<div>country : {{game.country}}</div>
+<div>city : {{game.city}}</div>
+<div>date : {{game.date}}</div>
+<div># of Players : {{game.numOfPlayers}}</div>
+<div ng-repeat="player in game.plyersObjs"><a href="#/profile/{{player._id}}">{{player.username}} <img ng-src="{{player.picture}}" width="25px" /></a></div>

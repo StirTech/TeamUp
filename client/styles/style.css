@@ -27,3 +27,8 @@ li a.active {
     color: white;
     background-color: #4CAF50;
 }
+
+#map {
+    width: 100%;
+    height: 400px;
+}
