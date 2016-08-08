@@ -20,7 +20,7 @@ angular.module('TeamUp.services',[])
 	// this function to sign user
 	var signUser = function (user) {
 		return $http({
-			method:'GET',
+			method:'POST',
 			url:'/api/users/signin',
 			data:user
 		})
