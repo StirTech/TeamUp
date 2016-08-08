@@ -10,6 +10,14 @@ angular.module('TeamUp', [
   'ngRoute'
 
 ])
+
+.controller('HeaderController',function ($scope, $window, $location, Auth) {
+  $scope.logout = function () {
+    $window.localStorage.clear();
+    $window.islogin = false ;
+  }
+})
+
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
     .when('/home', {
@@ -47,8 +55,5 @@ angular.module('TeamUp', [
     .otherwise({
       redirectTo: '/home'
     });
-    
-    // We add our $httpInterceptor into the array
-    // of interceptors. Think of it like middleware for your ajax calls
-    //$httpProvider.interceptors.push('AttachTokens');
+
 });
