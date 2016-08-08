@@ -12,7 +12,6 @@ angular.module('TeamUp.createGame',[])
 		$scope.newGame.city = city;
 		$scope.newGame.picture	= picture;
 		$scope.newGame.date	= date;
-		$scope.newGame.players	= players;
 		$scope.newGame.numOfPlayers	= numOfPlayers;
 		$scope.createGame($scope.newGame);
 	}
