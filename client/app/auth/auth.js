@@ -28,5 +28,5 @@ angular.module('TeamUp.auth', [])
       $scope.signinUserData.password = password;
       UserAuth.signUser($scope.signinUserData)
     }
-  
+    
 })

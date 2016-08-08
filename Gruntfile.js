@@ -7,13 +7,7 @@ module.exports = function(grunt) {
         files: {
           'client/dist/app.js' : ['client/app/**/*.js', 'client/app/*.js']
         }
-      },
-      // dist_lib: {
-      //   files: {
-      //     'client/dist/lib.js' : ['client/lib/jquery.js', 'public/lib/underscore.js',
-      //      'public/lib/backbone.js', 'public/lib/handlebars.js'],
-      //   }
-      // }
+      }
     },
 
     mochaTest: {
@@ -48,14 +42,14 @@ module.exports = function(grunt) {
     //   }
     // },  
 
-    // cssmin: {
-    //   target: {
-    //     files: {
-    //       'public/style.min.css' : ['public/style.css']
+    cssmin: {
+      target: {
+        files: {
+          'client/styles/style.min.css' : ['client/styles/*.css']
           
-    //     }
-    //   }
-    // },
+        }
+      }
+    },
 
     watch: {
       scripts: {
@@ -68,10 +62,10 @@ module.exports = function(grunt) {
           'uglify'
         ]
       },
-      // css: {
-      //   files: 'public/*.css',
-      //   tasks: ['cssmin']
-      // }
+      css: {
+        files: 'client/styles/*.css',
+        tasks: ['cssmin']
+      }
     },
 
     shell: {
@@ -83,7 +77,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  // grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   // grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
@@ -119,7 +113,7 @@ module.exports = function(grunt) {
   ]);
 
   //grunt.registerTask('heroku:development', 'cssmin');
-  grunt.registerTask('heroku:production', ['concat', 'uglify']);
+  grunt.registerTask('heroku:production', ['concat', 'uglify', 'cssmin']);
 
   grunt.registerTask('build', [
   ]);
@@ -132,6 +126,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', ['concat', 'uglify']);
+  grunt.registerTask('deploy', ['concat', 'uglify', 'cssmin']);
 
 };
