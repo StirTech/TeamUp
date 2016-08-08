@@ -1,1 +1,4 @@
-<div>Edit Profile Page</div>
+<div class="container">
+	<input name="firstName" type="text" ng-model="newUser.firstName" placeholder="user.firstName" value="newUser.firstName">
+	<input ng-if="!routeParams.id" type="button" ng-click="save()" class="btn btn-default" value="Save"/>
+</div>

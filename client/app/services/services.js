@@ -53,14 +53,14 @@ angular.module('TeamUp.services',[])
 	}
 
 
-	var editUser = function (user) {
+	var editUser = function (user, userId) {
 		return $http({
 			method:'PUT',
-			url:'/api/user/'+user._id+'/edit',
-			data:{user:user}
+			url:'/api/user/'+userId+'/edit',
+			data: user
 		})
 		.then(function (res) {
-			return res.data
+			return res
 		});
 	};
 

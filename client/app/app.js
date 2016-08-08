@@ -48,7 +48,7 @@ angular.module('TeamUp', [
       templateUrl: 'app/profile/profile.html',
       controller: 'profileController',
     })
-    .when('/editProfile/:id/edit', {
+    .when('/profile/:id/edit', {
       templateUrl: 'app/profile/editProfile.html',
       controller: 'editProfileController',
     })
