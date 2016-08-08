@@ -1,6 +1,6 @@
 angular.module('TeamUp.game',[])
 
-.controller('gameController',function($scope, Game, User, $routeParams){
+.controller('gameController',function($scope, Game, User, $routeParams, $location){
 	$scope.game={};
 	$scope.game.owner ="";
 	$scope.game.plyersObjs =[];
@@ -24,5 +24,9 @@ angular.module('TeamUp.game',[])
 			console.log(err);
 		})
 	};
+
+	$scope.editGame = function () {
+		$location.path('game/'+$routeParams.id+'/edit');
+	}
 	$scope.initlize();
 });
