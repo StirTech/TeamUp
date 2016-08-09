@@ -8,7 +8,7 @@ var mongoURI = 'mongodb://localhost/teamup';
 mongoose.connect(mongoURI);
 db = mongoose.connection;
 
-var port = 8100;
+var port = 3000;
 db.once('open',function () {
 	console.log('mongoDB is open');
 });
