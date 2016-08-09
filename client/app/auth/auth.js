@@ -9,11 +9,16 @@ angular.module('TeamUp.auth', [])
 
     $scope.fbLogin = function () {
         FB.login(function (response) {
+            console.log(response)
             if (response.authResponse) {
                 if(response.status === "connected"){
                     getUserInfo();
-                    $location.path('/')
-                    $scope.$apply();
+                    $window.localStorage['facebookState'] = response.status;
+
+
+                   $window.localStorage['isLogin'] = true;
+                   $location.path('/home');
+                   $window.location.reload();
                 }
                 
             } else {
@@ -100,7 +105,7 @@ angular.module('TeamUp.auth', [])
  
 
 
-  
+
  //===============================================================================================
  /*                                        facrbook Auth                                        */
  //===============================================================================================
@@ -128,6 +133,7 @@ angular.module('TeamUp.auth', [])
       })
     };
 
+
     $scope.signup = function () {
         UserAuth.addNewUser($scope.user)
         .then(function (user) {
@@ -138,17 +144,9 @@ angular.module('TeamUp.auth', [])
         })
     }
 
-
-    $scope.logout = function () {
-        console.log('log out user')
-        $location.path('/signin')
-        $window.localStorage.clear();
-        $window.islogin = false ;
-   }
-
-
     $scope.islogin = function () {
-      if($window.localStorage['token'] ){
+   
+      if($window.localStorage['token']  || $window.localStorage['facebookState'] === "connected"){
         $window.islogin = true;
       }else{
         $window.islogin = false;

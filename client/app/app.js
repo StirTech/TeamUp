@@ -16,9 +16,9 @@ angular.module('TeamUp', [
 .controller('HeaderController',function ($scope, $window, $location, UserAuth) {
   $scope.userId=$window.localStorage.userId;
 
-  if($window.localStorage.isLogin)
+  if($window.localStorage.isLogin){ 
     $scope.loggedIN=true;
-  else
+  }else
     $scope.loggedIN=false;
 
   $scope.logout = function () {
