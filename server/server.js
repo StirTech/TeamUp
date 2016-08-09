@@ -4,11 +4,11 @@ var mongoose = require('mongoose');
 var app = express();
 var server = require ('http').createServer(app);
 
-var mongoURI = 'mongodb://localhost/teamup';
+var mongoURI = process.env.MONGODB_URI ||'mongodb://localhost/teamup';
 mongoose.connect(mongoURI);
 db = mongoose.connection;
 
-var port = 3000;
+var port = process.env.PORT || 3000;
 db.once('open',function () {
 	console.log('mongoDB is open');
 });
