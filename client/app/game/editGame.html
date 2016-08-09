@@ -1,1 +1,26 @@
-<div>edit Game Page</div>
+<div id='container'>
+  	<form >
+		<div>
+			name:<input type="text" name="name" placeholder="Game name" ng-model="game.name"><br>
+			type:<input type="text" name="gameType" placeholder="Game type" ng-model="game.type"><br>
+			description:<input type="text" name="gameDescription" placeholder="description" ng-model="game.description"><br>
+			Location:<input type="text" name="gameLocation" placeholder="locationID" ng-model="game.locationID"><br>
+			Country:<input type="text" name="gameCountry" placeholder="Country" ng-model="game.country"><br>
+			City:<input type="text" name="gameCity" placeholder="City" ng-model="game.city"><br>
+			picture: <input type="text" name="gamePicture" placeholder="pic" ng-model="game.picture"><br>
+			Date and time:<input type="text" name="gameDate" placeholder="set game date and time" ng-model="game.date"><br>
+			<!-- <div class="dropdown">
+				<a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+	        		<div class="input-group">
+	        			<input type="text" class="form-control" data-ng-model="data.dateDropDownInput"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+	        		</div>
+      			</a>
+      			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        			<datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+      			</ul>
+    		</div> -->
+			Number of players:<input type="text" name="numOfPlayers" placeholder="" ng-model="game.numOfPlayers"><br>
+			<button ng-click="editGame()">Edit Game</button>
+		</div>
+	</form>
+</div>

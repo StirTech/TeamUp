@@ -1,15 +1,7 @@
 angular.module('TeamUp.games',[])
 
-.controller('gamesController',function($scope, Game, User){
-	$scope.data = {
-	    model: null,
-	    availableOptions: [
-	      {id: '1', name: 'Option A'},
-	      {id: '2', name: 'Option B'},
-	      {id: '3', name: 'Option C'}
-	    ]
-   	};
-
+.controller('gamesController',function($scope, $location, Game, User){
+	$scope.data={};
 	$scope.initaize = function () {
 		Game.getAll()
 		.then(function (games) {
@@ -19,18 +11,10 @@ angular.module('TeamUp.games',[])
 			console.log(err);
 		});
 	};
-
-	// $scope.getPlayers = function (players) {
-	// 	User.getPlayers(players)
-	// 	.then(function (players) {
-	// 		console.log(players)
-	// 		return players;
-	// 	})
-	// 	.catch(function (err) {
-	// 		console.log(err);
-	// 	})
-	// }
-
+	$scope.viewGame = function (gameId) {
+		console.log('asdsa')
+		$location.path('/game/'+gameId);
+	}
 	$scope.initaize();
 	
 });
