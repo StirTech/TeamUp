@@ -11,13 +11,22 @@ angular.module('TeamUp', [
 
 ])
 
-.controller('HeaderController',function ($scope, $window, $location, Auth) {
-  // $scope.logout = function () {
-  //   console.log('sadasdasddddddddddddddddddddddddddddddddd')
-  //   $window.localStorage.clear();
-  //   $window.islogin = false ;
-  // }
 
+
+.controller('HeaderController',function ($scope, $window, $location, UserAuth) {
+  $scope.userId=$window.localStorage.userId;
+
+  if($window.localStorage.isLogin)
+    $scope.loggedIN=true;
+  else
+    $scope.loggedIN=false;
+
+  $scope.logout = function () {
+    $scope.loggedIN=false;
+    $window.localStorage.clear();
+    $window.localStorage.loggedIN=false;
+    $location.path('/home')
+  }
 })
 
 .config(function ($routeProvider, $httpProvider) {
