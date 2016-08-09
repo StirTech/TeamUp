@@ -1,22 +1,30 @@
 angular.module('TeamUp.createGame',[])
 
-.controller('createGameController',function($scope, $window, Game){
-	$scope.newGame = {};
-	$scope.getGameData = function(name, type, description, locationID, country, city, picture, date, players, numOfPlayers){
-		$scope.newGame.owner = $window.token.userid;
-		$scope.newGame.name = name;
-		$scope.newGame.type	= type;
-		$scope.newGame.description = description;
-		$scope.newGame.locationID = locationID;
-		$scope.newGame.country = country;
-		$scope.newGame.city = city;
-		$scope.newGame.picture	= picture;
-		$scope.newGame.date	= date;
-		$scope.newGame.numOfPlayers	= numOfPlayers;
-		$scope.createGame($scope.newGame);
+.controller('createGameController',function($scope, $window, Game, $location){
+	var newGame = {};
+	$scope.getGameData = function(){
+		newGame.owner = $window.localStorage.userId;
+		newGame.name = $scope.name;
+		newGame.type	= $scope.type;
+		newGame.description = $scope.description;
+		newGame.locationID = $scope.locationID;
+		newGame.country = $scope.country;
+		newGame.city = $scope.city;
+		newGame.picture	= $scope.picture;
+		newGame.date	= $scope.date;
+		newGame.numOfPlayers	= $scope.numOfPlayers;
+		$scope.crGame(newGame);
 	}
-	$scope.createGame = function(game){
-		console.log(game);
-		Game.addOne(game);
+	$scope.crGame = function(game){
+		Game.addOne(game)
+		.then(function (game) {
+			console.log(game);
+			$location.path('game/'+game._id)
+		})
+		.catch(function (err) {
+			console.log(err);
+		})
+
+
 	}
 });

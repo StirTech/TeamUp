@@ -11,10 +11,19 @@ angular.module('TeamUp', [
 
 ])
 
-.controller('HeaderController',function ($scope, $window, $location, Auth) {
+.controller('HeaderController',function ($scope, $window, $location, UserAuth) {
+  $scope.userId=$window.localStorage.userId;
+
+  if($window.localStorage.isLogin)
+    $scope.loggedIN=true;
+  else
+    $scope.loggedIN=false;
+
   $scope.logout = function () {
+    $scope.loggedIN=false;
     $window.localStorage.clear();
-    $window.islogin = false ;
+    $window.localStorage.loggedIN=false;
+    $location.path('/home')
   }
 })
 
@@ -40,7 +49,7 @@ angular.module('TeamUp', [
       templateUrl: 'app/game/game.html',
       controller: 'gameController'
     })
-    .when('/editGame/:id/edit', {
+    .when('/game/:id/edit', {
       templateUrl: 'app/game/editGame.html',
       controller: 'editGameController'
     })
