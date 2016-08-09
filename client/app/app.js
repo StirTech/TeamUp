@@ -12,12 +12,11 @@ angular.module('TeamUp', [
 ])
 
 .controller('HeaderController',function ($scope, $window, $location, Auth) {
-  $scope.logout = function () {
-    $window.localStorage.clear();
-    $window.islogin = false ;
-  }
-
-
+  // $scope.logout = function () {
+  //   console.log('sadasdasddddddddddddddddddddddddddddddddd')
+  //   $window.localStorage.clear();
+  //   $window.islogin = false ;
+  // }
 
 })
 
@@ -58,7 +57,7 @@ angular.module('TeamUp', [
     .otherwise({
       redirectTo: '/home'
     });
-
+    
 });
 
 

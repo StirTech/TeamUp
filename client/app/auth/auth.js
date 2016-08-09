@@ -3,7 +3,7 @@ angular.module('TeamUp.auth', [])
   .controller('AuthController', function ($scope, $window, $location, UserAuth ) {
     $scope.createUserData={};
     $scope.signinUserData={};
-    $window.islogin = false;
+    $window.islogin = '';
 
     $scope.setcreateUserData = function (firstName, lastName, username, password, email) {
       $scope.createUserData.username = username;
@@ -13,7 +13,7 @@ angular.module('TeamUp.auth', [])
       $scope.createUserData.lastName = lastName;
       UserAuth.addNewUser($scope.createUserData)
     }
-    
+     
 
     //===============================================================================================
     /*                                        facrbook Auth                                        */
@@ -22,10 +22,14 @@ angular.module('TeamUp.auth', [])
     $scope.fbLogin = function () {
         FB.login(function (response) {
             if (response.authResponse) {
-                getUserInfo();
-                $location.path('/')
-                $scope.$apply();
+                if(response.status === "connected"){
+                    getUserInfo();
+                    $location.path('/')
+                    $scope.$apply();
+                }
+                
             } else {
+
                 console.log('User cancelled login or did not fully authorize.');
             }
         }, {scope: 'email,user_photos,user_videos'});
@@ -125,8 +129,17 @@ angular.module('TeamUp.auth', [])
       })
     }
 
+
+    $scope.logout = function () {
+        console.log('log out user')
+        $location.path('/signin')
+        $window.localStorage.clear();
+        $window.islogin = false ;
+   }
+
+
     $scope.islogin = function () {
-      if($window.localStorage['token']){
+      if($window.localStorage['token'] ){
         $window.islogin = true;
       }else{
         $window.islogin = false;
