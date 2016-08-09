@@ -7,9 +7,11 @@
 	</head>
 
 	<body >
+
 	
 		<ul ng-controller="HeaderController" ng-switch on="loggedIN">
 		  <li><a href="#/home">Home</a></li>
+
 		  <li ng-switch-when="false"><a href="#/signin">Signin</a></li>
 		  <li ng-switch-when="false"><a href="#/signup">Signup</a></li>
 		  <li ng-switch-when="true"><a href="#/createGame">Create Game</a></li>

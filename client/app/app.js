@@ -11,12 +11,14 @@ angular.module('TeamUp', [
 
 ])
 
+
+
 .controller('HeaderController',function ($scope, $window, $location, UserAuth) {
   $scope.userId=$window.localStorage.userId;
 
-  if($window.localStorage.isLogin)
+  if($window.localStorage.isLogin){ 
     $scope.loggedIN=true;
-  else
+  }else
     $scope.loggedIN=false;
 
   $scope.logout = function () {
@@ -64,5 +66,32 @@ angular.module('TeamUp', [
     .otherwise({
       redirectTo: '/home'
     });
-
+    
 });
+
+
+//======================================================================================
+/*                                     facebook Auth                                  */
+//======================================================================================
+//var secret = '7ba8efed3d619c30658079c513ff2f4f';
+//var ID = '1563637017279611';
+
+window.fbAsyncInit = function() {
+    FB.init({ 
+      appId: '1264355366938127',
+      status: true, 
+      cookie: true, 
+      xfbml: true,
+      version: 'v2.7'
+    });
+};
+
+
+(function(d, s, id){
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) {return;}
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/sdk.js";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
