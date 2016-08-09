@@ -5,8 +5,12 @@ angular.module('TeamUp.editProfile',[])
 	$scope.user = {}
 	$scope.newUser = {}
 
+	if($window.localStorage.userId !== $routeParams.id){
+		$location.path('/home')
+	}
+
 	$scope.intialize = function(){
-		User.getUser($window.localStorage.userId)
+		User.getUser($routeParams.id)
 		.then(function(user){
 			if(!user){
 				$location.path('/404');
