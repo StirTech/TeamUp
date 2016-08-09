@@ -6,14 +6,17 @@
 		<link rel="stylesheet" type="text/css" href="styles/style.css" />
 	</head>
 
-	<body>
+	<body >
 	
-		<ul>
+		<ul ng-controller="HeaderController" ng-switch on="loggedIN">
 		  <li><a href="#/home">Home</a></li>
-		  <li><a href="#/signin">Signin</a></li>
-		  <li><a href="#/signup">Signup</a></li>
-		  <li><a href="#/createGame">Create Game</a></li>
-		  <li><a href="#/profile">User Profile</a></li>
+		  <li ng-switch-when="false"><a href="#/signin">Signin</a></li>
+		  <li ng-switch-when="false"><a href="#/signup">Signup</a></li>
+		  <li ng-switch-when="true"><a href="#/createGame">Create Game</a></li>
+
+		  <li ng-switch-when="true"><a href="#/profile/{{userId}}">Profile</a></li>
+		  <li ng-switch-when="true"><a ng-click="logout()"> logOut</a></li>
+
 		</ul>
 
 		<div ng-view ></div>
