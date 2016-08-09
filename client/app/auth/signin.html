@@ -3,14 +3,15 @@
 	<div  id="signinForm">
 		<div >
 			<p> Username
-			<input type="textbox" ng-model="username">							
+			<input type="textbox" ng-model="user.username">							
 			</p>
 			<p> password
-			<input type="textbox" ng-model="password">							
+			<input type="textbox" ng-model="user.password">							
 			</p>
+			<p ng-hide="wrong">wrong username or password</p>
 		</div>
 		<div>
-			<button ng-click="signin(username,password)">login</button>	
+			<button ng-click="signin()">login</button>	
 		</div>
 	</div>
 </div>

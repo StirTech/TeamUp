@@ -3,22 +3,22 @@
 	<div  id="signupForm">
 		<div >
 			<p> firstName
-			<input type="textbox" ng-model="firstName">							
+			<input type="textbox" ng-model="user.firstName">							
 			</p>
 			<p> lastName
-			<input type="textbox" ng-model="lastName">							
+			<input type="textbox" ng-model="user.lastName">							
 			</p>
 			<p> Username
-			<input type="textbox" ng-model="username">							
+			<input type="textbox" ng-model="user.username">							
 			</p>
 			<p> password
-			<input type="textbox" ng-model="password">							
+			<input type="textbox" ng-model="user.password">							
 			</p>
 			<p> email
-			<input type="textbox" ng-model="email">							
+			<input type="textbox" ng-model="user.email">							
 			</p>
 		</div>
-		<button ng-click="setcreateUserData(firstName,lastName,username,password,email)">create</button>
+		<button ng-click="signup()">create</button>
 		<div>		
 		</div>
 	</div>
