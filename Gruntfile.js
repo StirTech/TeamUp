@@ -68,6 +68,12 @@ module.exports = function(grunt) {
       }
     },
 
+    karma: {
+        unit: {
+            configFile: 'karma.conf.js'
+        }
+    },
+
     shell: {
       prodServer: {
       }
@@ -82,6 +88,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -109,7 +116,8 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-    'mochaTest'
+    'mochaTest',
+    'karma'
   ]);
 
   //grunt.registerTask('heroku:development', 'cssmin');
@@ -125,6 +133,8 @@ module.exports = function(grunt) {
       grunt.task.run([ 'server-dev' ]);
     }
   });
+
+  grunt.registerTask('karma', ['karma']);
 
   grunt.registerTask('deploy', ['concat', 'uglify', 'cssmin']);
 
