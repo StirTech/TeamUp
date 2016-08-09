@@ -2,7 +2,6 @@ angular.module('TeamUp.auth', [])
 
   .controller('AuthController', function ($scope, $window, $location, UserAuth, $route ) {
     $scope.wrong=true;
-
     $scope.signin = function () {
       UserAuth.signUser($scope.user)
       .then(function (data) {
@@ -20,7 +19,6 @@ angular.module('TeamUp.auth', [])
         $scope.password="";
       })
     };
-
     $scope.signup = function () {
         UserAuth.addNewUser($scope.user)
         .then(function (user) {
@@ -30,36 +28,4 @@ angular.module('TeamUp.auth', [])
             console.log(err);
         })
     }
-
-    // //===============================================================================================
-    // /*                                        login/out Auth                                       */
-    // //===============================================================================================
-    
-    // $scope.islogin = function () {
-    //   if($window.localStorage['token']){
-    //     $window.islogin = true;
-    //   }else{
-    //     $window.islogin = false;
-    //   }
-    //   console.log($window.islogin)
-    // }
-    
-    // //===============================================================================================
-    //                                              signin                                          
-    // //===============================================================================================
-    
-    // $scope.signin=function (username,password) {
-    //   $scope.signinUserData.username = username;
-    //   $scope.signinUserData.password = password;
-    //   UserAuth.signUser($scope.signinUserData)
-    //   .then(function (data) {
-    //     console.log(resp)
-    //     $window.localStorage['token'] = resp.token;
-    //     $window.localStorage['userId'] = resp.userId;
-    //   })
-    //   .then(function () {
-    //     $scope.islogin();
-    //   })
-    // }
-    
 })
