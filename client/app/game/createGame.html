@@ -102,6 +102,12 @@
     		</div> 
 			Number of players:<input type="text" name="numOfPlayers" placeholder="" ng-model="numOfPlayers"><br>
 			<button ng-click='getGameData()'>Create Game</button>
+			<div ng-controller="EventArgumentsController as vm">
+				<br/>
+				Click map to place markers
+				<ng-map zoom="4" center="-25.363882, 131.044922" on-click="vm.placeMarker()">
+				</ng-map>
+    		</div>
 		</div>
 	</form>
 </div>
