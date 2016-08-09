@@ -18,10 +18,13 @@ angular.module('TeamUp.auth', [])
     //===============================================================================================
     /*                                        facrbook Auth                                        */
     //===============================================================================================
+
     $scope.fbLogin = function () {
         FB.login(function (response) {
             if (response.authResponse) {
                 getUserInfo();
+                $location.path('/')
+                $scope.$apply();
             } else {
                 console.log('User cancelled login or did not fully authorize.');
             }
@@ -47,14 +50,18 @@ angular.module('TeamUp.auth', [])
                         user.gender = '';
                     }
                     user.profilePic = picResponse.data.url;
-                    $cookieStore.put('userInfo', user);
-                    $state.go('dashboard');
-
+                    $window.localStorage.setItem('userInfo', JSON.stringify(user));
+                     //JSON.parse(localStorage.userInfo);                       
                 });
             });
         }
     };
     // END FB Login
+
+    
+   
+
+
 
     // Google Plus Login
     $scope.gplusLogin = function () {
@@ -67,7 +74,7 @@ angular.module('TeamUp.auth', [])
             'scope': 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.profile.emails.read'
         };
         gapi.auth.signIn(myParams);
-
+        //console.log(myParams)
         function loginCallback(result) {
             if (result['status']['signed_in']) {
                 var request = gapi.client.plus.people.get({'userId': 'me'});
@@ -97,7 +104,9 @@ angular.module('TeamUp.auth', [])
             }
         }
     };
-    
+
+  
+
     //===============================================================================================
     /*                                             signin                                          */
     //===============================================================================================
@@ -105,14 +114,14 @@ angular.module('TeamUp.auth', [])
     $scope.signin=function (username,password) {
       $scope.signinUserData.username = username;
       $scope.signinUserData.password = password;
-      UserAuth.signUser($scope.signinUserData)
+      UserAuth.signUser(name)
       .then(function (resp) {
-        console.log(resp)
         $window.localStorage['token'] = resp.token;
         $window.localStorage['userId'] = resp.userId;
       })
       .then(function () {
         $scope.islogin();
+        $location.path('/');
       })
     }
 

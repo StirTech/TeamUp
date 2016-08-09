@@ -16,6 +16,9 @@ angular.module('TeamUp', [
     $window.localStorage.clear();
     $window.islogin = false ;
   }
+
+
+
 })
 
 .config(function ($routeProvider, $httpProvider) {
@@ -62,16 +65,16 @@ angular.module('TeamUp', [
 //======================================================================================
 /*                                     facebook Auth                                  */
 //======================================================================================
-var secret = '7ba8efed3d619c30658079c513ff2f4f';
-var ID = '1563637017279611';
+//var secret = '7ba8efed3d619c30658079c513ff2f4f';
+//var ID = '1563637017279611';
 
 window.fbAsyncInit = function() {
     FB.init({ 
-      appId: ID,
+      appId: '1264355366938127',
       status: true, 
       cookie: true, 
       xfbml: true,
-      version: 'v2.4'
+      version: 'v2.7'
     });
 };
 
