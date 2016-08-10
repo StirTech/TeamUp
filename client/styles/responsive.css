@@ -1,0 +1,84 @@
+/* Medium Layout: 1280px. */
+@media only screen and (min-width: 992px) and (max-width: 1280px) { 
+    .single-pricing.featured { width: 320px }
+    .single-pricing { width: 295px }
+}
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) { 
+    .logo h1 {
+        margin: 10px 0;
+        text-align: center;
+    }
+    .mainmenu {
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    .mainmenu .navbar-right { float: none !important }
+    .mainmenu ul.navbar-nav li {
+        float: none;
+        display: inline-block;
+    }
+    .single-portfolio { width: 50% }
+    .single-pricing.featured {
+        padding: 20px 10px;
+        width: 240px;
+    }
+    .single-pricing {
+        padding: 30px 10px;
+        width: 225px;
+    }
+    .pricing-content ul { font-size: 15px }
+    .featured .pricing-content ul { font-size: 16px }
+    .copyright-text { text-align: center }
+    .social-footer {
+        margin-bottom: 25px;
+        margin-top: 0;
+        text-align: center;
+    }
+}
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) { 
+    .logo h1 {
+        float: left;
+        font-size: 25px;
+        margin: 10px 0;
+    }
+    .navbar-toggle {
+        border-color: #222;
+        float: none;
+        margin: 10px auto;
+    }
+    .navbar-toggle .icon-bar { background: none repeat scroll 0 0 #222 }
+    .navbar-header { float: right }
+    .logo { overflow: hidden }
+    .mainmenu {
+        background: none repeat scroll 0 0 #fff;
+        margin-top: 0;
+        position: relative;
+        z-index: 99;
+    }
+    .mainmenu ul.navbar-nav li a {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .section-padding { padding: 50px 0 }
+    .single-promotion { margin: 35px 0 }
+    .page-title { margin-bottom: 40px }
+    .portfolio-menu ul li { margin: 0 5px 13px }
+    .single-portfolio { width: 100% }
+    .single-pricing,
+    .single-pricing.featured {
+        margin: 0 0 30px;
+        width: 100%;
+    }
+    .copyright-text { text-align: center }
+    .social-footer {
+        margin-bottom: 25px;
+        margin-top: 0;
+        text-align: center;
+    }
+}
+/* Wide Mobile Layout: 480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) { 
+    
+}
