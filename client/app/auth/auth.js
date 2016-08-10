@@ -1,63 +1,112 @@
 angular.module('TeamUp.auth', [])
 
 
+  
+
+
+
   .controller('AuthController', function ($scope, $window, $location, UserAuth, $route ) {
-    
+  
+
+
+
     //===============================================================================================
     /*                                        facrbook Auth                                        */
     //===============================================================================================
+    $scope.facebookUser = {};
+    $scope.wrong=true;
 
     $scope.fbLogin = function () {
         FB.login(function (response) {
-            console.log(response)
             if (response.authResponse) {
                 if(response.status === "connected"){
                     getUserInfo();
-                    $window.localStorage['facebookState'] = response.status;
-
-
-                   $window.localStorage['isLogin'] = true;
-                   $location.path('/home');
-                   $window.location.reload();
+                    $scope.facebookUser.fb_ID = response.authResponse.userID
                 }
-                
             } else {
-
                 console.log('User cancelled login or did not fully authorize.');
             }
-        }, {scope: 'email,user_photos,user_videos'});
+        }, {scope: 'email,user_photos,user_birthday,user_location,user_hometown'});
 
         function getUserInfo() {
             // get basic info
-            FB.api('/me', function (response) {
-                console.log('Facebook Login RESPONSE: ' + angular.toJson(response));
+            FB.api('/me',{ locale: 'en_US', fields: 'name, location, email' }, function (response) {
+                $scope.facebookUser.username = response.email;
+                $scope.facebookUser.firstName = response.name.split(" ")[0]
+                $scope.facebookUser.lastName = response.name.split(" ")[1]
+                $scope.facebookUser.password = response.email;
+                $scope.facebookUser.email = response.email;
+                $scope.facebookUser.location = response.location.name.split(" "); 
+                $scope.facebookUser.country =$scope.facebookUser.location[$scope.facebookUser.location.length-1];
+                $scope.facebookUser.city =$scope.facebookUser.location[0]
+                
                 // get profile picture
                 FB.api('/me/picture?type=normal', function (picResponse) {
-                    console.log('Facebook Login RESPONSE: ' + picResponse.data.url);
-                    response.imageUrl = picResponse.data.url;
-                    // store data to DB - Call to API
-                    // Todo
-                    // After posting user data to server successfully store user data locally
-                    var user = {};
-                    user.name = response.name;
-                    user.email = response.email;
-                    if(response.gender) {
-                        response.gender.toString().toLowerCase() === 'male' ? user.gender = 'M' : user.gender = 'F';
-                    } else {
-                        user.gender = '';
-                    }
-                    user.profilePic = picResponse.data.url;
-                    $window.localStorage.setItem('userInfo', JSON.stringify(user));
-                     //JSON.parse(localStorage.userInfo);                       
+                    $scope.facebookUser.picture = picResponse.data.url;                 
                 });
+
+                // to get friends
+                FB.api("/me/friends", function (response) {
+                      if (response && !response.error) {
+                        $scope.facebookUser.friends = response.data
+                      }
+                    }
+                );
+                /*
+                ================================================================*/
+                UserAuth.fbSignin({fb_ID:$scope.facebookUser.fb_ID})
+                .then(function(user){
+                    if(!user){
+                        $scope.signup($scope.facebookUser);        
+                    }else{
+                        console.log(user)  
+                        $scope.wrong=false;
+                        $window.localStorage['userInfo'] = JSON.stringify(user);
+                        $window.localStorage['token'] = user.token;
+                        $window.localStorage['userId'] = user.userId;
+                        $window.localStorage['isLogin'] = true;
+                        $location.path('/home');
+                        $window.location.reload();                      
+                    }
+                    
+                })
+                .then(function () {
+                    $scope.islogin();
+                    $location.path('/');
+                })
+                .catch(function (error) {
+                    console.error(error)
+                })
+
+
+
+
+
+
+              //   .then(function (data) {
+              //       $scope.wrong=false;
+              //       $window.localStorage['token'] = data.token;
+              //       $window.localStorage['userId'] = data.userId;
+              //       $window.localStorage['isLogin'] = true;
+              //       $location.path('/home');
+              //       $window.location.reload();
+              //   })
+              // .then(function () {
+              //       $scope.islogin();
+              //       $location.path('/');
+              //   })
+              // .catch(function (err) {
+              //       console.log(err);
+              //       $scope.wrong=false;
+              //})
+                
+                
+                //=============================================================
+
+            
             });
         }
     };
-    // END FB Login
-
-    
-   
-
 
 
     // Google Plus Login
@@ -107,12 +156,12 @@ angular.module('TeamUp.auth', [])
 
 
  //===============================================================================================
- /*                                        facrbook Auth                                        */
+ /*                                         AuthController                                       */
  //===============================================================================================
 
-    $scope.wrong=true;
-    $scope.signin = function () {
-      UserAuth.signUser($scope.user)
+    $scope.signin = function (user) {
+        console.log(user,"ooooooooooooooooooooooooooooooooooooooooooooooooo")
+      UserAuth.signUser(user)
       .then(function (data) {
         $scope.wrong=false;
         $window.localStorage['token'] = data.token;
@@ -134,15 +183,19 @@ angular.module('TeamUp.auth', [])
     };
 
 
-    $scope.signup = function () {
-        UserAuth.addNewUser($scope.user)
+    $scope.signup = function (newUser) {
+        UserAuth.addNewUser(newUser)
         .then(function (user) {
-            $scope.signin();
+            $scope.signin({
+                            username:newUser.username,
+                            password:newUser.password});
         })
         .catch(function (err) {
             console.log(err);
         })
     }
+
+   
 
     $scope.islogin = function () {
    
@@ -153,8 +206,4 @@ angular.module('TeamUp.auth', [])
       }
       console.log($window.islogin)
     }
-
-
-    
-
 })

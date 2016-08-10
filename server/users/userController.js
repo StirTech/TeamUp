@@ -25,6 +25,20 @@ module.exports = {
             });
 	},
 
+	fbSignin : function (req , res ,next) {
+		var fuserID = req.body.fb_ID;
+		User.findOne({fb_ID : fuserID})
+		.exec(function (error , user) {
+			if(!user){
+				res.status(500).send(new Error('User does not exist'));
+			}else{
+				var token = jwt.encode(user, 'secret');
+	            res.setHeader('x-access-token',token);
+	            res.json({token: token, user:user});
+			}
+		}) 
+	},
+
 	signup: function(req, res, next){
 		var username = req.body.username;
 	    var password = req.body.password;
@@ -44,7 +58,8 @@ module.exports = {
 				        interests:req.body.interests,
 				        picture:req.body.picture,
 				        game:req.body.game,
-				        email : req.body.email
+				        email : req.body.email,
+				        fb_ID:req.body.fb_ID
 					})
 			 		newUser.save(function(err, newUser){
 			            if(err){
