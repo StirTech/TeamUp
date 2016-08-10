@@ -9,6 +9,7 @@ module.exports = function(app, express) {
 	// auth routes
 	app.post('/api/users/signup', user.signup);
 	app.post('/api/users/signin', user.signin);
+	app.post('/api/users/fbSignin', user.fbSignin);
 	
 	// user routes
 	app.get('/api/user/:id', user.getUser);
