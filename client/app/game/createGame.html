@@ -41,6 +41,16 @@
                             <div class="col-md-6">
                                 <p><label for="name">Location</label><input ng-model="locationID" placeholder="Type game location" type="text" size="30" value="" required/></p>
                             </div>
+                            <div ng-controller="EventArgumentsController as vm">
+                                <br/>
+                                Click map to place markers
+                                <ng-map zoom="16" center="current-location" on-click="vm.placeMarker()">
+                                </ng-map>
+                            </div>
+
+
+
+
                             <div class="col-md-12">
 		                        <div class="submit-wrapper">
 		                            <p><input id="submit" type="submit" name="submit" value="Create" ng-click="getGameData()"  />  </p>
