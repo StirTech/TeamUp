@@ -1,33 +1,34 @@
 angular.module('TeamUp.auth', [])
 
 
+  
+
+
+
   .controller('AuthController', function ($scope, $window, $location, UserAuth, $route ) {
-    
+  
+
+
+
     //===============================================================================================
     /*                                        facrbook Auth                                        */
     //===============================================================================================
     $scope.facebookUser = {};
+    $scope.wrong=true;
 
     $scope.fbLogin = function () {
         FB.login(function (response) {
             if (response.authResponse) {
                 if(response.status === "connected"){
                     getUserInfo();
-                    //$window.localStorage['facebookState'] = response.status;
-                    //$window.localStorage['isLogin'] = true;
-                    //$location.path('/home');
-                    //$window.location.reload();
-                    //$scope.$apply();                
+                    $scope.facebookUser.fb_ID = response.authResponse.userID
                 }
-                
             } else {
-
                 console.log('User cancelled login or did not fully authorize.');
             }
         }, {scope: 'email,user_photos,user_birthday,user_location,user_hometown'});
 
         function getUserInfo() {
-
             // get basic info
             FB.api('/me',{ locale: 'en_US', fields: 'name, location, email' }, function (response) {
                 $scope.facebookUser.username = response.email;
@@ -44,30 +45,68 @@ angular.module('TeamUp.auth', [])
                     $scope.facebookUser.picture = picResponse.data.url;                 
                 });
 
-
                 // to get friends
                 FB.api("/me/friends", function (response) {
                       if (response && !response.error) {
-                        user.friends = response.data
-                        console.log(user)
+                        $scope.facebookUser.friends = response.data
                       }
                     }
                 );
-            $scope.signup($scope.facebookUser);
-            });
+                /*
+                ================================================================*/
+                UserAuth.fbSignin({fb_ID:$scope.facebookUser.fb_ID})
+                .then(function(user){
+                    if(!user){
+                        $scope.signup($scope.facebookUser);        
+                    }else{
+                        console.log(user)  
+                        $scope.wrong=false;
+                        $window.localStorage['userInfo'] = JSON.stringify(user);
+                        $window.localStorage['token'] = user.token;
+                        $window.localStorage['userId'] = user.userId;
+                        $window.localStorage['isLogin'] = true;
+                        $location.path('/home');
+                        $window.location.reload();                      
+                    }
+                    
+                })
+                .then(function () {
+                    $scope.islogin();
+                    $location.path('/');
+                })
+                .catch(function (error) {
+                    console.error(error)
+                })
 
-           
-          //$window.localStorage.setItem('userInfo', JSON.stringify(user));  
-          //JSON.parse(localStorage.userInfo);
-          //console.log($scope.facebookUser,"hoooooooooooooooooooooooooooooooooooooooon")
+
+
+
+
+
+              //   .then(function (data) {
+              //       $scope.wrong=false;
+              //       $window.localStorage['token'] = data.token;
+              //       $window.localStorage['userId'] = data.userId;
+              //       $window.localStorage['isLogin'] = true;
+              //       $location.path('/home');
+              //       $window.location.reload();
+              //   })
+              // .then(function () {
+              //       $scope.islogin();
+              //       $location.path('/');
+              //   })
+              // .catch(function (err) {
+              //       console.log(err);
+              //       $scope.wrong=false;
+              //})
+                
+                
+                //=============================================================
+
+            
+            });
         }
     };
-
-    
-   $window.do =function (data) {
-       $scope.signup(data)
-   } 
-
 
 
     // Google Plus Login
@@ -117,10 +156,9 @@ angular.module('TeamUp.auth', [])
 
 
  //===============================================================================================
- /*                                        facrbook Auth                                        */
+ /*                                         AuthController                                       */
  //===============================================================================================
 
-    $scope.wrong=true;
     $scope.signin = function (user) {
         console.log(user,"ooooooooooooooooooooooooooooooooooooooooooooooooo")
       UserAuth.signUser(user)
