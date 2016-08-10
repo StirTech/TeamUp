@@ -7,7 +7,7 @@ angular.module('TeamUp.createGame',[])
 		newGame.name = $scope.name;
 		newGame.type	= $scope.type;
 		newGame.description = $scope.description;
-		newGame.locationID = $scope.locationID;
+		newGame.locationID =  $window.localStorage.loc;
 		newGame.country = $scope.country;
 		newGame.city = $scope.city;
 		newGame.picture	= $scope.picture;

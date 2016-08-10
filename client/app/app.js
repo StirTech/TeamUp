@@ -28,7 +28,7 @@ angular.module('TeamUp', [
     $location.path('/home')
   }
 })
-.controller('EventArgumentsController', function(NgMap) {
+.controller('EventArgumentsController', function($scope, $window, NgMap) {
     var vm = this;
     NgMap.getMap().then(function(map) {
       vm.map = map;
@@ -36,7 +36,9 @@ angular.module('TeamUp', [
     vm.placeMarker = function(e) {
       var marker = new google.maps.Marker({position: e.latLng, map: vm.map});
       vm.map.panTo(e.latLng);
+      $window.localStorage.loc = e.latLng;
     }
+   //console.log(loc)
   })
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
