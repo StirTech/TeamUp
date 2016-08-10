@@ -35,6 +35,9 @@ var UserSchema = new mongoose.Schema({
   interests: {
     type: String
   },
+  fb_ID:{
+    type:String
+  },
   picture: {
     type: String
   },
