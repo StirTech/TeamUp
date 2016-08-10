@@ -1,10 +1,83 @@
-filter by type :<input type="text" ng-model="type">
+<!-- filter by type :<input type="text" ng-model="type">
 <div ng-repeat="game in data.games | filter : type">
 	<h2>{{game.name}}</h2>
 	<a href="#/game/{{game._id}}"><img ng-src={{game.picture}} width="25%" /><br></a>
 	<h3>{{game.type}}</h3>
 	<h3>{{game.description}}</h3>
 	# of Players : <h3>{{game.numOfPlayers}}</h3>
-	Date : <h3>{{game.date}}</h3>
+    Date : <h3>{{game.date | date:'yyyy-MM-dd' }}</h3>
+    Time : <h3>{{game.date | date:'h:mm a' }}</h3>
 	<button ng-click="viewGame(game._id)">More Details</button>
-</div>
+</div> -->
+<div id="home" class="slider-area">
+    <div data-velocity="-.2" class="overlay-bg slide-bg"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div id="slide-list" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="slide-text-wrapper">
+                                <div class="slide-text">
+                                    <h2>Gather your teammates</h2>
+                                    <p>neighbors getting together to learn something, do something, share something…</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-text-wrapper">
+                                <div class="slide-text">
+                                    <h2>TeamUp are</h2>
+                                    <p>neighbors getting together to learn something, do something, share something…</p>
+                                    <a href="#/createGame" class="readmore">GATHER NOW</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                      <ol class="carousel-indicators">
+                        <li data-target="#slide-list" data-slide-to="0" class="active"></li>
+                        <li data-target="#slide-list" data-slide-to="1"></li>
+                      </ol>
+                </div>                     
+            </div>
+        </div>
+    </div>
+</div> <!-- End slider area -->
+
+
+
+
+<div id="portfolio" class="portfolio-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">   
+                <div class="portfolio-menu">
+                    <ul >
+                        <li ng-repeat="type in data.types" ng-model="type" ng-click="showType($event)" id={{type}}>{{type}}</li>
+                    </ul>
+                </div>  
+                <div class="portfolio-items">
+                    <div class="single-portfolio" ng-animate="'animate'" ng-repeat="game in data.games | filter : type">
+                        <img class="img-responsive portfolio-thumb" src="{{game.picture}}" alt="">
+                        <div class="portfolio-detail">
+                            <h2>{{game.name}}</h2>
+                            <div class="portfolio-link-wrap">
+                                <a data-lightbox="example-2" data-title="{{game.type}}" href="{{game.picture}}" class="portfolio-zoom" >
+                                    <i class="fa fa-search-plus"></i>
+                                </a>
+                                <a class="portfolio-link" >
+                                    <i class="fa fa-link"></i>
+                                </a>
+                                <a  href="#/game/{{game._id}}">
+                                    <i >5</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>                                                  
+            </div>
+        </div>  
+
+    </div>
+</div>  <!-- End portfolio area -->
