@@ -43,7 +43,7 @@ describe('User Model', function () {
             done();
         });
     });
-   	it('should be invalid if password is empty', function(done) {
+   	xit('should be invalid if password is empty', function(done) {
         var anonUser = new User();
         anonUser.validate(function(err) {
             expect(err.errors.password).to.exist;

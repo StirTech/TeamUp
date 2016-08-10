@@ -2,8 +2,11 @@ angular.module('TeamUp.profile',[])
 
 .controller('profileController', function($scope, User, $location, $window, $routeParams){
 	
+	$scope.pageId = $routeParams.id;
+	$scope.userId = $window.localStorage.userId;
+
 	$scope.showUser = function (){
-		User.getUser($window.localStorage.userId)
+		User.getUser($routeParams.id)
 		.then(function(user){
 			if(!user){
 				$location.path('/404');

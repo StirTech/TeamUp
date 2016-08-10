@@ -1,4 +1,4 @@
 <div class="container">
 {{user.firstName}}
-<input ng-if="!routeParams.userName" type="button" ng-click="edit()" class="btn btn-default" value="Edit"/>
+<input ng-if="userId == pageId" type="button" ng-click="edit()" class="btn btn-default" value="Edit"/>
 </div>

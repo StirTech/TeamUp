@@ -8,3 +8,5 @@
 <div>date : {{game.date}}</div>
 <div># of Players : {{game.numOfPlayers}}</div>
 <div ng-repeat="player in game.plyersObjs"><a href="#/profile/{{player._id}}">{{player.username}} <img ng-src="{{player.picture}}" width="25px" /></a></div>
+
+<button ng-click="editGame()">Edit Game</button>
