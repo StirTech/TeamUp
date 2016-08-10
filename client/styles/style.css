@@ -289,12 +289,13 @@ a.btn-filled:hover {
 }
 .featured .pricing-content ul { font-size: 18px }
 .featured .pricing-content ul li { line-height: 30px }
-.form-content { margin-top: 80px }
 .form-content label {
     display: block;
     margin-bottom: 10px;
 }
 .form-content input[type="text"],
+.form-content input[type="date"],
+.form-content input[type="number"],
 .form-content input[type="email"],
 .form-content textarea {
     border: 1px solid #ddd;
