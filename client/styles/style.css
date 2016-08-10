@@ -33,7 +33,7 @@ body {
     font-size: 15px;
     font-weight: 300;
 }
-.section-padding { padding: 100px 0 }
+.section-padding { padding: 50px 0 }
 a:hover { color: #7a3995 }
 .logo h1 {
     font-size: 30px;
@@ -173,8 +173,8 @@ a:hover { color: #7a3995 }
     padding-top: 7px;
     text-align: center;
     display: inline-block;
-    transform: rotate(45deg);
     width: 30px;
+    border-radius: 20px
 }
 .portfolio-link-wrap a:hover { background-color: #000 }
 .portfolio-link-wrap {
@@ -395,4 +395,31 @@ input[type="submit"],
     text-decoration: none;
     text-shadow: 0 -1px 0 #082783;
     font: 12px Verdana, sans-serif;
+}
+
+
+.animate-enter, 
+.animate-leave
+{ 
+    -webkit-transition: 10000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 10000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 10000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 10000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 10000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
+    display: block;
+} 
+
+.animate-enter.animate-enter-active, 
+.animate-leave {
+    opacity: 1;
+    top: 0;
+    height: 30px;
+}
+
+.animate-leave.animate-leave-active,
+.animate-enter {
+    opacity: 0;
+    top: -50px;
+    height: 0px;
 }
