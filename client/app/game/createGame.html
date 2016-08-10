@@ -13,66 +13,72 @@
                 <div class="form-content">
                     <form id="contact" name="contact" method="post">  
                             <div class="col-md-8">
-                                <p><label for="name">Game Name</label><input placeholder="Type game name" type="text" size="30" value="" required/></p>
+                                <p><label for="name">Game Name</label><input ng-model="name" placeholder="Type game name" type="text" size="30" value="" required/></p>
                             </div>
                             <div class="col-md-4">
-                                <p><label for="name">Type</label><input placeholder="Type game type" type="text" size="30" value="" required/></p>
+                                <p><label for="name">Type</label><input ng-model="type" placeholder="Type game type" type="text" size="30" value="" required/></p>
                             </div>
                             <div class="col-md-12">
                                 
-                                <p><label for="message">Descrrption</label><textarea placeholder="Game Descrrption" required></textarea></p>
+                                <p><label for="message">Descrrption</label><textarea ng-model="description" placeholder="Game Descrrption" required></textarea></p>
                                 
                             </div>
                             <div class="col-md-6">
-                                <p><label for="name">Country</label><input placeholder="Type game country" type="text"  size="30" value="" required/></p>
+                                <p><label for="name">Country</label><input ng-model="country" placeholder="Type game country" type="text"  size="30" value="" required/></p>
                             </div>
                             <div class="col-md-6">
-                                <p><label for="name">City</label><input placeholder="Type game city" type="text"  size="30" value="" required/></p>
+                                <p><label for="name">City</label><input ng-model="city" placeholder="Type game city" type="text"  size="30" value="" required/></p>
                             </div>
                             <div class="col-md-6">
-                                <p><label for="name">Number of Players</label><input type="number" name="name"  min="2" max="99" value="" required/></p>
+                                <p><label for="name">Number of Players</label><input ng-model="numOfPlayers" type="number" name="name"  min="2" max="99" value="" required/></p>
                             </div>
                             <div class="col-md-6">
-                                <p><label for="name">Date</label><input type="date" size="30" value="" required/></p>
+                                <p><label for="name">Date</label><input ng-model="date" type="date" size="30" value="" required/></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><label for="name">Image URL</label><input ng-model="picture"  placeholder="Type game img URL" type="text" required/></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><label for="name">Location</label><input ng-model="locationID" placeholder="Type game location" type="text" size="30" value="" required/></p>
                             </div>
                             <div class="col-md-12">
 		                        <div class="submit-wrapper">
-		                            <p><input id="submit" type="submit" name="submit" value="Create" />  </p>
+		                            <p><input id="submit" type="submit" name="submit" value="Create" ng-click="getGameData()"  />  </p>
 		                        </div>
 	                        </div>
                     </form>	
                 </div>                     
             </div>
-            
-<!--             <div class="col-md-4">
-                <div class="our-address">
-                    <h2>Our address</h2>
-                    <div class="single-address">
-                        <i class="fa fa-home"></i>
-                        <p>27 Indira road<br/>
-                        Farmgate, Dhaka, 1200<br/>
-                        Bangladesh</p>
-                    </div>
-                    
-                    <div class="single-address">
-                        <i class="fa fa-envelope"></i>
-                        <p><a href="mailto:info@wpexpand.com">info@wpexpand.com</a></p>
-                    </div>
-                    
-                    <div class="single-address">
-                        <i class="fa fa-phone"></i>
-                        <p>+880 1913 421375</p>
-                    </div>
-                    
-                </div>
-            </div> -->
         </div>
     </div>
 </div> <!-- End contact area -->
 
+<footer class="footer-copyright">
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-md-8">
+	                    <div class="copyright-text">
+	                        <p>Copyright © 2016 - TeamUp | All Rights Reserved </p>
+	                    </div>
+	                </div>
+	                
+
+	                <div class="col-md-4">
+	                    <div class="social-footer text-right">
+	                        <a href=""><i class="fa fa-facebook"></i></a>
+	                        <a href=""><i class="fa fa-twitter"></i></a>
+	                        <a href=""><i class="fa fa-pinterest"></i></a>
+	                        <a href=""><i class="fa fa-linkedin"></i></a>
+	                        <a href=""><i class="fa fa-google-plus"></i></a>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>            
+	    </footer> <!-- End footer bottom --> 
 
 
 
+<!-- 
 <div id='container'>
   	<form name='createGame'>
 		<div>
@@ -84,7 +90,7 @@
 			City:<input type="text" name="gameCity" placeholder="City" ng-model="city"><br>
 			picture: <input type="text" name="gamePicture" placeholder="pic" ng-model="picture"><br>
 			Date and time:<input type="text" name="gameDate" placeholder="set game date and time" ng-model="date"><br>
-			<!-- <div class="dropdown">
+			<div class="dropdown">
 				<a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
 	        		<div class="input-group">
 	        			<input type="text" class="form-control" data-ng-model="data.dateDropDownInput"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
@@ -93,11 +99,11 @@
       			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
         			<datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
       			</ul>
-    		</div> -->
+    		</div> 
 			Number of players:<input type="text" name="numOfPlayers" placeholder="" ng-model="numOfPlayers"><br>
 			<button ng-click='getGameData()'>Create Game</button>
 		</div>
 	</form>
 </div>
-
+ -->
 
