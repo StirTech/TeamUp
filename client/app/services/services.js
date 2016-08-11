@@ -10,11 +10,23 @@ angular.module('TeamUp.services',[])
 		return $http({
 	      method:'POST',  
 	      url:'/api/users/signup',
-	      data: user
+	      data: user 
 	     })
 	    .then(function(res){
 	      return res.data;
 	    })
+	}
+	//
+	// this function to sign user
+	var fbSignin = function (facebookID) {
+		return $http({
+			method:'POST',
+			url:'/api/users/fbSignin',
+			data:facebookID
+		})
+		.then(function (res) {
+			return res.data;
+		})
 	}
 
 	// this function to sign user
@@ -32,7 +44,8 @@ angular.module('TeamUp.services',[])
 
 	return{
 		addNewUser:addNewUser,
-		signUser:signUser
+		signUser:signUser,
+		fbSignin:fbSignin
 	}
 })
 
