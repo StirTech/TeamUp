@@ -8,6 +8,12 @@ describe('Routing', function () {
     $route = $injector.get('$route');
   }));
 
+  it('Should have /home route, template, and controller', function () {
+    expect($route.routes['/home']).to.be.defined;
+    expect($route.routes['/home'].controller).to.equal('gamesController');
+    expect($route.routes['/home'].templateUrl).to.equal('app/game/games.html');
+  });
+
   it('Should have /signup route, template, and controller', function () {
     expect($route.routes['/signup']).to.be.defined;
     expect($route.routes['/signup'].controller).to.equal('AuthController');
@@ -31,4 +37,24 @@ describe('Routing', function () {
     expect($route.routes['/profile/:id/edit'].controller).to.equal('editProfileController');
     expect($route.routes['/profile/:id/edit'].templateUrl).to.equal('app/profile/editProfile.html');
   });
+
+  it('Should have /createGame route, template, and controller', function () {
+    expect($route.routes['/createGame']).to.be.defined;
+    expect($route.routes['/createGame'].controller).to.equal('createGameController');
+    expect($route.routes['/createGame'].templateUrl).to.equal('app/game/createGame.html');
+  });
+
+  it('Should have /game/:id route, template, and controller', function () {
+    expect($route.routes['/game/:id']).to.be.defined;
+    expect($route.routes['/game/:id'].controller).to.equal('gameController');
+    expect($route.routes['/game/:id'].templateUrl).to.equal('app/game/game.html');
+  });
+
+  it('Should have /game/:id/edit route, template, and controller', function () {
+    expect($route.routes['/game/:id/edit']).to.be.defined;
+    expect($route.routes['/game/:id/edit'].controller).to.equal('editGameController');
+    expect($route.routes['/game/:id/edit'].templateUrl).to.equal('app/game/editGame.html');
+  });
+
+
 });
