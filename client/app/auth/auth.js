@@ -52,23 +52,19 @@ angular.module('TeamUp.auth', [])
                       }
                     }
                 );
-                /*
-                ================================================================*/
                 UserAuth.fbSignin({fb_ID:$scope.facebookUser.fb_ID})
                 .then(function(user){
                     if(!user){
-                        $scope.signup($scope.facebookUser);        
+                        $scope.signup($scope.facebookUser); 
                     }else{
-                        console.log(user)  
                         $scope.wrong=false;
                         $window.localStorage['userInfo'] = JSON.stringify(user);
                         $window.localStorage['token'] = user.token;
-                        $window.localStorage['userId'] = user.userId;
+                        $window.localStorage['userId'] = user['user']._id;
                         $window.localStorage['isLogin'] = true;
                         $location.path('/home');
                         $window.location.reload();                      
-                    }
-                    
+                    }   
                 })
                 .then(function () {
                     $scope.islogin();
@@ -78,32 +74,6 @@ angular.module('TeamUp.auth', [])
                     console.error(error)
                 })
 
-
-
-
-
-
-              //   .then(function (data) {
-              //       $scope.wrong=false;
-              //       $window.localStorage['token'] = data.token;
-              //       $window.localStorage['userId'] = data.userId;
-              //       $window.localStorage['isLogin'] = true;
-              //       $location.path('/home');
-              //       $window.location.reload();
-              //   })
-              // .then(function () {
-              //       $scope.islogin();
-              //       $location.path('/');
-              //   })
-              // .catch(function (err) {
-              //       console.log(err);
-              //       $scope.wrong=false;
-              //})
-                
-                
-                //=============================================================
-
-            
             });
         }
     };
@@ -160,7 +130,6 @@ angular.module('TeamUp.auth', [])
  //===============================================================================================
 
     $scope.signin = function (user) {
-        console.log(user,"ooooooooooooooooooooooooooooooooooooooooooooooooo")
       UserAuth.signUser(user)
       .then(function (data) {
         $scope.wrong=false;
