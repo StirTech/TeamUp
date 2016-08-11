@@ -36,9 +36,6 @@ angular.module('TeamUp.auth', [])
                 $scope.facebookUser.lastName = response.name.split(" ")[1]
                 $scope.facebookUser.password = response.email;
                 $scope.facebookUser.email = response.email;
-                $scope.facebookUser.location = response.location.name.split(" "); 
-                $scope.facebookUser.country =$scope.facebookUser.location[$scope.facebookUser.location.length-1];
-                $scope.facebookUser.city =$scope.facebookUser.location[0]
                 
                 // get profile picture
                 FB.api('/me/picture?type=normal', function (picResponse) {
