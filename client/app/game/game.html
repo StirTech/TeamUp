@@ -8,5 +8,15 @@
 <div>date : {{game.date}}</div>
 <div># of Players : {{game.numOfPlayers}}</div>
 <div ng-repeat="player in game.plyersObjs"><a href="#/profile/{{player._id}}">{{player.username}} <img ng-src="{{player.picture}}" width="25px" /></a></div>
+<div>
+    <br/>
+    <ng-map zoom="16" center="{{game.locationID}}">
+		<marker position="{{game.locationID}}"
+		title="{{game.name}}"
+		animation="Animation.BOUNCE"
+		centered="true">
+		</marker>
+    </ng-map>
+</div>
 
 <button ng-click="editGame()">Edit Game</button>
