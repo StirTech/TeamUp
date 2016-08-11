@@ -19,7 +19,6 @@ angular.module('TeamUp.services',[])
 	//
 	// this function to sign user
 	var fbSignin = function (facebookID) {
-		console.log(facebookID,"from services ..............................................")		
 		return $http({
 			method:'POST',
 			url:'/api/users/fbSignin',
