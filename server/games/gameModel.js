@@ -26,7 +26,7 @@ var GameSchema= new mongoose.Schema({
 		required: true
 	},
 	locationID:{
-		type: String,
+		type: Object,
 		required: true
 	},
 	country:{
