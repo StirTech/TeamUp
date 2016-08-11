@@ -26,12 +26,16 @@ module.exports = {
 	},
 
 	fbSignin : function (req , res ,next) {
+		console.log(req.body,"req.body")
 		var fuserID = req.body.fb_ID;
 		User.findOne({fb_ID : fuserID})
 		.exec(function (error , user) {
 			if(!user){
-				res.status(500).send(new Error('User does not exist'));
+				console.log("herrrrrrrrrrrrrrrrrrrr")
+				//res.status(500).send(new Error('User does not exist'));
+				res.json(false);
 			}else{
+				console.log("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
 				var token = jwt.encode(user, 'secret');
 	            res.setHeader('x-access-token',token);
 	            res.json({token: token, user:user});
