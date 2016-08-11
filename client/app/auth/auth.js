@@ -18,6 +18,7 @@ angular.module('TeamUp.auth', [])
 
     $scope.fbLogin = function () {
         FB.login(function (response) {
+            console.log(response);
             if (response.authResponse) {
                 if(response.status === "connected"){
                     getUserInfo();
@@ -31,14 +32,12 @@ angular.module('TeamUp.auth', [])
         function getUserInfo() {
             // get basic info
             FB.api('/me',{ locale: 'en_US', fields: 'name, location, email' }, function (response) {
+                console.log(response)
                 $scope.facebookUser.username = response.email;
                 $scope.facebookUser.firstName = response.name.split(" ")[0]
                 $scope.facebookUser.lastName = response.name.split(" ")[1]
                 $scope.facebookUser.password = response.email;
                 $scope.facebookUser.email = response.email;
-                $scope.facebookUser.location = response.location.name.split(" "); 
-                $scope.facebookUser.country =$scope.facebookUser.location[$scope.facebookUser.location.length-1];
-                $scope.facebookUser.city =$scope.facebookUser.location[0]
                 
                 // get profile picture
                 FB.api('/me/picture?type=normal', function (picResponse) {
