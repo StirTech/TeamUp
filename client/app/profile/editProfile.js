@@ -17,6 +17,20 @@ angular.module('TeamUp.editProfile',[])
 			}
 			$scope.user = user;
 			$scope.newUser = user
+			$scope.MissingInfo = [ 
+				 ['Username',$scope.user.username],
+				 ['First Name',$scope.user.firstName],
+				 ['Last Name',$scope.user.lastName],
+				 ['Email',$scope.user.email],
+				 ['Country',$scope.user.country],
+				 ['City',$scope.user.city.replace('`', '').replace(",","")]
+			]
+			for (var i = 0; i < $scope.MissingInfo.length; i++) {
+				if($scope.MissingInfo[i][1].length !== 0){
+					$scope.MissingInfo.splice(i,1)
+					i--;
+				}
+			}
 		})
 		.catch(function (error) {
 			console.error(error)
@@ -35,4 +49,9 @@ angular.module('TeamUp.editProfile',[])
 
 	$scope.intialize()
 
+	$scope.setData = function (k,value) {
+		$scope.user[k.toLowerCase()] = value;
+		User.editUser($scope.user, $window.localStorage.userId)
+		$window.location.reload();
+	}
 });
