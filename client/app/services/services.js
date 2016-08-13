@@ -81,10 +81,10 @@ angular.module('TeamUp.services',[])
 		return $http({
 			method:'POST',
 			url: '/api/game/players',
-			data: { playerIds:playerIds }
+			data: playerIds
 		})
 		.then(function (res) {
-			return res.data
+			return res
 		})
 	}
 	return {
