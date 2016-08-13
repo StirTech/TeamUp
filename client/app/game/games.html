@@ -1,7 +1,6 @@
 <!-- filter by type :<input type="text" ng-model="type">
 <div ng-repeat="game in data.games | filter : type">
 	<h2>{{game.name}}</h2>
-	<a href="#/game/{{game._id}}"><img ng-src={{game.picture}} width="25%" /><br></a>
 	<h3>{{game.type}}</h3>
 	<h3>{{game.description}}</h3>
 	# of Players : <h3>{{game.numOfPlayers}}</h3>
@@ -10,7 +9,7 @@
 	<button ng-click="viewGame(game._id)">More Details</button>
 </div> -->
 <div class="slider-area">
-    <div data-velocity="-.2" class="overlay-bg" style="background-image: url(styles/img/slide-bg.jpg)"></div>
+    <div data-velocity="-.2" class="overlay-bg" style="background-image: url(/img/slide-bg.jpg)"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -59,7 +58,7 @@
                 </div>  
                 <div class="portfolio-items">
                     <div class="single-portfolio" ng-animate="'animate'" ng-repeat="game in data.games | filter : type">
-                        <img class="img-responsive portfolio-thumb" src="{{game.picture}}" alt="">
+                        <img class="img-responsive portfolio-thumb" ng-src="{{game.picture}}" alt="">
                         <div class="portfolio-detail">
                             <h2>{{game.name}}</h2>
                             <div class="portfolio-link-wrap">
