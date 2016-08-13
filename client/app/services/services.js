@@ -159,3 +159,19 @@ angular.module('TeamUp.services',[])
 		}
 	}
 })
+.factory('facebook', function(){
+	return {	
+		share : function (gameId, picture, gameName) {
+			FB.ui({
+				method: 'share',
+				display: 'popup',
+				href: 'https://teamup-me.herokuapp.com/'+gameId,
+				picture: picture,
+	         	caption: gameName,
+	          	description: 'teamup',
+	          	message: ''
+				}, function(response){
+			}); 
+		}
+	}
+})
