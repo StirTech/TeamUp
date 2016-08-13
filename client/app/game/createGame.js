@@ -1,4 +1,4 @@
-angular.module('TeamUp.createGame',['ngMap'])
+angular.module('TeamUp.createGame',[/*'ngMap'*/])
 
 .controller('createGameController',function( $scope, $window, Game, $location, NgMap){
 	NgMap.getMap().then(function(map) {
