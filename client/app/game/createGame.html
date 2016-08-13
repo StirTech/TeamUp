@@ -41,10 +41,10 @@
                             <div class="col-md-6">
                                 <p><label for="name">Location</label><input ng-model="locationID" placeholder="Type game location" type="text" size="30" value="" required/></p>
                             </div>
-                            <div ng-controller="EventArgumentsController as vm">
+                            <div >
                                 <br/>
                                 Click map to place markers
-                                <ng-map zoom="16" center="current-location" on-click="vm.placeMarker()">
+                                <ng-map zoom="16" center="current-location" on-click="placeMarker()">
                                 </ng-map>
                             </div>
 
