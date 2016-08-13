@@ -1,4 +1,11 @@
 <div class="container">
-{{user.firstName}}
-<input ng-if="userId == pageId" type="button" ng-click="edit()" class="btn btn-default" value="Edit"/>
+	<div ng-repeat="(k,value) in  MissingInfo  | limitTo:1 ">
+		<span>{{value[0]}}</span>
+		<input type="textbox" ng-model="data">
+		<button ng-click="setData(value[1],data)" class="btn btn-default"> set value</button>
+	</div>
+	<div>
+		{{user.firstName}}
+		<input ng-if="userId == pageId" type="button" ng-click="edit()" class="btn btn-default" value="Edit"/>
+	</div>
 </div>
