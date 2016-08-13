@@ -8,9 +8,8 @@ angular.module('TeamUp', [
   'TeamUp.profile',
   'TeamUp.editProfile',
   'ngRoute',
-  'ngMap'
+  /*'ngMap'*/
 ])
-
 
 
 .controller('HeaderController',function ($scope, $window, $location, UserAuth) {
@@ -28,18 +27,6 @@ angular.module('TeamUp', [
     $location.path('/home')
   }
 })
-.controller('EventArgumentsController', function($scope, $window, NgMap) {
-    var vm = this;
-    NgMap.getMap().then(function(map) {
-      vm.map = map;
-    });
-    vm.placeMarker = function(e) {
-      var marker = new google.maps.Marker({position: e.latLng, map: vm.map});
-      vm.map.panTo(e.latLng);
-      $window.localStorage.loc = e.latLng;
-    }
-   //console.log(loc)
-  })
 .config(function ($routeProvider, $httpProvider) {
   $routeProvider
     .when('/home', {
