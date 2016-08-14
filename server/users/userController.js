@@ -92,7 +92,7 @@ module.exports = {
       } else {
 
         user.firstName = req.body.firstName || user.firstName;
-        user.lastName = req.body.lastname || user.lastName;
+        user.lastName = req.body.lastName || user.lastName;
         user.email = req.body.email || user.email;
         user.country = req.body.country || user.country;
         user.city = req.body.city || user.city;
@@ -100,7 +100,7 @@ module.exports = {
 
         user.save(function(err, savedUser){
           if(err){
-            res.status(500).send(error);
+            res.status(500).send(err);
           } else {
             res.json(savedUser);
           }
