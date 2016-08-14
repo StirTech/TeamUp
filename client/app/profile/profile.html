@@ -1,4 +1,17 @@
 <div class="container">
-{{user.firstName}}
-<input ng-if="userId == pageId" type="button" ng-click="edit()" class="btn btn-default" value="Edit"/>
+	<input ng-if="userId == pageId" type="button" ng-click="edit()" class="btn btn-primary" value="Edit" style="float: right"/>
+	<h1><left>{{user.firstName}} {{user.lastName}}</left><right>{{user.picture}}</right></h1>
+	<p>{{user.email}}</p>
+	<p>{{user.country}}, {{user.city}}</p>
+	<ul>
+		<li ng-repeat="interest in user.interests">
+		{{interest}}
+		</li>
+	</ul>
+	<ul>
+		<li ng-repeat="game in user.games">
+		{{game}}
+		</li>
+	</ul>
+
 </div>
