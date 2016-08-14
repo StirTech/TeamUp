@@ -16,7 +16,9 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       // angular source
+      'http://maps.google.com/maps/api/js',
       'client/lib/angular/angular.js',
+      'client/lib/ngmap/build/scripts/*.js',
       'client/lib/angular-route/angular-route.js',
       'client/lib/angular-mocks/angular-mocks.js',
 
@@ -27,8 +29,8 @@ module.exports = function(config) {
       // our spec files
       'specs/client/routingSpec.js',
       'specs/client/servicesSpec.js',
-      //  'specs/client/profileSpec.js',
-      // 'specs/client/editProfileSpec.js'
+      'specs/client/profileSpec.js',
+      'specs/client/editProfileSpec.js'
     ],
 
 

@@ -88,13 +88,13 @@ module.exports = {
 	removePlayer: function(req , res){
 		var gameId=req.params.id;
 		var userId=req.body.userId;
-
-		Player.findOneAndUpdate({_id : userId},{ $pull : {games : gameId } } ).exec();
-		Game.findOneAndUpdate({ _id : gameId},{$pull: {players : userId}}).exec(function (err , data) {
+		Game.findOneAndUpdate({ _id : gameId},{$pull: {players : userId}},{new : true}).exec(function (err , data) {
 			if(err)
 				res.status(204).send(err);
-			else
+			else{
+				console.log(data);
 				res.status(200).send(data);
+			}
 		});
 	}
 }

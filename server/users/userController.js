@@ -57,7 +57,7 @@ module.exports = {
 				        country:req.body.country||"",
 				        rate:req.body.rate||"",
 				        interests:req.body.interests||"",
-				        picture:req.body.picture||"",
+				        picture:req.body.picture||"https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg",
 				        game:req.body.game||"",
 				        email : req.body.email||"",
 				        fb_ID:req.body.fb_ID|| ""
