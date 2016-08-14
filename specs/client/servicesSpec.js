@@ -93,4 +93,44 @@ describe('Services', function () {
 
   });
 
+
+  describe('Game Factory', function () {
+    var $httpBackend, Game;
+
+    beforeEach(inject(function (_$httpBackend_, _Game_) {
+      $httpBackend = _$httpBackend_;
+      Game = _Game_;
+    }));
+
+    it('should exist', function () {
+      expect(Game).to.exist;
+    });
+
+    it('should have a method `getAll`', function () {
+      expect(Game.getAll).to.be.a('function');
+    });
+
+    it('should have a method `getOne`',function () {
+      expect(Game.getOne).to.be.a('function');
+    });
+
+    it('should have a method `addOne`',function () {
+      expect(Game.addOne).to.be.a('function');
+    });
+
+    it('should have a method `insertPlayer`',function () {
+      expect(Game.insertPlayer).to.be.a('function');
+    });
+
+    it('should have a method `removePlayer`',function () {
+      expect(Game.removePlayer).to.be.a('function');
+    });
+
+
+
+
+  });
+
+
+
 });
