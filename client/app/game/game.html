@@ -1,4 +1,56 @@
-<div>{{game.name}}</div>
+<div class="container main-content">
+    <div class="row">
+        <div class="col-md-9">
+    		<header class="entry-header text-center">
+        		<h2 class="widget-title text-uppercase text-center" style="    position: relative;font-size: 29px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;"><span>{{game.name}}</span></h2>
+        		<div class="by-on">
+                    By <a href="#/profile/{{owner._id}}" title="Posts by Kate" rel="author">{{owner.username}} </a> - {{game.date | date : yyyy:MM:dd}} 
+                </div>
+    		</header>
+			<div class="post-thumb">
+               <img width="100%" height="480" src="{{game.picture}}" class="img-responsive wp-post-image" alt="home-663241_1280">
+			</div>
+		    <div class="jumbotron" ><p>{{game.description}}</p> </div>
+            <!-- <div><p class=" text-uppercase" style="float : left ">Country : </p> {{game.country}}</div> -->
+            <table class="table">
+            	<tr>
+            		<td>Country</td>
+            		<td>{{game.country}}</td>
+            	</tr>
+            	<tr>
+            		<td>City</td>
+            		<td>{{game.city}}</td>
+            	</tr>
+            	<tr>
+            		<td>Number Of Players</td>
+            		<td>{{game.numOfPlayers}}</td>
+            	</tr>
+            	<tr>
+            		<td>Time</td>
+            		<td>{{game.date | date: 'hh:mm a'}}</td>
+            	</tr>
+            </table>
+        </div>
+
+		<div class="col-md-3">
+			<div class="primary-sidebar widget-area" role="complementary">
+				<button ng-click="joinGame()" ng-model="joinButton" class="widget-title text-uppercase text-center "  style="width: 100%;position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;    background-color: #9b59b6;color: #fff;"><span>{{joinButton}}</span></button>
+		        <h2 class="widget-title text-uppercase text-center" style="    position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;"><span>Players</span></h2>
+		        <aside class="widget about-me-widget" ng-repeat="player in game.plyersObjs">
+                        <div class="text-center about-me-widget-img">
+							<a href="#/profile/{{player._id}}"><img ng-src="{{player.picture}}" alt="Hi, I am kate" style="border-radius: 50%;margin: 0 auto 14px; border: 2px solid #eeeeee; padding: 5px;max-width: 100%; height: auto; width:50%; " /></a>
+            			</div>
+                        <h5 class="my-name text-uppercase text-center">{{player.username}}</h5>
+						<div class="phone text-center">Phone# 0123456789</div>
+						<div class="email text-center">E-mail: {{player.email}}</div>
+						<hr>
+		        </aside>
+			</div>
+		</div>
+    </div>
+</div>
+
+<!-- <div>{{game.name}}</div>
 <img ng-src="{{game.picture}}" width="50%">
 <div>Created By : {{game.owner}}</div>
 <div>description : {{game.description}}</div>
@@ -7,7 +59,8 @@
 <div>city : {{game.city}}</div>
 <div>date : {{game.date}}</div>
 <div># of Players : {{game.numOfPlayers}}</div>
-<div ng-repeat="player in game.plyersObjs"><a href="#/profile/{{player._id}}">{{player.username}} <img ng-src="{{player.picture}}" width="25px" /></a></div>
+
+
 <div>
     <br/>
     <ng-map zoom="16" center="{{game.locationID}}">
@@ -21,3 +74,4 @@
 
 <button ng-click="editGame()">Edit Game</button>
 <div id="shareBtn" class="btn btn-success clearfix" ng-click="fbshare()">Share</div>
+ -->
