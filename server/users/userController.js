@@ -100,7 +100,6 @@ module.exports = {
 
         user.save(function(err, savedUser){
           if(err){
-          	console.log(err)
             res.status(500).send(err);
           } else {
             res.json(savedUser);

@@ -4,7 +4,7 @@ angular.module('TeamUp.profile',[])
 	
 	$scope.pageId = $routeParams.id;
 	$scope.userId = $window.localStorage.userId;
-
+	$scope.MissingInfo = [];
 	$scope.showUser = function (){
 		User.getUser($routeParams.id)
 		.then(function(user){
