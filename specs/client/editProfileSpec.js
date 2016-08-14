@@ -19,6 +19,9 @@ describe('editProfileController', function () {
     createController = function () {
       return $controller('editProfileController', {
         $scope: $scope,
+        $location: $location,
+        $window: $window,
+        $routeParams: $routeParams,
         User: User
       });
     };
@@ -48,7 +51,7 @@ describe('editProfileController', function () {
 
     createController();
     $httpBackend.flush();
-
+    
     expect($scope.user).to.deep.equal(mockUser);
   });
 
