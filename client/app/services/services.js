@@ -67,7 +67,6 @@ angular.module('TeamUp.services',[])
 
 
 	var editUser = function (user, userId) {
-		console.log(user,"rrrrrrrrrrrrrrrrrrrrrrrrrrrrppppp")
 		return $http({
 			method:'PUT',
 			url:'/api/user/'+userId+'/edit',

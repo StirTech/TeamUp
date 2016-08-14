@@ -1,11 +1,14 @@
-<div class="panel-group" style=" margin-left: 2%">
-	<div class="panel panel-primary" style="width:50%">
-	    <div class="panel-body">Fill your missing information
-			<div ng-repeat="(k,value) in  MissingInfo  | limitTo : 1 ">
-				<span style=" margin-left: 2%">{{value[0]}}</span>
-				<input type="textbox" ng-model="data" style=" margin-left: 2%;">
-				<button ng-click="setData(value[1],data)" class="btn btn-default" style="margin-left: 41%"> insert</button>
-			</div>
+
+
+<div style=" margin-left: 2%">
+	<div ng-repeat="(k,value) in  MissingInfo  | limitTo : 1 ">
+		<div class="panel-group" >
+			<div class="panel panel-primary" style="width:30%">			
+	    		<div class="panel-heading">Fill your missing information</div>
+					<span style=" margin-left: 2%">{{value[0]}}</span>
+					<input type="textbox" ng-model="data" style=" margin-left: 2%;width:50%">
+					<button ng-click="setData(value[1],data)" class="btn btn-default" style="margin-left: 2%"> insert</button>
+				</div>
 		</div>
 	</div>
 	<div>

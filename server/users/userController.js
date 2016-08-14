@@ -49,18 +49,18 @@ module.exports = {
 		 			next(new Error('User already exist!'));
 		 		}else{
 	 				var newUser = new User ({
-						username: username,
-				        password: password,
-				        firstName:req.body.firstName,
-				        lastName:req.body.lastName,
-				        city:req.body.city,
-				        country:req.body.country,
-				        rate:req.body.rate,
-				        interests:req.body.interests,
-				        picture:req.body.picture,
-				        game:req.body.game,
-				        email : req.body.email,
-				        fb_ID:req.body.fb_ID
+						username: username||"",
+				        password: password||"",
+				        firstName:req.body.firstName||"",
+				        lastName:req.body.lastName||"",
+				        city:req.body.city||"",
+				        country:req.body.country||"",
+				        rate:req.body.rate||"",
+				        interests:req.body.interests||"",
+				        picture:req.body.picture||"",
+				        game:req.body.game||"",
+				        email : req.body.email||"",
+				        fb_ID:req.body.fb_ID|| ""
 					})
 			 		newUser.save(function(err, newUser){
 			            if(err){
