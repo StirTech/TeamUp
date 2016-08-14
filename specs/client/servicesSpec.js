@@ -126,7 +126,126 @@ describe('Services', function () {
       expect(Game.removePlayer).to.be.a('function');
     });
 
+    it('should get All Game with `getAll`', function () {
+      var gamesResponse = [ 
+        {
+          id : "1",
+          name : "game 1"
+        },
+        {
+          id : "2",
+          name : "game 2"
+        }
+      ];
 
+      $httpBackend.expect('GET', '/api/games').respond(gamesResponse);
+
+      Game.getAll().then(function (Games) {
+        expect(Games).to.deep.equal(gamesResponse);
+      });
+
+      $httpBackend.flush();
+    });
+
+    it('should get Game by id with `getOne`', function () {
+      var mockResponse = { 
+            id: '123',
+            name: 'test game' 
+          };
+
+      $httpBackend.expect('GET', '/api/game/'+mockResponse.id).respond(mockResponse);
+
+      Game.getOne(mockResponse.id).then(function (Game) {
+        expect(Game).to.deep.equal(mockResponse);
+      });
+
+      $httpBackend.flush();
+    });
+
+    it('should add new game with `addOne`',function () {
+      var newGame = {
+        id:"1",
+        name : "game 1"
+      };
+
+      $httpBackend
+      .expect('POST','/api/game',JSON.stringify(newGame))
+      .respond({id : "1" , name : "game 1"});
+
+      Game.addOne(newGame).then(function (res) {
+        expect(res).to.deep.equal(newGame);
+      });
+
+      $httpBackend.flush();
+    });
+
+    it('should add new game with `editOne`',function () {
+      var newGame = {
+        id:"1",
+        name : "game 1"
+      };
+      var editGame = {
+        name : "Edited Game"
+      }
+
+      $httpBackend
+      .expect('PUT','/api/game/'+newGame.id+'/edit',JSON.stringify(editGame))
+      .respond(201,{id : "1" , name : "Edited Game"});
+
+      Game.editOne(newGame.id,editGame).then(function (res) {
+        expect(res.name).to.equal("Edited Game");
+      });
+
+      $httpBackend.flush();
+    });
+
+    it('should add a player to spicific game with `insertPlayer`',function () {
+      var newGame = {
+        id:"1",
+        name : "game 1",
+        players : []
+      };
+      var newUser = {
+        id : "123",
+        name : "new player"
+      }
+
+      $httpBackend
+      .expect('POST','/api/game/'+newGame.id,{userId : "123"})
+      .respond(201,{id : "1" , name : "game 1", players : ["123"]});
+
+      Game.insertPlayer(newGame.id,newUser.id).then(function (res) {
+        expect(res.id).to.equal("1");
+        expect(res.name).to.equal("game 1");
+        expect(res.players).to.include("123");
+      });
+
+      $httpBackend.flush();
+    });
+
+    it('should remove a player to specific game with `removePlayer`',function () {
+      var newGame = {
+        id:"1",
+        name : "game 1",
+        players : ["123"]
+      };
+      var newUser = {
+        id : "123",
+        name : "Jon"
+      }
+
+      $httpBackend
+      .expect('DELETE','/api/game/'+newGame.id,{userId : "123"})
+      .respond(201,{id : "1" , name : "game 1", players : []});
+
+      Game.removePlayer(newGame.id,newUser.id).then(function (res) {
+        expect(res.id).to.equal("1");
+        expect(res.name).to.equal("game 1");
+        expect(res.players).to.not.include("123");
+      });
+
+      $httpBackend.flush();
+    });
 
 
   });
