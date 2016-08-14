@@ -26,8 +26,8 @@ module.exports = function(config) {
 
       // our spec files
       'specs/client/routingSpec.js',
-      // 'specs/client/servicesSpec.js',
-      // 'specs/client/profileSpec.js',
+      'specs/client/servicesSpec.js',
+      //  'specs/client/profileSpec.js',
       // 'specs/client/editProfileSpec.js'
     ],
 
@@ -47,7 +47,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', /*'nyan', */'coverage'],
+    reporters: ['progress', 'nyan', 'coverage'],
 
     coverageReporter : {
       type : 'html',
