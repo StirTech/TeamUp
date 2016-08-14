@@ -26,7 +26,7 @@ angular.module('TeamUp.profile',[])
 				 ['Last Name','lastName',$scope.user.lastName],
 				 ['Email','email',$scope.user.email],
 				 ['Country','country',$scope.user.country],
-				 ['City','city',$scope.user.city.replace('`', '').replace(",","")]
+				 ['City','city',$scope.user.city]
 			]
 			for (var i = 0; i < $scope.MissingInfo.length; i++) {
 				if($scope.MissingInfo[i][2].length !== 0){

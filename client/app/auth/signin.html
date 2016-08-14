@@ -1,18 +1,18 @@
 <div class="signin" id="signin">
 	
 	<div  id="signinForm">
-		<div >
+		<div class="inputForm">
 			<p> Username
 			<input type="textbox" ng-model="user.username">							
 			</p>
 			<p> password
-			<input type="textbox" ng-model="user.password">							
+			<input type="password" ng-model="user.password">							
 			</p>
 			<p ng-hide="wrong">wrong username or password</p>
 		</div>
-		<div>
+		<div class="button">
 			<button ng-click="fbLogin()" class="fbutton">signin with Facebook</button>
-			<button ng-click="signin(user)">login</button>	
+			<button ng-click="signin(user)"  class="btn btn-default">login</button>	
 			
 		</div>
 	</div>
