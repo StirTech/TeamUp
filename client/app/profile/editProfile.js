@@ -9,6 +9,8 @@ angular.module('TeamUp.editProfile',[])
 		$location.path('/home')
 	}
 
+	
+
 	$scope.intialize = function(){
 		User.getUser($routeParams.id)
 		.then(function(user){

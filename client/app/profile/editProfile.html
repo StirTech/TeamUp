@@ -1,4 +1,11 @@
 <div class="container">
-	<input name="firstName" type="text" ng-model="newUser.firstName" placeholder="user.firstName" value="newUser.firstName">
-	<input ng-if="!routeParams.id" type="button" ng-click="save()" class="btn btn-default" value="Save"/>
+	<div ng-repeat="(k,value) in  MissingInfo  | limitTo:1 ">
+		<span>{{value[0]}}</span>
+		<input type="textbox" ng-model="data">
+		<button ng-click="setData(value[1],data)"> set avlue</button>
+	</div>
+	<div>	
+		<input name="firstName" type="text" ng-model="newUser.firstName" placeholder="user.firstName" value="newUser.firstName">
+		<input ng-if="!routeParams.id" type="button" ng-click="save()" class="btn btn-default" value="Save"/>
+	</div>
 </div>
