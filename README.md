@@ -1,7 +1,5 @@
 [![Stories in Ready](https://badge.waffle.io/StirTech/TeamUp.png?label=ready&title=Ready)](https://waffle.io/StirTech/TeamUp)
 
-[![Build Status](https://travis-ci.org/StirTech/TeamUp.svg?branch=master)](https://travis-ci.org/StirTech/TeamUp)
-
 # TeamUp
 
 > description (to be added)
