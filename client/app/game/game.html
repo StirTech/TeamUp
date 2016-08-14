@@ -30,6 +30,16 @@
             		<td>{{game.date | date: 'hh:mm a'}}</td>
             	</tr>
             </table>
+            <div>
+			    <br/>
+			    <ng-map zoom="16" center="{{game.locationID}}">
+					<marker position="{{game.locationID}}"
+					title="{{game.name}}"
+					animation="Animation.BOUNCE"
+					centered="true">
+					</marker>
+			    </ng-map>
+			</div>
         </div>
 
 		<div class="col-md-3">
@@ -50,28 +60,25 @@
     </div>
 </div>
 
-<!-- <div>{{game.name}}</div>
-<img ng-src="{{game.picture}}" width="50%">
-<div>Created By : {{game.owner}}</div>
-<div>description : {{game.description}}</div>
-<div>location : {{game.locationID}}</div>
-<div>country : {{game.country}}</div>
-<div>city : {{game.city}}</div>
-<div>date : {{game.date}}</div>
-<div># of Players : {{game.numOfPlayers}}</div>
+<footer class="footer-copyright" style="    margin-top: 35px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="copyright-text">
+                    <p>Copyright © 2016 - TeamUp | All Rights Reserved </p>
+                </div>
+            </div>
+            
 
-
-<div>
-    <br/>
-    <ng-map zoom="16" center="{{game.locationID}}">
-		<marker position="{{game.locationID}}"
-		title="{{game.name}}"
-		animation="Animation.BOUNCE"
-		centered="true">
-		</marker>
-    </ng-map>
-</div>
-
-<button ng-click="editGame()">Edit Game</button>
-<div id="shareBtn" class="btn btn-success clearfix" ng-click="fbshare()">Share</div>
- -->
+            <div class="col-md-4">
+                <div class="social-footer text-right">
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-pinterest"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>            
+</footer> <!-- End footer bottom --> 
