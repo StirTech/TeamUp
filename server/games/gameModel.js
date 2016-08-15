@@ -13,6 +13,10 @@ var GameSchema= new mongoose.Schema({
 		type: String,
 		required: true
 	}, 
+	comment :[{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Comment'
+	}],
 	owner: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
