@@ -6,8 +6,11 @@ angular.module('TeamUp.game',[])
 	$scope.game.plyersObjs =[];
 	$scope.numberOfPlayer;
 	$scope.joinButton="join";
+	$scope.closed =false;
+	$scope.joinButtonIf=true;
 
 	$scope.initlize = function () {
+		console.log($scope.game);
 		Game.getOne($routeParams.id)
 		.then(function (game) {
 			$scope.game=game;	
@@ -18,9 +21,18 @@ angular.module('TeamUp.game',[])
 			.catch(function (err) {
 				console.log(err)
 			})
-			//$scope.game.plyersOb	js=
-			if($scope.game.players.indexOf($window.localStorage.userId)!==-1)
+			if($scope.game.players.indexOf($window.localStorage.userId)!==-1){
 				$scope.joinButton="leave";
+				if($scope.game.numOfPlayers===$scope.game.players.length){
+					$scope.closed=true;
+				}
+			}
+			else{
+				if($scope.game.numOfPlayers===$scope.game.players.length){
+					$scope.closed=true;
+					$scope.joinButtonIf=false;
+				}
+			}
 			User.getPlayers({playerIds :$scope.game.players})
 			.then(function (data) {
 				$scope.game.plyersObjs=data.data;
@@ -36,17 +48,25 @@ angular.module('TeamUp.game',[])
 		})
 	};
 	
-	$scope.initlize();
+
 	$scope.fbshare = function(){
 		console.log('so3ad');
 		facebook.share($routeParams.id, $scope.game.picture, $scope.game.name);	
 	};
+
 	$scope.joinGame =function () {
+		if($window.localStorage.userId===undefined){
+			console.log('signin')
+			$location.path('/signin');
+			return;
+		}
 		if($scope.game.players.indexOf($window.localStorage.userId)===-1){
+			console.log("Join");
 			$scope.joinButton="Leave"
 			Game.insertPlayer($scope.game._id,$window.localStorage.userId)
 			.then(function (game) {
 				$scope.game=game;
+				// console.log(game);
 				$scope.initlize()
 			})
 			.catch(function (err) {
@@ -54,24 +74,19 @@ angular.module('TeamUp.game',[])
 			})
 		}
 		else {
-			$scope.joinButton="Join"
-
-			for (var i = 0; i < $scope.game.players.length; i++) {
-				if($scope.game.players[i]===$window.localStorage.userId){
-					$scope.game.players.splice(i,1);
-				}
-			}
-
-			User.getPlayers({playerIds :$scope.game.players})
-			.then(function (data) {
-				$scope.game.plyersObjs=data.data;
-				$scope.numberOfPlayer=$scope.game.plyersObjs.length;
-				console.log("numberOfPlayer : ",$scope.numberOfPlayer);
-				//Game.removePlayers($scope.game._id,$window.localStorage.userId);
+			$scope.closed=false;
+			$scope.joinButton="Join";
+			Game.removePlayer($scope.game._id,$window.localStorage.userId)
+			.then(function(game) {
+				console.log(game);
+				// $scope.game=game;
+				$scope.initlize();
 			})
 			.catch(function (err) {
-				console.log(err);
+				console.log(err)
 			})
 		}
 	}
+	
+	$scope.initlize();
 });

@@ -135,7 +135,7 @@ describe('gameController', function () {
 		});
 		it('should remove player and responds with a 200 status code', function (done) {
 			newGame.save(function(err, data){
-				checkVerb('/api/game/'+data._id, 'object', 'DELETE' , 200 , done , {userId : newUser._id})
+				checkVerb('/api/game/removePlayer/'+data._id, 'object', 'PUT' , 200 , done , {userId : newUser._id})
 			});			
 		});
 	});
