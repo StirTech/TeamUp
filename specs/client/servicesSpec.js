@@ -223,7 +223,7 @@ describe('Services', function () {
       $httpBackend.flush();
     });
 
-    xit('should remove a player to specific game with `removePlayer`',function () {
+    it('should remove a player to specific game with `removePlayer`',function () {
       var newGame = {
         id:"1",
         name : "game 1",
@@ -235,7 +235,7 @@ describe('Services', function () {
       }
 
       $httpBackend
-      .expect('DELETE','/api/game/'+newGame.id,{userId : "123"})
+      .expect('PUT','/api/game/removePlayer/'+newGame.id,{userId : "123"})
       .respond(201,{id : "1" , name : "game 1", players : []});
 
       Game.removePlayer(newGame.id,newUser.id).then(function (res) {
