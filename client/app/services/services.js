@@ -148,10 +148,14 @@ angular.module('TeamUp.services',[])
 			});
 		},
 		removePlayer : function (gameId, userId) {
+			console.log(gameId);
+			console.log(userId);
 			return $http({
-				method : 'DELETE',
-				url : '/api/game/'+gameId,
-				data : { userId : userId}
+				method : 'PUT',
+				url : '/api/game/removePlayer/'+gameId,
+				data: {
+					userId: userId
+				}
 			})
 			.then(function (res) {
 				return res.data
