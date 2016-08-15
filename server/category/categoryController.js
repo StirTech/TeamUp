@@ -3,7 +3,7 @@ var Category = require('./categoryModel.js');
 
 module.exports = {
 
-	getAll: function(req, res, next){
+	getAll : function(req, res, next){
 		Category.find().exec(function (err,allCategories) {
 			if(err)
 				res.status(500).send('err');
@@ -12,7 +12,7 @@ module.exports = {
 		});
 	},
 
-	getCategory: function(req, res, next){
+	getCategory : function(req, res, next){
 		Category.findOne({ _id : req.params.id }).exec(function (err, category){
 			if(err)
 				res.status(500).send('err');
@@ -21,15 +21,28 @@ module.exports = {
 		})
 	},
 
-	addOne: function(req, res, next){
+	addCategory : function(req, res, next){
+		var category = req.body
+
+		var newCategory = new Category({
+			name : category.name,
+			games : category.games,
+			picture : category.picture
+		})
+
+		newCategory.save(function(err, newCategory){
+			if(err)
+				res.status(500).send(err);
+			else
+				res.status(201).send(newCategory);
+		})
+	},
+
+	editCategory : function(req, res, next){
 
 	},
 
-	editOne: function(req, res, next){
-
-	},
-
-	deleteOne: function(req, res, next){
+	deleteCategory : function(req, res, next){
 
 	}
 }
