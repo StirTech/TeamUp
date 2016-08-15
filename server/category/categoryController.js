@@ -12,8 +12,13 @@ module.exports = {
 		});
 	},
 
-	getOne: function(req, res, next){
-
+	getCategory: function(req, res, next){
+		Category.findOne({ _id : req.params.id }).exec(function (err, category){
+			if(err)
+				res.status(500).send('err');
+			else
+				res.status(200).send(category);
+		})
 	},
 
 	addOne: function(req, res, next){
