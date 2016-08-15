@@ -30,11 +30,22 @@
             		<td>{{game.date | date: 'hh:mm a'}}</td>
             	</tr>
             </table>
+            <div>
+			    <br/>
+			    <ng-map zoom="16" center="{{game.locationID}}">
+					<marker position="{{game.locationID}}"
+					title="{{game.name}}"
+					animation="Animation.BOUNCE"
+					centered="true">
+					</marker>
+			    </ng-map>
+			</div>
         </div>
 
 		<div class="col-md-3">
 			<div class="primary-sidebar widget-area" role="complementary">
-				<button ng-click="joinGame()" ng-model="joinButton" class="widget-title text-uppercase text-center "  style="width: 100%;position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;    background-color: #9b59b6;color: #fff;"><span>{{joinButton}}</span></button>
+				<button ng-click="joinGame()" ng-model="joinButton" ng-if="joinButtonIf"  class=" widget-title text-uppercase text-center  "  style="width: 100%;position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;    background-color: #9b59b6;color: #fff;"><span>{{joinButton}}</span></button>
+                <button  ng-if="closed"  class=" widget-title text-uppercase text-center  "  style="width: 100%;position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;    background-color:#b70000 ;color: #fff;"><span>Closed</span></button>
 		        <h2 class="widget-title text-uppercase text-center" style="    position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;"><span>Players</span></h2>
 		        <aside class="widget about-me-widget" ng-repeat="player in game.plyersObjs">
                         <div class="text-center about-me-widget-img">
@@ -50,28 +61,25 @@
     </div>
 </div>
 
-<!-- <div>{{game.name}}</div>
-<img ng-src="{{game.picture}}" width="50%">
-<div>Created By : {{game.owner}}</div>
-<div>description : {{game.description}}</div>
-<div>location : {{game.locationID}}</div>
-<div>country : {{game.country}}</div>
-<div>city : {{game.city}}</div>
-<div>date : {{game.date}}</div>
-<div># of Players : {{game.numOfPlayers}}</div>
+<footer class="footer-copyright" style="    margin-top: 35px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="copyright-text">
+                    <p>Copyright © 2016 - TeamUp | All Rights Reserved </p>
+                </div>
+            </div>
+            
 
-
-<div>
-    <br/>
-    <ng-map zoom="16" center="{{game.locationID}}">
-		<marker position="{{game.locationID}}"
-		title="{{game.name}}"
-		animation="Animation.BOUNCE"
-		centered="true">
-		</marker>
-    </ng-map>
-</div>
-
-<button ng-click="editGame()">Edit Game</button>
-<div id="shareBtn" class="btn btn-success clearfix" ng-click="fbshare()">Share</div>
- -->
+            <div class="col-md-4">
+                <div class="social-footer text-right">
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-pinterest"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>            
+</footer> <!-- End footer bottom --> 

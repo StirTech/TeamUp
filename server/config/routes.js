@@ -20,9 +20,9 @@ module.exports = function(app, express) {
 	app.post('/api/game', game.createGame);
 	app.get('/api/games', game.getAllGames);
 	app.get('/api/game/:id', game.getGame);
+	app.put('/api/game/removePlayer/:id', game.removePlayer);
 	app.put('/api/game/:id/edit', game.editGame);
 	app.post('/api/game/:id', game.insertPlayer);
-	app.delete('/api/game/:id', game.removePlayer);
 
 	//error handling
 	app.use(helpers.errorLogger);

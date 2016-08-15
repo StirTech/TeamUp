@@ -223,7 +223,7 @@ describe('Services', function () {
       $httpBackend.flush();
     });
 
-    it('should remove a player to specific game with `removePlayer`',function () {
+    xit('should remove a player to specific game with `removePlayer`',function () {
       var newGame = {
         id:"1",
         name : "game 1",
