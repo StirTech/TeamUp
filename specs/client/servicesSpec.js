@@ -239,6 +239,7 @@ describe('Services', function () {
       .respond(201,{id : "1" , name : "game 1", players : []});
 
       Game.removePlayer(newGame.id,newUser.id).then(function (res) {
+        console.log(res)
         expect(res.id).to.equal("1");
         expect(res.name).to.equal("game 1");
         expect(res.players).to.not.include("123");
