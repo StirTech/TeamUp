@@ -62,6 +62,12 @@ module.exports = {
 	},
 
 	deleteCategory : function(req, res, next){
-
+		Category.remove({ _id: req.body.id }, function(err){
+			if(!err){
+				console.log("Category removed!")
+			} else {
+				console.log(err)
+			}
+		})
 	}
 }
