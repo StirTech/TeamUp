@@ -26,7 +26,6 @@ module.exports = {
 	},
 
 	fbSignin : function (req , res ,next) {
-		console.log(req.body,"req.body")
 		var fuserID = req.body.fb_ID;
 		User.findOne({fb_ID : fuserID})
 		.exec(function (error , user) {
