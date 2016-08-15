@@ -39,7 +39,26 @@ module.exports = {
 	},
 
 	editCategory : function(req, res, next){
+		Category.findOne({_id: req.params.id}, function(err, category){
+	      if(err){
+	        res.status(500).send(err);
+	      } else if (!category){
+	        res.status(500).send(new Error ('Category does not exist'));
+	      } else {
 
+	        category.name = req.body.name || category.name;
+	        category.games = req.body.games || category.games;
+	        category.picture = req.body.picture || category.picture;
+
+	        category.save(function(err, savedCategory){
+	          if(err){
+	            res.status(500).send(err);
+	          } else {
+	            res.json(savedCategory);
+	          }
+	        });
+	      }
+	    })
 	},
 
 	deleteCategory : function(req, res, next){
