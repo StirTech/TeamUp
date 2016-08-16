@@ -84,29 +84,29 @@ module.exports = {
 	},
 
 	editUser: function(req, res, next){
-	User.findOne({_id: req.params.id}, function(err, user){
-      if(err){
-        res.status(500).send(err);
-      } else if (!user){
-        res.status(500).send(new Error ('User does not exist'));
-      } else {
+		User.findOne({_id: req.params.id}, function(err, user){
+	      if(err){
+	        res.status(500).send(err);
+	      } else if (!user){
+	        res.status(500).send(new Error ('User does not exist'));
+	      } else {
 
-        user.firstName = req.body.firstName || user.firstName;
-        user.lastName = req.body.lastName || user.lastName;
-        user.email = req.body.email || user.email;
-        user.country = req.body.country || user.country;
-        user.city = req.body.city || user.city;
-        user.interests = req.body.interests || user.interests;
+	        user.firstName = req.body.firstName || user.firstName;
+	        user.lastName = req.body.lastName || user.lastName;
+	        user.email = req.body.email || user.email;
+	        user.country = req.body.country || user.country;
+	        user.city = req.body.city || user.city;
+	        user.interests = req.body.interests || user.interests;
 
-        user.save(function(err, savedUser){
-          if(err){
-            res.status(500).send(err);
-          } else {
-            res.json(savedUser);
-          }
-        });
-      }
-    })
+	        user.save(function(err, savedUser){
+	          if(err){
+	            res.status(500).send(err);
+	          } else {
+	            res.json(savedUser);
+	          }
+	        });
+	      }
+	    })
 		
 	},
 
