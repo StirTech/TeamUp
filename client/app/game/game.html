@@ -1,8 +1,9 @@
 <div class="container main-content">
     <div class="row">
         <div class="col-md-9">
-    		<header class="entry-header text-center">
-        		<h2 class="widget-title text-uppercase text-center" style="    position: relative;font-size: 29px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;"><span>{{game.name}}</span></h2>
+            <header class="entry-header text-center">
+                <h2 class="widget-title text-uppercase text-center" style="    position: relative;font-size: 29px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;"><span>{{game.name}}</span></h2>
+                <div>{{countdown}}</div>
         		<div class="by-on">
                     By <a href="#/profile/{{owner._id}}" title="Posts by Kate" rel="author">{{owner.username}} </a> - {{game.date | date : yyyy:MM:dd}} 
                 </div>
