@@ -1,44 +1,31 @@
-<div class="signin" id="signin">
-	
-	<div  id="signinForm">
-		<div class="inputForm">
-			<p> Username
-			<input type="textbox" ng-model="user.username">							
-			</p>
-			<p> password
-			<input type="password" ng-model="user.password">							
-			</p>
-			<p ng-hide="wrong">wrong username or password</p>
-		</div>
-		<div class="button">
-			<button ng-click="fbLogin()" class="fbutton">signin with Facebook</button>
-			<button ng-click="signin(user)"  class="btn btn-default">login</button>	
-			
-		</div>
-	</div>
+<div class="row" id="signin">
+    <video  id="bgvid" playsinline autoplay muted style="transform: translateX(-50%) translateY(-50%);">
+        <source src="../img/video.webm" type="video/webm">
+        <source src="../img/video.mp4" type="video/mp4">
+    </video>
+    <div class="container" style="margin-top:5% ;width : 80%">
+            <div class="col-md-6">
+                <div class="u-form-group">
+                    <input type="text" ng-model="user.username" placeholder="username"/>
+                </div>
+                <div class="u-form-group">
+                    <input type="password" ng-model="user.password" placeholder="Password"/>
+                </div>
+                <div class="u-form-group">
+                    <button ng-click="signin(user)">Log In</button>
+                </div>
+                <div class="u-form-group">
+                    <button ng-click="fbLogin()" style="background-color:#49639F ; width : 50% ; float: left">
+                        <i class="fa fa-facebook fa-lg" style="padding-left:20"></i>
+                        facebook Login
+                    </button>
+                </div>
+                <div class="u-form-group"  >
+                    <button ng-click="fbLogin()" ng-click="fbLogin()" style="background-color:#DF4A32; width : 50%">
+                        <i class="fa fa-google-plus fa-lg"></i>
+                        Google Login
+                    </button>
+                </div>
+            </div>
+    </div>
 </div>
-
-<footer class="footer-copyright" style=" position: fixed;
-    bottom: 0;
-    width: 100%;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="copyright-text">
-                    <p>Copyright © 2016 - TeamUp | All Rights Reserved </p>
-                </div>
-            </div>
-            
-
-            <div class="col-md-4">
-                <div class="social-footer text-right">
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-pinterest"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>            
-</footer> <!-- End footer bottom --> 

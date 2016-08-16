@@ -424,4 +424,128 @@ input[type="submit"],
     top: -50px;
     height: 0px;
 }
-z
+video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    transition: 1s opacity;
+    opacity: 0.3;
+}
+
+
+
+
+.form-control{
+  text-align: center;
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+}
+
+.wrapper {    
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+
+.form-signin {
+  max-width: 420px;
+  padding: 30px 38px 66px;
+  margin: 0 auto;
+  background-color: #eee;
+  border: 3px dotted rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.form-signin-heading {
+  text-align:center;
+  margin-bottom: 30px;
+}
+
+.form-signin-control {
+  text-align: center;
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+}
+.signin-img {
+    width: 50%
+}
+
+.facebook-button {
+    width: 100%;
+    background-color: rgb(68, 103, 153);
+    border-radius: 4px;
+    padding: 0px;
+}
+.google-button {
+    padding: 0px;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #B5403A;
+
+}
+
+
+/************************/
+/************************/
+/************************/
+/************************/
+/******new Login*********/
+/************************/
+/************************/
+/************************/
+/************************/
+
+
+
+.u-form-group{
+  width:100%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.u-form-group input[type="text"],
+.u-form-group input[type="password"],
+.u-form-group input[type="email"]{
+  width: 100%;    opacity: 0.5;
+  height:45px;
+  outline: none;
+  border: 1px solid #ddd;
+  padding: 0 10px;
+  border-radius: 2px;
+  color: #333;
+  font-size:20px;
+  -webkit-transition:all 0.1s linear;
+  -moz-transition:all 0.1s linear;
+  transition:all 0.1s linear;
+}
+.u-form-group input:focus{
+  border-color: #358efb;
+}
+.u-form-group button{
+  width: 100%;
+  background-color: #1CB94E;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: normal;
+  padding: 14px 0;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.forgot-password{
+  width:50%;
+  text-align: left;
+  text-decoration: underline;
+  color: #888;
+  font-size: 0.75rem;
+}
