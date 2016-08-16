@@ -169,7 +169,13 @@ angular.module('TeamUp.services',[])
 .factory('Category',function ($http, $window) {
 
 	var getAll = function(){
-		
+		return $http({
+				method : 'GET',
+				url : '/api/categories'
+			})
+			.then(function (res) {
+				return res.data;
+		});
 	}
 
 	var getCategory = function(id){
