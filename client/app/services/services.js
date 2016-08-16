@@ -227,7 +227,7 @@ angular.module('TeamUp.services',[])
 		editCategory: editCategory,
 		deleteCategory: deleteCategory
 	}
-}
+})
 //========================================================================
 /*                        Facebook Factory                                   */
 //========================================================================
