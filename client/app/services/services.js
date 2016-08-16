@@ -201,9 +201,9 @@ angular.module('TeamUp.services',[])
 
 	var editCategory = function(id, category){
 		return $http({
-			method:'PUT',
-			url:'/api/category/' + id + '/edit',
-			data: category
+			method : 'PUT',
+			url : '/api/category/' + id + '/edit',
+			data : category
 		})
 		.then(function (res) {
 			return res
@@ -211,7 +211,13 @@ angular.module('TeamUp.services',[])
 	}
 
 	var deleteCategory = function(id){
-
+		return $http({
+			method : 'DELETE',
+			url : '/api/category/' + id + '/delete'
+		})
+		.then(function (res) {
+			return res.data
+		});
 	}
 
 	return {
