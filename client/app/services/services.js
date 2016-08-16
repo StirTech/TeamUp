@@ -55,7 +55,7 @@ angular.module('TeamUp.services',[])
 //========================================================================
 .factory('User',function ($http,$window) {
 
-	var getUser=function (userId) {
+	var getUser = function (userId) {
 		return $http({
 			method:'GET',
 			url:'/api/user/'+userId
@@ -163,6 +163,74 @@ angular.module('TeamUp.services',[])
 		}
 	}
 })
+//========================================================================
+/*                        Category Factory                                   */
+//========================================================================
+.factory('Category',function ($http, $window) {
+
+	var getAll = function(){
+		return $http({
+				method : 'GET',
+				url : '/api/categories'
+		})
+		.then(function (res) {
+			return res.data;
+		});
+	}
+
+	var getCategory = function(id){
+		return $http({
+				method : 'GET',
+				url : '/api/category' + id
+		})
+		.then(function (res) {
+			return res.data;
+		});
+	}
+
+	var addCategory = function(category){
+		return $http({
+				method : 'POST',
+				url : '/api/category',
+				data : category
+		})
+		.then(function (res) {
+			return res.data
+		})
+	}
+
+	var editCategory = function(id, category){
+		return $http({
+			method : 'PUT',
+			url : '/api/category/' + id + '/edit',
+			data : category
+		})
+		.then(function (res) {
+			return res
+		});
+	}
+
+	var deleteCategory = function(id){
+		return $http({
+			method : 'DELETE',
+			url : '/api/category/' + id + '/delete'
+		})
+		.then(function (res) {
+			return res.data
+		});
+	}
+
+	return {
+		getAll: getAll,
+		getCategory: getCategory,
+		addCategory: addCategory,
+		editCategory: editCategory,
+		deleteCategory: deleteCategory
+	}
+})
+//========================================================================
+/*                        Facebook Factory                                   */
+//========================================================================
 .factory('facebook', function(){
 	return {	
 		share : function (gameId, picture, gameName) {

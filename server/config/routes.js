@@ -1,6 +1,7 @@
 var user = require('../users/userController.js');
 var game = require('../games/gameController.js');
 var comment = require ('../comment/commentController.js');
+var category = require('../category/categoryController.js');
 
 var helpers = require('./helpers.js');
 
@@ -31,6 +32,13 @@ module.exports = function(app, express) {
 	app.get('/api/comments',comment.getcomment)
 	
 
+
+	// category routes
+	app.get('/api/categories', category.getAll);
+	app.get('/api/category/:id', category.getCategory);
+	app.post('/api/category', category.addCategory);
+	app.put('/api/category/:id/edit', category.editCategory);
+	app.delete('/api/category/:id/delete', category.deleteCategory);
 
 	//error handling
 	app.use(helpers.errorLogger);
