@@ -40,6 +40,17 @@
 					</marker>
 			    </ng-map>
 			</div>
+            <button ng-click="toggle()">Get directions</button>
+            <div ng-switch = "show">
+                <ng-map zoom="8" center="current-location" ng-switch-when="true">
+                    <directions
+                      draggable="true"
+                      travel-mode="DRIVING"
+                      origin="current-location"
+                      destination="{{game.locationID}}">
+                    </directions>
+                </ng-map>
+            </div>
         </div>
 
 		<div class="col-md-3">
