@@ -23,7 +23,7 @@ module.exports = {
 		});
 	},
 	
-	getcomment :function (req, res) {
+	getComment :function (req, res) {
 		Comment.find({ game : req.body.gameId}).exec(function (err,allComment) {
 			if(err)
 				res.status(500).send('err');
