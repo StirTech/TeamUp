@@ -26,7 +26,6 @@ module.exports = {
 	},
 
 	fbSignin : function (req , res ,next) {
-		console.log(req.body,"req.body")
 		var fuserID = req.body.fb_ID;
 		User.findOne({fb_ID : fuserID})
 		.exec(function (error , user) {
@@ -49,18 +48,18 @@ module.exports = {
 		 			next(new Error('User already exist!'));
 		 		}else{
 	 				var newUser = new User ({
-						username: username,
-				        password: password,
-				        firstName:req.body.firstName,
-				        lastName:req.body.lastName,
-				        city:req.body.city,
-				        country:req.body.country,
-				        rate:req.body.rate,
-				        interests:req.body.interests,
-				        picture:req.body.picture || "https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg",
-				        game:req.body.game,
-				        email : req.body.email,
-				        fb_ID:req.body.fb_ID
+						username: username||"",
+				        password: password||"",
+				        firstName:req.body.firstName||"",
+				        lastName:req.body.lastName||"",
+				        city:req.body.city||"",
+				        country:req.body.country||"",
+				        rate:req.body.rate||"",
+				        interests:req.body.interests||"",
+				        picture:req.body.picture||"https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg",
+				        game:req.body.game||"",
+				        email : req.body.email||"",
+				        fb_ID:req.body.fb_ID|| ""
 					})
 			 		newUser.save(function(err, newUser){
 			            if(err){
@@ -84,29 +83,29 @@ module.exports = {
 	},
 
 	editUser: function(req, res, next){
-	User.findOne({_id: req.params.id}, function(err, user){
-      if(err){
-        res.status(500).send(err);
-      } else if (!user){
-        res.status(500).send(new Error ('User does not exist'));
-      } else {
+		User.findOne({_id: req.params.id}, function(err, user){
+	      if(err){
+	        res.status(500).send(err);
+	      } else if (!user){
+	        res.status(500).send(new Error ('User does not exist'));
+	      } else {
 
-        user.firstName = req.body.firstName || user.firstName;
-        user.lastName = req.body.lastName || user.lastName;
-        user.email = req.body.email || user.email;
-        user.country = req.body.country || user.country;
-        user.city = req.body.city || user.city;
-        user.interests = req.body.interests || user.interests;
+	        user.firstName = req.body.firstName || user.firstName;
+	        user.lastName = req.body.lastName || user.lastName;
+	        user.email = req.body.email || user.email;
+	        user.country = req.body.country || user.country;
+	        user.city = req.body.city || user.city;
+	        user.interests = req.body.interests || user.interests;
 
-        user.save(function(err, savedUser){
-          if(err){
-            res.status(500).send(err);
-          } else {
-            res.json(savedUser);
-          }
-        });
-      }
-    })
+	        user.save(function(err, savedUser){
+	          if(err){
+	            res.status(500).send(err);
+	          } else {
+	            res.json(savedUser);
+	          }
+	        });
+	      }
+	    })
 		
 	},
 
