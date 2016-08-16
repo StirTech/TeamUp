@@ -163,6 +163,42 @@ angular.module('TeamUp.services',[])
 		}
 	}
 })
+//========================================================================
+/*                        Category Factory                                   */
+//========================================================================
+.factory('Game',function ($http, $window) {
+
+	var getAll = function(){
+		
+	}
+
+	var getCategory = function(id){
+
+	}
+
+	var addCategory = function(category){
+
+	}
+
+	var editCategory = function(id, category){
+
+	}
+
+	var deleteCategory = function(id){
+		
+	}
+
+	return {
+		getAll: getAll,
+		getCategory: getCategory,
+		addCategory: addCategory,
+		editCategory: editCategory,
+		deleteCategory: deleteCategory
+	}
+}
+//========================================================================
+/*                        Facebook Factory                                   */
+//========================================================================
 .factory('facebook', function(){
 	return {	
 		share : function (gameId, picture, gameName) {
