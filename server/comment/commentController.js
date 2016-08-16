@@ -22,8 +22,9 @@ module.exports = {
 		  }
 		});
 	},
+	
 	getcomment :function (req, res) {
-		Comment.find().exec(function (err,allComment) {
+		Comment.find({ game : req.body.gameId}).exec(function (err,allComment) {
 			if(err)
 				res.status(500).send('err');
 			else
