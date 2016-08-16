@@ -31,20 +31,21 @@
             	</tr>
             </table>
 			<br/>
+            <ng-map zoom="16" center="{{game.locationID}}" ng-hide="show">
+                <marker position="{{game.locationID}}"
+                title="{{game.name}}"
+                animation="Animation.BOUNCE"
+                centered="true">
+                </marker>
+            </ng-map>
             <div ng-switch = "show">
-                <ng-map zoom="16" center="{{game.locationID}}" ng-switch-default>
-                    <marker position="{{game.locationID}}"
-                    title="{{game.name}}"
-                    animation="Animation.BOUNCE"
-                    centered="true">
-                    </marker>
-                </ng-map>
                 <ng-map zoom="8" center="current-location" ng-switch-when="true">
                     <directions
                       draggable="true"
                       travel-mode="DRIVING"
                       origin="current-location"
-                      destination="{{game.locationID}}">
+                      destination="{{game.locationID}}"
+                      centered="true">
                     </directions>
                 </ng-map>
             </div>
