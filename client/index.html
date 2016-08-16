@@ -52,13 +52,24 @@
 	                        <div class="navbar-collapse collapse">
 	                            <ul class="nav navbar-nav navbar-right" ng-controller="HeaderController" ng-switch on="loggedIN">
 	                                <li><a href="#/home">Home</a></li>
-									<li ng-switch-when="false"><a href="#/signin" data-target="#signin">Signin</a></li>
-									<li ng-switch-when="false"><a href="#/signup" data-target="#signup">Signup</a></li>
-									<li ng-switch-when="true"><a href="#createGame" data-target="#createGame">Create Game</a></li>
-									<li ng-switch-when="true"><a href="#/profile/{{userId}}" data-target="#profile">Profile</a></li>
-									<li ng-switch-when="true"><a ng-click="logout()"> logOut</a></li>
-									<li><img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" style="border-radius: 50%;margin: 0 auto 14px; border: 2px solid #eeeeee; padding: 5px;max-width: 100%; width:50px" "></li>
+									
+									<li><a href="#createGame" data-target="#createGame">Create Game</a></li>
+									
+									
+									<li>
+										<div class="btn-group">
+										  <img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" style="border-radius: 50%;margin: 0 auto 14px; border: 2px solid #eeeeee; padding: 5px;max-width: 100%; width:50px" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										  <ul class="dropdown-menu">
+										    <li ng-switch-when="false"><a href="#/signin" data-target="#signin">Signin</a></li>
+											<li ng-switch-when="false"><a href="#/signup" data-target="#signup">Signup</a></li>
+											<li ng-switch-when="true"><a href="#/profile/{{userId}}" data-target="#profile">Profile</a></li>
+										    <li ng-switch-when="true"><a ng-click="logout()"> logOut</a></li>
+										  </ul>
+										</div>
+									</li>
 	                            </ul>
+										<!-- <img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" style="border-radius: 50%;margin: 0 auto 14px; border: 2px solid #eeeeee; padding: 5px;max-width: 100%; width:50px" "> -->
+									
 	                        </div>                         
 	                    </div>
 	                </div>
