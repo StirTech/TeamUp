@@ -8,6 +8,10 @@ angular.module('TeamUp.game',[])
 	$scope.joinButton="join";
 	$scope.closed =false;
 	$scope.joinButtonIf=true;
+	$scope.show = false;
+	$scope.toggle = function() {
+        $scope.show = !$scope.show;
+    };
 
 	$scope.initlize = function () {
 		console.log($scope.game);
