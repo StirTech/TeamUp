@@ -166,7 +166,7 @@ angular.module('TeamUp.services',[])
 //========================================================================
 /*                        Category Factory                                   */
 //========================================================================
-.factory('Game',function ($http, $window) {
+.factory('Category',function ($http, $window) {
 
 	var getAll = function(){
 		
@@ -185,7 +185,7 @@ angular.module('TeamUp.services',[])
 	}
 
 	var deleteCategory = function(id){
-		
+
 	}
 
 	return {
