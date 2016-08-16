@@ -1,6 +1,8 @@
 angular.module('TeamUp.createGame',[/*'ngMap'*/])
 
 .controller('createGameController',function( $scope, $window, Game, $location, NgMap){
+	if($window.localStorage.userId===undefined)
+		$location.path('signin');
 	NgMap.getMap().then(function(map) {
       $scope.map = map;
     });
