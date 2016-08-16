@@ -1,8 +1,9 @@
 <div class="container main-content">
     <div class="row">
         <div class="col-md-9">
-    		<header class="entry-header text-center">
-        		<h2 class="widget-title text-uppercase text-center" style="    position: relative;font-size: 29px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;"><span>{{game.name}}</span></h2>
+            <header class="entry-header text-center">
+                <h2 class="widget-title text-uppercase text-center" style="    position: relative;font-size: 29px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;"><span>{{game.name}}</span></h2>
+                <div>{{countdown}}</div>
         		<div class="by-on">
                     By <a href="#/profile/{{owner._id}}" title="Posts by Kate" rel="author">{{owner.username}} </a> - {{game.date | date : yyyy:MM:dd}} 
                 </div>
@@ -31,20 +32,21 @@
             	</tr>
             </table>
 			<br/>
+            <ng-map zoom="16" center="{{game.locationID}}" ng-hide="show">
+                <marker position="{{game.locationID}}"
+                title="{{game.name}}"
+                animation="Animation.BOUNCE"
+                centered="true">
+                </marker>
+            </ng-map>
             <div ng-switch = "show">
-                <ng-map zoom="16" center="{{game.locationID}}" ng-switch-default>
-                    <marker position="{{game.locationID}}"
-                    title="{{game.name}}"
-                    animation="Animation.BOUNCE"
-                    centered="true">
-                    </marker>
-                </ng-map>
                 <ng-map zoom="8" center="current-location" ng-switch-when="true">
                     <directions
                       draggable="true"
                       travel-mode="DRIVING"
                       origin="current-location"
-                      destination="{{game.locationID}}">
+                      destination="{{game.locationID}}"
+                      centered="true">
                     </directions>
                 </ng-map>
             </div>
