@@ -48,7 +48,35 @@ angular.module('TeamUp.services',[])
 		fbSignin:fbSignin
 	}
 })
+//========================================================================
+/*                        Comment Factory                                   */
+//========================================================================
+.factory('Comment', function ($http, $window) {
+	var insertComment = function (comment) {
+		return $http({
+			method : 'POST',
+			url : '/api/comment',
+			data : comment
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
 
+	var getComment = function ($http, $window) {
+		return $http({
+			method : 'GET',
+			url : '/api/comments',
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
+	return{
+		insertComment : insertComment,
+		getComment : getComment
+	}
+})
 
 //========================================================================
 /*                        User Factory                                   */
