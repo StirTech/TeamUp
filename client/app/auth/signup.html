@@ -1,50 +1,44 @@
-<div class="signup">
-	
-	<div  id="signupForm">
-		<div >
-			<p> firstName
-			<input type="textbox" ng-model="user.firstName">							
-			</p>
-			<p> lastName
-			<input type="textbox" ng-model="user.lastName">							
-			</p>
-			<p> Username
-			<input type="textbox" ng-model="user.username">							
-			</p>
-			<p> password
-			<input type="textbox" ng-model="user.password">							
-			</p>
-			<p> email
-			<input type="textbox" ng-model="user.email">							
-			</p>
-		</div>
-		<button ng-click="signup(user)">create</button>
-		<div>		
-		</div>
-	</div>
-</div>	
+<div class="row" id="signin">
+    <video  id="bgvid" playsinline autoplay muted style="transform: translateX(-50%) translateY(-50%);">
+        <source src="../img/video.webm" type="video/webm">
+        <source src="../img/video.mp4" type="video/mp4">
+    </video>
 
-<footer class="footer-copyright" style=" position: fixed;
-    bottom: 0;
-    width: 100%;">
-    <div class="container">
-        <div class="row">
+    <div class="container" style="margin-top:5% ;width : 80%">
             <div class="col-md-8">
-                <div class="copyright-text">
-                    <p>Copyright © 2016 - TeamUp | All Rights Reserved </p>
+            	<div class="u-form-group">
+                    <input type="text" ng-model="user.firstName" placeholder="First Name"/>
                 </div>
-            </div>
-            
-
-            <div class="col-md-4">
-                <div class="social-footer text-right">
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-pinterest"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
+                <div class="u-form-group">
+                    <input type="text" ng-model="user.lastName" placeholder="Last Name "/>
                 </div>
+                <div class="u-form-group">
+                    <input type="text" ng-model="user.username" placeholder="username"/>
+                </div>
+                <div class="u-form-group">
+                    <input type="password" ng-model="user.password" placeholder="Password"/>
+                </div>
+                <div class="u-form-group">
+                    <input type="email" ng-model="user.email" placeholder="Email"/>
+                </div>
+                <div class="u-form-group">
+                    <button ng-click="signup(user)">Sign Up</button>
+                </div>
+                <div class="u-form-group">
+	                <button ng-click="fbLogin()" style="background-color:#49639F ; width : 50% ; float: left">
+	                    <i class="fa fa-facebook fa-lg" style="padding-left:20"></i>
+	                    facebook Login
+	                </button>
+	            </div>
+	            <div class="u-form-group"  >
+	                <button ng-click="fbLogin()" ng-click="fbLogin()" style="background-color:#DF4A32; width : 50%">
+	                    <i class="fa fa-google-plus fa-lg"></i>
+	                    Google Login
+	                </button>
+	            </div>
             </div>
-        </div>
-    </div>            
-</footer> <!-- End footer bottom --> 
+            <div class="col-md-4 " >
+            	<img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" style="border-radius: 50%;margin: 0 auto 14px; border: 2px solid #eeeeee; padding: 5px;max-width: 80%; ">
+            </div>
+    </div>
+</div>
