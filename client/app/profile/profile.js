@@ -13,7 +13,7 @@ angular.module('TeamUp.profile',[])
 				$location.path('/404');
 			}
 			$scope.user = user;
-			//$scope.copyData();
+			$scope.copyData();
 		})
 		.catch(function (error) {
 			console.error(error)
