@@ -25,13 +25,13 @@ module.exports = function(app, express) {
 	app.put('/api/game/removePlayer/:id', game.removePlayer);
 	app.put('/api/game/:id/edit', game.editGame);
 	app.post('/api/game/:id', game.insertPlayer);
-	
+	app.post('/api/game/:id/like',game.likeGame);
+	app.post('/api/game/:id/unlikeGame',game.unlikeGame);
 
 	//Comment Route
 	app.post('/api/comment',comment.insertComment);
 	app.get('/api/comments/:id',comment.getComments)
 	
-
 
 	// category routes
 	app.get('/api/categories', category.getAll);
