@@ -12,15 +12,21 @@ angular.module('TeamUp', [
 ])
 
 
-.controller('HeaderController',function ($scope, $window, $location, UserAuth) {
+.controller('HeaderController',function ($scope, $window, $location, UserAuth, User) {
   $scope.userId=$window.localStorage.userId;
-
+  $scope.profilePicture="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg";
   if($window.localStorage.isLogin){ 
     $scope.loggedIN=true;
+    User.getUser($window.localStorage.userId)
+    .then(function (user) {
+      $scope.profilePicture=user.picture;
+    })
+
   }else
     $scope.loggedIN=false;
 
   $scope.logout = function () {
+    $scope.profilePicture="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg";
     $scope.loggedIN=false;
     $window.localStorage.clear();
     $window.localStorage.loggedIN=false;

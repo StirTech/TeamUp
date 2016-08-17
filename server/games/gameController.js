@@ -22,6 +22,7 @@ module.exports = {
 
 	createGame: function(req, res){
 		var game = req.body;
+		console.log(req.body)
 		var newGame = new Game ({
 			name: game.name, 
 			description : game.description, 
@@ -33,7 +34,8 @@ module.exports = {
 			country: game.country, 
 			city: game.city, 
 			picture: game.picture, 
-			date: game.date
+			date: game.date,
+			category : game.category
 		})
 		newGame.save(function(err, newGame){
 			if(err)
@@ -75,7 +77,8 @@ module.exports = {
 			country: game.country, 
 			city: game.city, 
 			picture: game.picture, 
-			date: game.date
+			date: game.date,
+			category : game.category
 			}})
 		.exec(function(err, data){
 			if(err)
