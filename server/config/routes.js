@@ -29,7 +29,7 @@ module.exports = function(app, express) {
 
 	//Comment Route
 	app.post('/api/comment',comment.insertComment);
-	app.get('/api/comments',comment.getComment)
+	app.get('/api/comments/:id',comment.getComments)
 	
 
 

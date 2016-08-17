@@ -67,8 +67,7 @@ angular.module('TeamUp.services',[])
 	var getComment = function (gameId) {
 		return $http({
 			method : 'GET',
-			url : '/api/comments',
-			data : 
+			url : '/api/comments'+gameId
 		})
 		.then(function (res) {
 			return res;
