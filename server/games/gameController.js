@@ -114,6 +114,7 @@ module.exports = {
 			}
 		})
 	},
+
 	unlikeGame : function (req, res) {
 		var gameId=req.params.id;
 		var userId=req.body.userId;

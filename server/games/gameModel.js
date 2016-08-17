@@ -54,7 +54,6 @@ var GameSchema= new mongoose.Schema({
 	}],
 	rate :[{
 		type: mongoose.Schema.Types.ObjectId,
-		rate : Number,
 		ref : "User"
 	}] ,
 	category: {
