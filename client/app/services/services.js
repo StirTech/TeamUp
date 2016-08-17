@@ -56,7 +56,7 @@ angular.module('TeamUp.services',[])
 	var insertComment = function (comment) {
 		return $http({
 			method : 'POST',
-			url : '/api/comment',
+			url : '/api/game/'+comment.gameId+'/insertcomment',
 			data : comment
 		})
 		.then(function (res) {
@@ -67,7 +67,7 @@ angular.module('TeamUp.services',[])
 	var getComment = function (gameId) {
 		return $http({
 			method : 'GET',
-			url : '/api/comments'+gameId
+			url : '/api/game/'+gameId+'/getComment'
 		})
 		.then(function (res) {
 			return res;
@@ -79,9 +79,28 @@ angular.module('TeamUp.services',[])
 	}
 })
 //=========================================================================
+/*                        rate Factory                                   */
+//=========================================================================
+.factory('Rate', function ($http, $window) {
+	var setRate = function (gameId, userId, rate) {
+		return $http({
+			method : 'POST',
+			url : 
+			data : {
+				userId : userId,
+				rate : rate
+			}
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
+})
+
+//=========================================================================
 /*                        like Factory                                   */
 //=========================================================================
-.factory('like',function ($http,$window) {
+.factory('Like',function ($http,$window) {
 	
 	var likeGame = function (gameId,userId) {
 		return $http({
