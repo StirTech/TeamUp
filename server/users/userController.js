@@ -48,7 +48,7 @@ module.exports = {
 		 			next(new Error('User already exist!'));
 		 		}else{
 	 				var newUser = new User ({
-						username: username||"",
+						username: username,
 				        password: password||"",
 				        firstName:req.body.firstName||"",
 				        lastName:req.body.lastName||"",
@@ -90,11 +90,11 @@ module.exports = {
 	        res.status(500).send(new Error ('User does not exist'));
 	      } else {
 
-	        user.firstName = req.body.firstName || user.firstName;
+	        user.firstName = req.body.firstName || user.firstName ;
 	        user.lastName = req.body.lastName || user.lastName;
 	        user.email = req.body.email || user.email;
 	        user.country = req.body.country || user.country;
-	        user.city = req.body.city || user.city;
+	        user.city = req.body.city|| user.city;
 	        user.interests = req.body.interests || user.interests;
 
 	        user.save(function(err, savedUser){

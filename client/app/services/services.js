@@ -48,8 +48,101 @@ angular.module('TeamUp.services',[])
 		fbSignin:fbSignin
 	}
 })
+//========================================================================
+/*                        Comment Factory                               */
+//========================================================================
+.factory('Comment', function ($http, $window) {
 
+	var insertComment = function (comment) {
+		return $http({
+			method : 'POST',
+			url : '/api/game/'+comment.gameId+'/insertcomment',
+			data : comment
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
 
+	var getComment = function (gameId) {
+		return $http({
+			method : 'GET',
+			url : '/api/game/'+gameId+'/getComment'
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
+	return{
+		insertComment : insertComment,
+		getComment : getComment
+	}
+})
+//=========================================================================
+/*                        rate Factory                                   */
+//=========================================================================
+.factory('Rate', function ($http, $window) {
+	var setRate = function (gameId, userId, rate) {
+		return $http({
+			method : 'POST',
+			url : '/api/game/'+gameId+'/setRate',
+			data : {
+				userId : userId,
+				rate : rate
+			}
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
+
+	var getRat = function () {
+		return $http({
+			method : 'GET',
+			url : '/api/game/'+gameId+'/rates',
+			data : {
+				userId : userId,
+				rate : rate
+			}
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
+})
+
+//=========================================================================
+/*                        like Factory                                   */
+//=========================================================================
+.factory('Like',function ($http,$window) {
+	
+	var likeGame = function (gameId,userId) {
+		return $http({
+			method : 'POST',
+			url : '/api/game/'+gameId+'/like',
+			data : userId
+		})
+		.then (function (res) {
+			return res;
+		})
+	}
+
+	var dislike = function (gameId, userId) {
+		return $http({
+			method : 'POST',
+			url : '/api/game/'+gameId+'/unlikeGame',
+			data : userId
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
+
+	return {
+		likeGame : likeGame,
+		dislike : dislike
+	}
+})
 //========================================================================
 /*                        User Factory                                   */
 //========================================================================
