@@ -1,8 +1,9 @@
 angular.module('TeamUp.game',[])
 
-.controller('gameController',function($scope, Game, User, facebook, $routeParams, $location, $window){
+.controller('gameController',function($scope, Game, User, facebook, $routeParams, $location, $window, Category){
 	$scope.game={};
 	$scope.owner ={};
+	$scope.category ={};
 	$scope.game.plyersObjs =[];
 	$scope.numberOfPlayer;
 	$scope.joinButton="join";
@@ -14,13 +15,20 @@ angular.module('TeamUp.game',[])
     };
 
 	$scope.initlize = function () {
-		console.log($scope.game);
 		Game.getOne($routeParams.id)
 		.then(function (game) {
 			$scope.game=game;	
 			User.getUser(game.owner)
 			.then(function (user) {
 				$scope.owner=user
+			})
+			.catch(function (err) {
+				console.log(err)
+			})
+			console.log(game.category)
+			Category.getCategory(game.category)
+			.then(function (category) {
+				$scope.category=category
 			})
 			.catch(function (err) {
 				console.log(err)
