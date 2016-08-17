@@ -7,7 +7,7 @@ module.exports = {
 		var newComment = new Comment({
 			from : req.body.userId,
 			text : req.body.text,
-			game : req.params.gameId
+			game : req.params.id
 		});
 		//create comment
 		newComment.save(function (err,comment) {
@@ -21,7 +21,7 @@ module.exports = {
 	},
 	
 	getComments :function (req, res) {
-		Comment.find({ game : req.params.game}).exec(function (err,allComment) {
+		Comment.find({ game : req.params.id}).exec(function (err,allComment) {
 			if(err){
 				res.status(500).send('err');
 			}else{

@@ -85,7 +85,21 @@ angular.module('TeamUp.services',[])
 	var setRate = function (gameId, userId, rate) {
 		return $http({
 			method : 'POST',
-			url : 
+			url : '/api/game/'+gameId+'/setRate',
+			data : {
+				userId : userId,
+				rate : rate
+			}
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
+
+	var getRat = function () {
+		return $http({
+			method : 'GET',
+			url : '/api/game/'+gameId+'/rates',
 			data : {
 				userId : userId,
 				rate : rate

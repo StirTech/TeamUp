@@ -26,11 +26,11 @@ module.exports = {
 		},
 
 	getRates : function (req, res) {
-			Rate.find().exec(function (err, arrOfRate) {
+			Rate.find({ game : req.params.id}).exec(function (err, arrOfRate) {
 				if(arrOfRate){
 					res.json(arrOfRate);
 				}else{
-					res.status(500).send('ssssssssssssss');
+					res.status(500).send('err');
 				}
 			})
 		}
