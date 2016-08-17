@@ -49,7 +49,7 @@ angular.module('TeamUp.services',[])
 	}
 })
 //========================================================================
-/*                        Comment Factory                                   */
+/*                        Comment Factory                               */
 //========================================================================
 .factory('Comment', function ($http, $window) {
 
@@ -78,8 +78,38 @@ angular.module('TeamUp.services',[])
 		getComment : getComment
 	}
 })
+//=========================================================================
+/*                        like Factory                                   */
+//=========================================================================
+.factory('like',function ($http,$window) {
+	
+	var likeGame = function (gameId,userId) {
+		return $http({
+			method : 'POST',
+			url : '/api/game/'+gameId+'/like',
+			data : userId
+		})
+		.then (function (res) {
+			return res;
+		})
+	}
 
+	var dislike = function (gameId, userId) {
+		return $http({
+			method : 'POST',
+			url : '/api/game/'+gameId+'/unlikeGame',
+			data : userId
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
 
+	return {
+		likeGame : likeGame,
+		dislike : dislike
+	}
+})
 //========================================================================
 /*                        User Factory                                   */
 //========================================================================
