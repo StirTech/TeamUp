@@ -12,12 +12,25 @@
             <div class="col-md-12">
                 <div class="form-content">
                     <form id="contact" name="contact" method="post">  
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <p><label for="name">Game Name</label><input ng-model="name" placeholder="Type game name" type="text" size="30" value="" required/></p>
                             </div>
-                            <div class="col-md-4">
-                                <p><label for="name">Type</label><input ng-model="type" placeholder="Type game type" type="text" size="30" value="" required/></p>
+                            <!-- for Category selection -->
+                            <div class="col-md-6">
+                                <p><label for="name">Category</label>
+                                <select ng-model="category" ng-change="update()">
+                                  <option value="">---Please select---</option> <!-- not selected / blank option -->
+                                  <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
+                                </select></p>
                             </div>
+                            <div class="col-md-6">
+                                <p><label for="name">Type</label>
+                                <select ng-model="type" >
+                                  <option value="">---Please select---</option> <!-- not selected / blank option -->
+                                  <option ng-repeat="child in childs" value="{{child}}">{{child}}</option>
+                                </select></p>
+                            </div>
+
                             <div class="col-md-12">
                                 
                                 <p><label for="message">Descrrption</label><textarea ng-model="description" placeholder="Game Descrrption" required></textarea></p>
@@ -36,7 +49,7 @@
                                 <p><label for="name">Date</label><input ng-model="date" type="date" size="30" value="" required/></p>
                             </div>
                             <div class="col-md-6">
-                                <p><label for="name">Image URL</label><input ng-model="picture"  placeholder="Type game img URL" type="text" required/></p>
+                                <p><label for="name">Image URL</label><input ng-model="picture"  placeholder="Type game img URL" type="text"/></p>
                             </div>
                             <div class="col-md-6">
                                 <p><label for="name">Location</label><input ng-model="locationID" placeholder="Type game location" type="text" size="30" value="" required/></p>
@@ -49,13 +62,9 @@
                             </div>
 
 
-
-
                             <div class="col-md-12">
-		                        <div class="submit-wrapper">
-		                            <p><input id="submit" type="submit" name="submit" value="Create" ng-click="getGameData()"  />  </p>
-		                        </div>
-	                        </div>
+                                <input id="submit" type="submit" name="submit" value="Create" ng-click="getGameData()"/>
+                            </div>
                     </form>	
                 </div>                     
             </div>

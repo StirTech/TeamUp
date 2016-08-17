@@ -298,6 +298,8 @@ a.btn-filled:hover {
 .form-content input[type="date"],
 .form-content input[type="number"],
 .form-content input[type="email"],
+.form-content input[type="submit"],
+.form-content select,
 .form-content textarea {
     border: 1px solid #ddd;
     padding: 10px;
