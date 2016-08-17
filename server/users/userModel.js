@@ -32,9 +32,9 @@ var UserSchema = new mongoose.Schema({
   rate: {
     type: String
   },
-  interests: {
-    type: String
-  },
+  interests: [{
+      type: String
+    }],
   fb_ID:{
     type:String
   },
