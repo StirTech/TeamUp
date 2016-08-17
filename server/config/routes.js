@@ -2,6 +2,7 @@ var user = require('../users/userController.js');
 var game = require('../games/gameController.js');
 var comment = require ('../comment/commentController.js');
 var category = require('../category/categoryController.js');
+var rate = require('../rate/rateController.js');
 
 var helpers = require('./helpers.js');
 
@@ -27,6 +28,10 @@ module.exports = function(app, express) {
 	app.post('/api/game/:id', game.insertPlayer);
 	app.post('/api/game/:id/like',game.likeGame);
 	app.post('/api/game/:id/unlikeGame',game.unlikeGame);
+	
+	//rate route
+	app.post('/api/game/:id/setRate',rate.setRate)
+	app.get('/api/game/:id/rates',rate.getRates)
 
 	//Comment Route
 	app.post('/api/comment',comment.insertComment);
