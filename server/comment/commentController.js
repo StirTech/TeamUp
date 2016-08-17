@@ -5,9 +5,9 @@ var Comment = require ('./commentModel.js');
 module.exports = {
 	insertComment : function (req, res) {
 		var newComment = new Comment({
-			from : req.body.from,
+			from : req.body.userId,
 			text : req.body.text,
-			game : req.body.game
+			game : req.params.gameId
 		});
 		//create comment
 		newComment.save(function (err,comment) {

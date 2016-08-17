@@ -34,8 +34,8 @@ module.exports = function(app, express) {
 	app.get('/api/game/:id/rates',rate.getRates)
 
 	//Comment Route
-	app.post('/api/comment',comment.insertComment);
-	app.get('/api/comments/:id',comment.getComments)
+	app.post('/api/game/:id/insertcomment',comment.insertComment);
+	app.get('/api/game/:id/getComment',comment.getComments)
 	
 
 	// category routes
