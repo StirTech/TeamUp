@@ -47,7 +47,16 @@ var GameSchema= new mongoose.Schema({
 	date:{
 		type: Date,
 		required: true
-	} 
+	},
+	likes:[{
+		type: mongoose.Schema.Types.ObjectId,
+		ref : 'User'
+	}],
+	rate :[{
+		type: mongoose.Schema.Types.ObjectId,
+		rate : Number,
+		ref : "User"
+	}] 
 });
 var Game = mongoose.model('Game',GameSchema);
 
