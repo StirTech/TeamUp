@@ -47,7 +47,11 @@ var GameSchema= new mongoose.Schema({
 	date:{
 		type: Date,
 		required: true
-	} 
+	},
+	category: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Category'
+	}
 });
 var Game = mongoose.model('Game',GameSchema);
 

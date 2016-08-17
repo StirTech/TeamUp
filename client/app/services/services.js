@@ -181,7 +181,7 @@ angular.module('TeamUp.services',[])
 	var getCategory = function(id){
 		return $http({
 				method : 'GET',
-				url : '/api/category' + id
+				url : '/api/category/' + id
 		})
 		.then(function (res) {
 			return res.data;

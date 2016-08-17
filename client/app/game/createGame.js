@@ -1,9 +1,43 @@
 angular.module('TeamUp.createGame',[/*'ngMap'*/])
 
-.controller('createGameController',function( $scope, $window, Game, $location, NgMap){
+.controller('createGameController',function( $scope, $window, Game, $location, NgMap, Category){
+	var newGame = {};
+	$scope.categories = [];
+	$scope.selectedCategory={};
+
+	// redirct to sinin page if the user didn't login yet
+	if($window.localStorage.userId===undefined)
+		$location.path('signin');
+	
+	$scope.getCategories = function () {
+		Category.getAll()
+		.then(function (categories) {
+			console.log(categories);
+			$scope.categories=categories;
+		})
+		.catch(function (err) {
+			console.log(err);
+		})
+	};
+
+	$scope.getCategories();
+
+	$scope.update =function () {
+		for (var i = 0; i < $scope.categories.length; i++) {
+			if($scope.categories[i].name===$scope.category){
+				$scope.selectedCategory=$scope.categories[i];
+				$scope.childs=$scope.categories[i].games;
+			}
+		}
+	}
+
+
+
+
 	NgMap.getMap().then(function(map) {
       $scope.map = map;
     });
+
     $scope.placeMarker = function(e) {
       var marker = new google.maps.Marker({position: e.latLng, map: $scope.map});
       $scope.map.panTo(e.latLng);
@@ -11,12 +45,7 @@ angular.module('TeamUp.createGame',[/*'ngMap'*/])
       	lat:e.latLng.lat(),
       	lng :e.latLng.lng()
       }
-      /*$scope.locationID.lat =e.latLng.lat()
-      $scope.locationID.lng =e.latLng.lng()*/
-      console.log(e.latLng);
-      /*{lat: -25.363, lng: 131.044};*/
     }
-	var newGame = {};
 	$scope.getGameData = function(){
 		newGame.owner = $window.localStorage.userId;
 		newGame.name = $scope.name;
@@ -25,16 +54,18 @@ angular.module('TeamUp.createGame',[/*'ngMap'*/])
 		newGame.locationID =  $scope.locationID;
 		newGame.country = $scope.country;
 		newGame.city = $scope.city;
-		newGame.picture	= $scope.picture;
+		newGame.picture	= $scope.picture || $scope.selectedCategory.picture;
 		newGame.date	= $scope.date;
 		newGame.numOfPlayers	= $scope.numOfPlayers;
+		newGame.category = $scope.selectedCategory._id;
+		console.log($scope.selectedCategory._id)
+		console.log("new Game : ",newGame)
 		$scope.crGame(newGame);
-		console.log(newGame.locationID)
 	}
 	$scope.crGame = function(game){
 		Game.addOne(game)
 		.then(function (game) {
-			console.log(game);
+			console.log("game after create",game);
 			$location.path('game/'+game._id)
 		})
 		.catch(function (err) {
