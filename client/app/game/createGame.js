@@ -45,6 +45,46 @@ angular.module('TeamUp.createGame',[/*'ngMap'*/])
       	lat:e.latLng.lat(),
       	lng :e.latLng.lng()
       }
+      $scope.getLocDetails();
+    }
+    $scope.getLocDetails = function(){
+	    $.ajax({
+	        type: 'GET',
+	        dataType: "json",
+	        url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+$scope.locationID.lat+","+$scope.locationID.lng+"&sensor=false",
+	        data: {},
+	        success: function(data) {
+	            $.each( data['results'],function(i, val) {
+	                $.each( val['address_components'],function(i, val) {
+	                    if (val['types'] == "locality,political") {
+	                        if (val['long_name']!="") {
+	                            $scope.city=val['long_name'];
+	                        }
+	                        else {
+	                            $scope.city="unknown";
+	                        }
+	                        console.log(i+", " + val['long_name']);
+	                        console.log(i+", " + val['types']);
+	                    }
+	                });
+	                $.each( val['address_components'],function(i, val) {
+	                    if (val['types'] == "country,political") {
+	                        if (val['long_name']!="") {
+	                            $scope.country=val['long_name'];
+	                        }
+	                        else {
+	                            $scope.country="unknown";
+	                        }
+	                        console.log(i+", " + val['long_name']);
+	                        console.log(i+", " + val['types']);
+	                    }
+	                });
+
+	            });
+	            console.log('Success');
+	        },
+	        error: function () { console.log('error'); } 
+	    }); 
     }
 	$scope.getGameData = function(){
 		newGame.owner = $window.localStorage.userId;
