@@ -1,30 +1,30 @@
-
-
-<div style=" margin-left: 2%">
-	<div ng-repeat="(k,value) in  MissingInfo  | limitTo : 1 ">
-		<div class="panel-group" >
-			<div class="panel panel-primary" style="width:30%">			
-	    		<div class="panel-heading">Fill your missing information</div>
-					<span style=" margin-left: 2%">{{value[0]}}</span>
-					<input type="textbox" ng-model="data" style=" margin-left: 2%;width:50%">
-					<button ng-click="setData(value[1],data)" class="btn btn-default" style="margin-left: 2%"> insert</button>
-				</div>
+<div class="container">
+	<div style=" margin-left: 2%">
+		<div ng-repeat="(k,value) in  MissingInfo  | limitTo : 1 ">
+			<div class="panel-group" >
+				<div class="panel panel-primary" style="width:30%">			
+		    		<div class="panel-heading">Fill your missing information</div>
+						<span style=" margin-left: 2%">{{value[0]}}</span>
+						<input type="textbox" ng-model="data" style=" margin-left: 2%;width:50%">
+						<button ng-click="setData(value[1],data)" class="btn btn-default" style="margin-left: 2%"> insert</button>
+					</div>
+			</div>
 		</div>
+
+		<input ng-if="userId == pageId" type="button" ng-click="edit()" class="btn btn-primary" value="Edit" style="float: right"/>
+		<h1><left>{{user.firstName}} {{user.lastName}}</left><right><img src={{user.picture}} style="height: 100px; margin-left: 200px;"></right></h1>
+		<p>{{user.email}}</p>
+		<p>{{user.country}}, {{user.city}}</p>
+		<ul>
+			<li ng-repeat="interest in user.interests">
+			{{interest}}
+			</li>
+		</ul>
+		<ul>
+			<li ng-repeat="game in games">
+			{{game}}
+			</li>
+		</ul>
+
 	</div>
-
-	<input ng-if="userId == pageId" type="button" ng-click="edit()" class="btn btn-primary" value="Edit" style="float: right"/>
-	<h1><left>{{user.firstName}} {{user.lastName}}</left><!-- <right><img src="user.picture"></right> --></h1>
-	<p>{{user.email}}</p>
-	<p>{{user.country}}, {{user.city}}</p>
-	<ul>
-		<li ng-repeat="interest in user.interests">
-		{{interest}}
-		</li>
-	</ul>
-	<ul>
-		<li ng-repeat="game in games">
-		{{game}}
-		</li>
-	</ul>
-
 </div>
