@@ -1,8 +1,9 @@
 angular.module('TeamUp.profile',[])
 
-.controller('profileController', function($scope, User, $location, $window, $routeParams){
+.controller('profileController', function($scope, User, Game, $location, $window, $routeParams){
 	
 	$scope.user = {}
+	$scope.games = []
 	$scope.pageId = $routeParams.id;
 	$scope.userId = $window.localStorage.userId;
 	$scope.MissingInfo = [];
@@ -15,9 +16,13 @@ angular.module('TeamUp.profile',[])
 			$scope.user = user;
 			//$scope.copyData();
 		})
+		.then(function(){
+			$scope.getGames()
+		})
 		.catch(function (error) {
 			console.error(error)
 		})
+
 	}
 
 	$scope.copyData = function () {
@@ -54,6 +59,15 @@ angular.module('TeamUp.profile',[])
 		$location.path('/profile/'+$window.localStorage.userId+'/edit');
 	}
 
-	$scope.showUser();
+	$scope.getGames = function(){
+		for(var i = 0; i < $scope.user.games.length; i++){
+			Game.getOne($scope.user.games[i])
+			.then(function(game){
+				$scope.games.push(game)
+			})
+		}
+	}
 
+	$scope.showUser();
+	
 });
