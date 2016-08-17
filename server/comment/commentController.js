@@ -22,7 +22,7 @@ module.exports = {
 		  }
 		});
 	},
-	getcomment :function (req, res) {
+	getComments :function (req, res) {
 		Comment.find().exec(function (err,allComment) {
 			if(err)
 				res.status(500).send('err');

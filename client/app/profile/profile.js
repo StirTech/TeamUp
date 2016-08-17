@@ -13,7 +13,7 @@ angular.module('TeamUp.profile',[])
 				$location.path('/404');
 			}
 			$scope.user = user;
-			//$scope.copyData();
+			$scope.copyData();
 		})
 		.catch(function (error) {
 			console.error(error)
@@ -51,6 +51,7 @@ angular.module('TeamUp.profile',[])
 	}
 
 	$scope.edit = function(){
+		User.editUser($scope.user, $window.localStorage.userId);
 		$location.path('/profile/'+$window.localStorage.userId+'/edit');
 	}
 
