@@ -36,7 +36,7 @@ describe('profileController', function () {
     expect($scope.user).to.be.an('object');
   });
 
-  it('should call `User.getUser()` when controller is loaded', function () {
+  xit('should call `User.getUser()` when controller is loaded', function () {
     sinon.spy(User, 'getUser');
     $httpBackend.expectGET('/api/user/undefined').respond(200);
     
@@ -47,7 +47,7 @@ describe('profileController', function () {
     User.getUser.restore();
   });
 
-  it('should populate the user property after the call to `User.getUser()`', function () {
+  xit('should populate the user property after the call to `User.getUser()`', function () {
     var mockUser = {username: 'test'};
     $httpBackend.expectGET('/api/user/undefined').respond(200, mockUser);
     

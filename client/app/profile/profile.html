@@ -1,30 +1,133 @@
+<div class="container">
+	<!-- <div style=" margin-left: 2%">
+		<div ng-repeat="(k,value) in  MissingInfo  | limitTo : 1 ">
+			<div class="panel-group" >
+				<div class="panel panel-primary" style="width:30%">			
+		    		<div class="panel-heading">Fill your missing information</div>
+						<span style=" margin-left: 2%">{{value[0]}}</span>
+						<input type="textbox" ng-model="data" style=" margin-left: 2%;width:50%">
+						<button ng-click="setData(value[1],data)" class="btn btn-default" style="margin-left: 2%"> insert</button>
+					</div>
+			</div>
+		</div>
 
+	</div> -->
 
-<div style=" margin-left: 2%">
-	<div ng-repeat="(k,value) in  MissingInfo  | limitTo : 1 ">
-		<div class="panel-group" >
-			<div class="panel panel-primary" style="width:30%">			
-	    		<div class="panel-heading">Fill your missing information</div>
-					<span style=" margin-left: 2%">{{value[0]}}</span>
-					<input type="textbox" ng-model="data" style=" margin-left: 2%;width:50%">
-					<button ng-click="setData(value[1],data)" class="btn btn-default" style="margin-left: 2%"> insert</button>
-				</div>
+	<div class="row">
+		<div class="col-xs-12 col-md-8" class="username" >
+			<div style="text-align: center; padding: 120px 0"><h1>{{user.firstName}} {{user.lastName}}</h1></div>
+		</div>
+		<div class="col-xs-6 col-md-4">
+			<img class="profilePic" src={{user.picture}} style="height: 250px; width: auto; margin: 0 auto; display: block;">
 		</div>
 	</div>
 
-	<input ng-if="userId == pageId" type="button" ng-click="edit()" class="btn btn-primary" value="Edit" style="float: right"/>
-	<h1><left>{{user.firstName}} {{user.lastName}}</left><!-- <right><img src="user.picture"></right> --></h1>
-	<p>{{user.email}}</p>
-	<p>{{user.country}}, {{user.city}}</p>
-	<ul>
-		<li ng-repeat="interest in user.interests">
-		{{interest}}
-		</li>
-	</ul>
-	<ul>
-		<li ng-repeat="game in user.games">
-		{{game}}
-		</li>
-	</ul>
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Last Game <span style="float:right;">{{lastGame.date| date:yyyy:MM:dd}}</span></h3> 
+			  </div>
+			  <div class="panel-body">
+			    {{lastGame.name}}
+			  </div>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Next Game <span style="float:right;">countdown</span></h3> 
+			  </div>
+			  <div class="panel-body">
+			    {{nextGame.name}}
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" style="margin: 2%">
+		<ul class="nav nav-tabs nav-justified"> 
+			<li role="presentation" class="active"><a href="/profile/{{userId}}/#about" data-toggle="tab" aria-expanded="true">About me</a></li> 
+			<li role="presentation"><a href="/profile/{{userId}}/#past" data-toggle="tab" aria-expanded="false">Past Games</a></li> 
+			<li role="presentation"><a href="/profile/{{userId}}/#current" data-toggle="tab" aria-expanded="false">Current Games</a></li> 
+		</ul>
+
+		<div id="myTabContent" class="tab-content">
+		  
+		  <div class="tab-pane fade active in" id="about">
+		  	<div class="row" style="margin-left: 15%; margin-right: 15%; margin-top: 5%;">
+			  	<input ng-if="userId == pageId" type="button" ng-click="edit()" class="btn btn-primary" value="Edit" style="float: right"/>
+			    <p>Email: {{user.email}}</p>
+				<p>Country: {{user.country}}</p>
+				<p>City: {{user.city}}</p>
+			</div>
+		  </div>
+
+		  <div class="tab-pane fade" id="past">
+	          <div class="row" ng-repeat="game in games | filter: pastGames" class="games" style="margin: 2%">
+	          	<div class="col-xs-6 col-md-4">
+	          		<img class="gamePic" src={{game.picture}} style="height: 125px; width: auto; margin: 0 auto; display: block;">
+	          		<div style="text-align: center;">{{game.type}}</div>
+	          	</div>
+	          	<div class="col-xs-12 col-md-8">
+	          		<div class="row">
+	          			<div class="panel panel-info">
+						  <div class="panel-heading">
+						    <h3 class="panel-title">{{game.name}} <span style="float:right;">{{game.date| date:yyyy:MM:dd}}</span></h3>
+						  </div>
+						  <div class="panel-body">
+	          				<div class="row" style="text-align: center;">
+	          					{{game.description}}
+	          				</div>
+	          				<hr>
+	          				<div class="row" style="margin: 1%">
+	          					<div class="col-xs-6 col-md-4">
+	          						{{game.city}}, {{game.country}}
+	          					</div>
+	          					<div class="col-xs-12 col-md-8">
+	          					<!-- Players: <span ng-repeat="player in game.players">{{player}}</span> -->
+	          					</div>
+	          				</div>
+						  </div>
+						</div>
+	          		</div>
+	          	</div>
+	          </div>
+		  </div>
+
+		  <div class="tab-pane fade" id="current">
+		    <div class="row" ng-repeat="game in games | filter: currentGames" class="games" style="margin: 2%">
+	          	<div class="col-xs-6 col-md-4">
+	          		<img class="gamePic" src={{game.picture}} style="height: 125px; width: auto; margin: 0 auto; display: block;">
+	          		<div style="text-align: center;">{{game.type}}</div>
+	          	</div>
+	          	<div class="col-xs-12 col-md-8">
+	          		<div class="row">
+	          			<div class="panel panel-info">
+						  <div class="panel-heading">
+						    <h3 class="panel-title">{{game.name}} <span style="float:right;">{{game.date| date:yyyy:MM:dd}}</span></h3>
+						  </div>
+						  <div class="panel-body">
+	          				<div class="row" style="text-align: center;">
+	          					{{game.description}}
+	          				</div>
+	          				<hr>
+	          				<div class="row" style="margin: 1%">
+	          					<div class="col-xs-6 col-md-4">
+	          						{{game.city}}, {{game.country}}
+	          					</div>
+	          					<div class="col-xs-12 col-md-8">
+	          					<!-- Players: <span ng-repeat="player in game.players">{{player}}</span> -->
+	          					</div>
+	          				</div>
+						  </div>
+						</div>
+	          		</div>
+	          	</div>
+	          </div>
+		  </div>
+		  
+		</div>
+	</div>
 
 </div>
