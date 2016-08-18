@@ -4,6 +4,7 @@ angular.module('TeamUp.profile',[])
 	
 	$scope.user = {}
 	$scope.games = []
+	$scope.currentDate = Date.now()
 	$scope.pageId = $routeParams.id;
 	$scope.userId = $window.localStorage.userId;
 	$scope.MissingInfo = [];
@@ -67,6 +68,7 @@ angular.module('TeamUp.profile',[])
 			})
 		}
 	}
+
 
 	$scope.showUser();
 	
