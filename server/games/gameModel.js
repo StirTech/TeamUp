@@ -48,6 +48,14 @@ var GameSchema= new mongoose.Schema({
 		type: Date,
 		required: true
 	},
+	likes :[{
+		type: mongoose.Schema.Types.ObjectId,
+		ref : 'User'
+	}],
+	rate :[{
+		type: mongoose.Schema.Types.ObjectId,
+		ref : "User"
+	}] ,
 	category: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Category'

@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var CommentSchema = new mongoose.Schema({
   from : {
-    type: String,
-    required: true,
+    type:  mongoose.Schema.Types.ObjectId,
+    ref : 'User'    
   },
   text : {
     type: String,
