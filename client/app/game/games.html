@@ -1,13 +1,3 @@
-<!-- filter by type :<input type="text" ng-model="type">
-<div ng-repeat="game in data.games | filter : type">
-	<h2>{{game.name}}</h2>
-	<h3>{{game.type}}</h3>
-	<h3>{{game.description}}</h3>
-	# of Players : <h3>{{game.numOfPlayers}}</h3>
-    Date : <h3>{{game.date | date:'yyyy-MM-dd' }}</h3>
-    Time : <h3>{{game.date | date:'h:mm a' }}</h3>
-	<button ng-click="viewGame(game._id)">More Details</button>
-</div> -->
 <div class="slider-area">
     <div data-velocity="-.2" class="overlay-bg" style="background-image: url(/img/slide-bg.jpg)"></div>
     <div class="container">
@@ -18,7 +8,7 @@
                         <div class="item active">
                             <div class="slide-text-wrapper">
                                 <div class="slide-text">
-                                    <h2>Gather your teammates</h2>
+                                    <h2 style="color:#fff">Gather your teammates</h2>
                                     <p>neighbors getting together to learn something, do something, share something…</p>
                                 </div>
                             </div>
@@ -26,7 +16,7 @@
                         <div class="item">
                             <div class="slide-text-wrapper">
                                 <div class="slide-text">
-                                    <h2>TeamUp are</h2>
+                                    <h2 style="color:#fff">TeamUp are</h2>
                                     <p>neighbors getting together to learn something, do something, share something…</p>
                                     <a href="#/createGame" class="readmore">GATHER NOW</a>
                                 </div>
@@ -42,12 +32,39 @@
             </div>
         </div>
     </div>
-</div> <!-- End slider area -->
+</div>
+
+<main class="dashboard show ">
+
+<div class="fit-full color-scheme--grey margin-top-bottom--3">
+  <div class="fit-fixed">
+    <!-- web dev skills -->
+    <div class="grid-row" id="web-dev">
+      <div class="grid-col-12 grid-col--no-margin grid-col--align-center">
+        <div class="grid-col-12">
+          <div class="grid-row" >
+            <article     ng-repeat="game in data.games" class="article card card--link grid-col-4 color-scheme--white grid-row grid-col--no-padding skill-card" style="border-width :1px; border-style:solid;border-color:#ccc">
+              <div class="grid-col-12 grid-col--align-center grid-col--no-padding grid-col--no-margin skill-card__card-header">
+                <img  alt="Make-a-website" ng-src="{{game.picture}}" style="width: 100%;margin: 0 auto 14px;max-width: 100%;">
+              </div>
+              <a href="#/game/{{game._id}}"><h2>{{game.name}}</h2></a>
+              <h4 style="    margin-top: 10px;"> {{game.type}}</h4>
+              <h4>Players : {{game.numOfPlayers}}</h4>
+              <h4>Date : {{game.date| date :yyyy:MM:dd}}</h4>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
 
 
 
 
-<div id="portfolio" class="portfolio-area section-padding">
+<!-- <div id="portfolio" class="portfolio-area section-padding">
     <div class="container">
         <div class="row">
             <div class="col-md-12">   
@@ -79,7 +96,7 @@
         </div>  
 
     </div>
-</div>  <!-- End portfolio area -->
+</div> 
 
 <footer class="footer-copyright">
     <div class="container">
@@ -102,4 +119,4 @@
             </div>
         </div>
     </div>            
-</footer> <!-- End footer bottom --> 
+</footer> -->
