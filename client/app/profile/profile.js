@@ -4,6 +4,8 @@ angular.module('TeamUp.profile',[])
 	
 	$scope.user = {}
 	$scope.games = []
+	$scope.lastGame = {}
+	$scope.nextGame = {}
 	$scope.currentDate = Date.now()
 	$scope.pageId = $routeParams.id;
 	$scope.userId = $window.localStorage.userId;
@@ -65,6 +67,17 @@ angular.module('TeamUp.profile',[])
 			Game.getOne($scope.user.games[i])
 			.then(function(game){
 				$scope.games.push(game)
+
+				if($scope.games.length > 1){
+					var last = Date.parse($scope.games[$scope.games.length-1].date)
+					var next = Date.parse($scope.games[$scope.games.length-2].date)
+					
+					if(next > $scope.currentDate && last < $scope.currentDate){
+						$scope.lastGame = $scope.games[$scope.games.length-1]
+						$scope.nextGame = $scope.games[$scope.games.length-2]
+					}
+					
+				}
 			})
 		}
 	}
