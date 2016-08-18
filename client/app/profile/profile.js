@@ -73,6 +73,10 @@ angular.module('TeamUp.profile',[])
 		return Date.parse(game.date) < $scope.currentDate
 	}
 
+	$scope.currentGames = function(game){
+		return Date.parse(game.date) > $scope.currentDate
+	}
+
 	$scope.showUser();
 	
 });
