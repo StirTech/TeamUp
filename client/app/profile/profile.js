@@ -17,7 +17,7 @@ angular.module('TeamUp.profile',[])
 				$location.path('/404');
 			}
 			$scope.user = user;
-			//$scope.copyData();
+			$scope.copyData();
 		})
 		.then(function(){
 			$scope.getGames()

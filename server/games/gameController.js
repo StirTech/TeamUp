@@ -99,5 +99,32 @@ module.exports = {
 				res.status(200).send(data);
 			}
 		});
+	},
+
+	likeGame : function (req, res) {
+		var gameId=req.params.id;
+		var userId=req.body.userId;
+
+		Game.findOneAndUpdate({ _id : gameId},{$pull: {likes : userId}}).exec();
+		Game.findOneAndUpdate({ _id : gameId},{$push: {likes : userId}},{new : true}).exec(function (err , game) {
+			if(err){
+				res.status(500).send('err');
+			}else{
+				res.status(201).send(game)
+			}
+		})
+	},
+
+	unlikeGame : function (req, res) {
+		var gameId=req.params.id;
+		var userId=req.body.userId;
+		Game.findOneAndUpdate({ _id : gameId},{$pull: {likes : userId}},{new : true}).exec(function (err , data) {
+			if(err){
+				res.status(500).send(err);
+			}else{
+				res.status(200).send(data);
+			}
+		});
 	}
+
 }

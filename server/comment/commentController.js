@@ -3,31 +3,30 @@ var Player = require('../users/userModel.js');
 var Comment = require ('./commentModel.js');
 
 module.exports = {
-	insertComment : function (req ,res, next) {
-		var gameId = req.body.game;
-		var comment = req.body.text;
-		var from = req.body.from;
-		var newComment =new Comment({
-			from : from,
-			text : comment,
-			timeS : req.body.timeS,
-			game : gameId
+	insertComment : function (req, res) {
+		var newComment = new Comment({
+			from : req.body.userId,
+			text : req.body.text,
+			game : req.params.id
 		});
 		//create comment
-		newComment.save(function (err) {
-		  if (err) {
-			return err;
-		  }else {
+		newComment.save(function (err,comment) {
+		  if (comment) {
+			res.status(201).send(comment);
 		  	console.log("comment saved");
+		  }else {
+		  	res.status(500).send( err)
 		  }
 		});
 	},
-	getcomment :function (req, res) {
-		Comment.find().exec(function (err,allComment) {
-			if(err)
+	
+	getComments :function (req, res) {
+		Comment.find({ game : req.params.id}).exec(function (err,allComment) {
+			if(err){
 				res.status(500).send('err');
-			else
-				res.status(200).send(allComment);
+			}else{
+				res.json(allComment)
+			}
 		});
 	}
 }

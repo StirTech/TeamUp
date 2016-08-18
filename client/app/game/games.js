@@ -6,6 +6,7 @@ angular.module('TeamUp.games',[])
 	$scope.initaize = function () {
 		Game.getAll()
 		.then(function (games) {
+			console.log(games)
 			$scope.data.games = games;
 			$scope.data.types=[];
 			$scope.data.types.push('All');
