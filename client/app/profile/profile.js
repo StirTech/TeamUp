@@ -68,13 +68,15 @@ angular.module('TeamUp.profile',[])
 			.then(function(game){
 				$scope.games.push(game)
 
-				if($scope.games.length > 1){
+				var flag = true
+				if($scope.games.length > 1 && flag){
 					var last = Date.parse($scope.games[$scope.games.length-1].date)
 					var next = Date.parse($scope.games[$scope.games.length-2].date)
 					
 					if(next > $scope.currentDate && last < $scope.currentDate){
 						$scope.lastGame = $scope.games[$scope.games.length-1]
 						$scope.nextGame = $scope.games[$scope.games.length-2]
+						flag = true
 					}
 					
 				}
