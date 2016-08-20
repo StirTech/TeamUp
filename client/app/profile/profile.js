@@ -1,15 +1,17 @@
 angular.module('TeamUp.profile',[])
 
-.controller('profileController', function($scope, User, Game, $location, $window, $routeParams){
+.controller('profileController', function($scope, User, Game, Category, $location, $window, $routeParams){
 	
 	$scope.user = {}
 	$scope.games = []
+	$scope.categories = []
 	$scope.lastGame = {}
 	$scope.nextGame = {}
 	$scope.currentDate = Date.now()
 	$scope.pageId = $routeParams.id;
 	$scope.userId = $window.localStorage.userId;
 	$scope.MissingInfo = [];
+
 	$scope.showUser = function (){
 		User.getUser($routeParams.id)
 		.then(function(user){
@@ -61,14 +63,15 @@ angular.module('TeamUp.profile',[])
 	$scope.edit = function(){
 		$location.path('/profile/'+$window.localStorage.userId+'/edit');
 	}
-
+	
+	var flag = true
 	$scope.getGames = function(){
 		for(var i = 0; i < $scope.user.games.length; i++){
 			Game.getOne($scope.user.games[i])
 			.then(function(game){
 				$scope.games.push(game)
 
-				var flag = true
+				
 				if($scope.games.length > 1 && flag){
 					var last = Date.parse($scope.games[$scope.games.length-1].date)
 					var next = Date.parse($scope.games[$scope.games.length-2].date)
@@ -90,6 +93,16 @@ angular.module('TeamUp.profile',[])
 
 	$scope.currentGames = function(game){
 		return Date.parse(game.date) > $scope.currentDate
+	}
+
+	$scope.getCategories = function(){
+		Category.getAll()
+		.then(function(categories){
+			$scope.categories = categories
+		})
+		.catch(function(err){
+			throw err
+		})
 	}
 
 	$scope.showUser();
