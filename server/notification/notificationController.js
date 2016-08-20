@@ -2,9 +2,8 @@ var Notification = require('./notificationModel.js');
 var Game = require('../games/gameModel.js');
 
 module.exports ={
+	 players : [],
 	insertNotification : function (req, res) {
-		var players = [];
-
 		Game.findOne({_id : req.params.id}, function (err, game) {
 			if(game){
 				players = game.players;
@@ -22,12 +21,19 @@ module.exports ={
 
 		newNotification.save(function (err, notification) {
 			if(notification){
-				if(players > 0){ 
-					for (var i = 0; i < players.length; i++) {
+				if(this.players.length > 0){ 
+					for (var i = 0; i < this.players.length; i++) {
 						notification.to.push({playerId: players[i] , seen: false})
 					}
+					notification.save(function (err, saved) {
+						if(saved){
+							console.log("notification saved");
+						}else{
+							res.status(500).send(err);
+						}
+					});
 				}else{
-					res.status(500).send("no players ...................................");
+					res.status(500).send("no players ");
 				}
 				res.status(200).send(notification);
 			}else{
@@ -38,7 +44,7 @@ module.exports ={
 
 
 	isRead: function (req, res) {
-		Notification.findOne({_id : req.body.notificationID}, function (err, notification) {
+		Notification.findOne({_id : req.params.id}, function (err, notification) {
 			if(Notification){
 				notification.read = true;
 				notification.save(function (err, readNotification) {
@@ -56,11 +62,11 @@ module.exports ={
 
 	getNotification : function (req, res) {
 
-		Notification.findOne({to : req.params.id}, function (err, notification) {
+		Notification.findOne({game : req.params.id}, function (err, notification) {
 			if(notification){
 				res.status(200).send(notification)
 			}else{
-				res.status(500).send(err)
+				res.status(500).send("err")
 			}
 		})
 	}
