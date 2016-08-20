@@ -1,6 +1,6 @@
 angular.module('TeamUp.game',[])
 
-.controller('gameController',function($scope, Game, User, facebook, $routeParams, $location, $window, $interval, Category){
+.controller('gameController',function($scope, Game, User, facebook, $routeParams, $location, $window, $interval, Category, Comment, $mdDialog){
 	$scope.game={};
 	$scope.owner ={};
 	$scope.category ={};
@@ -10,6 +10,10 @@ angular.module('TeamUp.game',[])
 	$scope.closed =false;
 	$scope.joinButtonIf=true;
 	$scope.show = false;
+	$scope.comments={};
+	$scope.userComments=[];
+	$scope.commentText="";
+
 
 	$scope.toggle = function() {
         $scope.show = !$scope.show;
@@ -26,10 +30,17 @@ angular.module('TeamUp.game',[])
 			.catch(function (err) {
 				console.log(err)
 			})
-			console.log(game.category)
 			Category.getCategory(game.category)
 			.then(function (category) {
 				$scope.category=category
+			})
+			.catch(function (err) {
+				console.log(err)
+			})
+			Comment.getComment($routeParams.id)
+			.then(function (data) {
+				$scope.comments=data.data.allComment;
+				$scope.userComments=data.data.players;
 			})
 			.catch(function (err) {
 				console.log(err)
@@ -50,7 +61,6 @@ angular.module('TeamUp.game',[])
 			.then(function (data) {
 				$scope.game.plyersObjs=data.data;
 				$scope.numberOfPlayer=$scope.game.plyersObjs.length;
-				console.log("numberOfPlayer : ",$scope.numberOfPlayer);
 			})
 			.then($scope.showCount())
 			.catch(function (err) {
@@ -61,11 +71,11 @@ angular.module('TeamUp.game',[])
 		.catch(function (err) {
 			console.log(err);
 		})
+
 	};
 	
 
 	$scope.fbshare = function(){
-		console.log('so3ad');
 		facebook.share($routeParams.id, $scope.game.picture, $scope.game.name);	
 	};
 
@@ -76,12 +86,10 @@ angular.module('TeamUp.game',[])
 			return;
 		}
 		if($scope.game.players.indexOf($window.localStorage.userId)===-1){
-			console.log("Join");
 			$scope.joinButton="Leave"
 			Game.insertPlayer($scope.game._id,$window.localStorage.userId)
 			.then(function (game) {
 				$scope.game=game;
-				// console.log(game);
 				$scope.initlize()
 			})
 			.catch(function (err) {
@@ -93,8 +101,6 @@ angular.module('TeamUp.game',[])
 			$scope.joinButton="Join";
 			Game.removePlayer($scope.game._id,$window.localStorage.userId)
 			.then(function(game) {
-				console.log(game);
-				// $scope.game=game;
 				$scope.initlize();
 			})
 			.catch(function (err) {
@@ -128,6 +134,33 @@ angular.module('TeamUp.game',[])
 	    }
 	    $scope.timer = $interval(showRemaining, 1000);		
 	}
+
+	$scope.postComment = function () {
+		if($window.localStorage.userId){
+			if($scope.commentText!==""){
+				Comment.insertComment({game:$routeParams.id,text : $scope.commentText , userId : $window.localStorage.userId})
+				.then(function (comment) {
+					$scope.commentText="";
+					$scope.initlize();
+				})
+				.catch(function (err) {
+					console.log(err)
+				})
+			}
+		}
+		else {
+		    $mdDialog.show(
+		      $mdDialog.alert()
+		        .parent(angular.element(document.querySelector('#popupContainer')))
+		        .clickOutsideToClose(true)
+		        .title('Comment Alert')
+		        .textContent('You have to login to make comment.')
+		        .ariaLabel('Alert Dialog Demo')
+		        .ok('Got it!')
+		    );
+		}
+	}
+
 	$scope.initlize();
 	
 
