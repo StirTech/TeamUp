@@ -3,6 +3,7 @@ var game = require('../games/gameController.js');
 var comment = require ('../comment/commentController.js');
 var category = require('../category/categoryController.js');
 var rate = require('../rate/rateController.js');
+var notification = require('../notification/notificationController.js');
 
 var helpers = require('./helpers.js');
 
@@ -37,6 +38,10 @@ module.exports = function(app, express) {
 	app.post('/api/game/:id/insertcomment',comment.insertComment);
 	app.get('/api/game/:id/getComment',comment.getComments)
 	
+	// Notification Route
+	app.post('/api/game/:id/insertNotification', notification.insertNotification);
+	app.post('/api/game/:id/isRead', notification.isRead);
+	app.get('/api/game/notification', notification.getNotification);
 
 	// category routes
 	app.get('/api/categories', category.getAll);
