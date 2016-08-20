@@ -32,37 +32,108 @@
             </div>
         </div>
     </div>
+
+<div class="container" >
+    <div class="row" style="text-align:center">
 </div>
-
-<main class="dashboard show ">
-
-<div class="fit-full color-scheme--grey margin-top-bottom--3">
-  <div class="fit-fixed">
-    <!-- web dev skills -->
-    <div class="grid-row" id="web-dev">
-      <div class="grid-col-12 grid-col--no-margin grid-col--align-center">
-        <div class="grid-col-12">
-          <div class="grid-row" >
-            <article     ng-repeat="game in data.games" class="article card card--link grid-col-4 color-scheme--white grid-row grid-col--no-padding skill-card" style="border-width :1px; border-style:solid;border-color:#ccc">
-              <div class="grid-col-12 grid-col--align-center grid-col--no-padding grid-col--no-margin skill-card__card-header">
-                <img  alt="Make-a-website" ng-src="{{game.picture}}" style="width: 100%;margin: 0 auto 14px;max-width: 100%;">
-              </div>
-              <a href="#/game/{{game._id}}"><h2>{{game.name}}</h2></a>
-              <h4 style="    margin-top: 10px;"> {{game.type}}</h4>
-              <h4>Players : {{game.numOfPlayers}}</h4>
-              <h4>Date : {{game.date| date :yyyy:MM:dd}}</h4>
-            </article>
-          </div>
-        </div>
-      </div>
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="currentGames">
+        <md-card class="col-md-3"  ng-repeat="game in data.games | filter :currentGames" style="margin : 10px 0px 10px 0px;">
+          <div style="    height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a></div>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{game.name}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-subhead>
+          <div style="font-size: 24px;"><i class="material-icons">class</i><span>{{game.type}}</span></div>
+          </md-subhead>
+          
+          <md-card-content>
+            <table class="table">
+              <tr>
+                <td># of Players :</td>
+                <td>{{game.numOfPlayers}}</td>
+              </tr>
+              <tr>
+                <td>Date :</td>
+                <td>{{game.date| date :yyyy:MM:dd}}</td>
+              </tr>
+            </table>
+            <!-- <p>Type : {{game.type}}</p>
+            <p># of Players : {{game.numOfPlayers}}</p> -->
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-icon-button" aria-label="Share" style="color:#9b59b6">
+              {{game.likes.length}}
+            </md-button>
+            <md-button class="md-icon-button "  ng-if="isLogIn" aria-label="Favorite" >
+              <i class="material-icons {{game.loved}}"  id={{game._id}} ng-click="getLove($event)">favorite</i>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Settings">
+              <a href="#/game/{{game._id}}"><i class="material-icons red">redo</i></md-icon></a>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Settings" >
+              <i class="material-icons red" id={{game._id}} ng-click="fbshare($event)" >share</i>
+            </md-button>
+          </md-card-actions>
+        </md-card>
+      </md-tab>
+      <md-tab label="pastGames">
+        <md-card class="col-md-3"  ng-repeat="game in data.games | filter :pastGames" style="margin : 10px 0px 10px 0px;">
+          <div style="    height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a></div>
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{game.name}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-subhead>
+          <div style="font-size: 24px;"><i class="material-icons">class</i><span>{{game.type}}</span></div>
+          </md-subhead>
+          
+          <md-card-content>
+            <table class="table">
+              <tr>
+                <td># of Players :</td>
+                <td>{{game.numOfPlayers}}</td>
+              </tr>
+              <tr>
+                <td>Date :</td>
+                <td>{{game.date| date :yyyy:MM:dd}}</td>
+              </tr>
+            </table>
+            <!-- <p>Type : {{game.type}}</p>
+            <p># of Players : {{game.numOfPlayers}}</p> -->
+          </md-card-content>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-icon-button" aria-label="Share" style="color:#9b59b6">
+              {{game.likes.length}}
+            </md-button>
+            <md-button class="md-icon-button "  ng-if="isLogIn" aria-label="Favorite" >
+              <i class="material-icons {{game.loved}}"  id={{game._id}} ng-click="getLove($event)">favorite</i>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Settings">
+              <a href="#/game/{{game._id}}"><i class="material-icons red">redo</i></md-icon></a>
+            </md-button>
+            <md-button class="md-icon-button" aria-label="Settings" >
+              <i class="material-icons red" id={{game._id}} ng-click="fbshare($event)" >share</i>
+            </md-button>
+          </md-card-actions>
+        </md-card>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
+      
     </div>
-  </div>
 </div>
 
-</main>
 
 
 
+ 
 
 <!-- <div id="portfolio" class="portfolio-area section-padding">
     <div class="container">
@@ -97,26 +168,4 @@
 
     </div>
 </div> 
-
-<footer class="footer-copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="copyright-text">
-                    <p>Copyright © 2016 - TeamUp | All Rights Reserved </p>
-                </div>
-            </div>
-            
-
-            <div class="col-md-4">
-                <div class="social-footer text-right">
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-twitter"></i></a>
-                    <a href=""><i class="fa fa-pinterest"></i></a>
-                    <a href=""><i class="fa fa-linkedin"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>            
-</footer> -->
+-->
