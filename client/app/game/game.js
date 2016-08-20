@@ -15,6 +15,7 @@ angular.module('TeamUp.game',[])
 	$scope.commentText="";
 
 
+
 	$scope.toggle = function() {
         $scope.show = !$scope.show;
     };
@@ -160,6 +161,97 @@ angular.module('TeamUp.game',[])
 		    );
 		}
 	}
+
+	$scope.getMessages = function () {
+		pubnub.history({
+		    channel : "TeamUp"+game._id,
+		    callback : function(m){
+		        console.log(m[0])
+		    },
+		    count : 100, // 100 is the default
+		    reverse : false // false is the default
+		});
+	}
+
+	$scope.showAdvanced = function(ev) {
+	    $mdDialog.show({
+	    controller: DialogController,
+	    templateUrl: 'app/game/chat.html',
+	    parent: angular.element(document.body),
+	    locals: {game : $scope.game},
+	    targetEvent: ev,
+	    clickOutsideToClose:true,
+	    fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+		})
+		.then(function(answer) {
+		  $scope.status = 'You said the information was "' + answer + '".';
+		}, function() {
+		  $scope.status = 'You cancelled the dialog.';
+		});
+
+		function DialogController($scope, $mdDialog,game) {
+
+			$scope.currentUser={};
+			$scope.game=game;
+
+			User.getUser($window.localStorage.userId)
+			.then(function (user) {
+				console.log(user);
+				$scope.currentUser=user;
+			})
+			.catch(function (err) {
+				console.log(err)
+			})
+
+			$scope.messages=[];
+				pubnub.history({
+			    channel : "TeamUp"+game._id,
+			    callback : function(m){
+			        console.log(m[0]);
+			        $scope.messages=m[0];
+			    },
+			    count : 100, // 100 is the default
+			    reverse : false // false is the default
+			});
+
+			pubnub.subscribe({
+			    channel : "TeamUp"+game._id,
+			    message : function(m){
+			        $scope.messages.push(m);
+			    },
+			    error : function (error) {
+			        // Handle error here
+			        console.log(JSON.stringify(error));
+			    }
+			});
+
+			$scope.sendMessage = function () {
+				console.log($scope.messageText);
+				var newMessage = {
+					from : $scope.currentUser,
+					text : $scope.messageText,
+					date : new Date()
+				}
+				pubnub.publish({
+				    channel : "TeamUp"+game._id,
+				    message : newMessage,
+				    callback : function(m){
+				        console.log(m)
+				    }
+				});
+			}				
+
+		    $scope.hide = function() {
+		      $mdDialog.hide();
+		    };
+		    $scope.cancel = function() {
+		      $mdDialog.cancel();
+		    };
+		    $scope.answer = function(answer) {
+		      $mdDialog.hide(answer);
+		    };
+		  }
+	};
 
 	$scope.initlize();
 	
