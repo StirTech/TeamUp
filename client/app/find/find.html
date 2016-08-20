@@ -1,0 +1,15 @@
+<p>Search results:</p>
+<div>
+	<h1>Games:</h1>
+	<ul >
+		<li ng-repeat="game in result.games">
+			{{game.name}}
+		</li>
+	</ul>
+	<h1>Users</h1>
+	<ul>
+		<li ng-repeat="user in result.users">
+			{{user.username}}
+		</li>
+	</ul>
+</div>
