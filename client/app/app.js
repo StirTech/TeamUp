@@ -10,7 +10,8 @@ angular.module('TeamUp', [
   'ngRoute',
   'ngMap',
   'ngMaterial',
-  'ngMessages'
+  'ngMessages',
+  'ngFileUpload'
 ])
 
 
