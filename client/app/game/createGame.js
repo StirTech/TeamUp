@@ -1,6 +1,6 @@
-angular.module('TeamUp.createGame',[/*'ngMap'*/])
+angular.module('TeamUp.createGame',[])
 
-.controller('createGameController',function( $scope, $window, Game, $location, NgMap, Category){
+.controller('createGameController',['$scope', '$window', 'Game', '$location', 'NgMap', 'Category', 'Upload',function( $scope, $window, Game, $location, NgMap, Category, Upload){
 	var newGame = {};
 	$scope.categories = [];
 	$scope.selectedCategory={};
@@ -31,14 +31,39 @@ angular.module('TeamUp.createGame',[/*'ngMap'*/])
 		}
 	}
 
+    $scope.submit = function(){ //function to call on upload 
+        if ($scope.file) { //check if file is loaded
+            $scope.upload($scope.file); //call upload function
+        }
+    }
+    $scope.upload = function (file) {//upload an image to the game
+        Upload.upload({
+            url: '/api/upload', //webAPI exposed to upload the file
+            data:{file:file} //pass file as data, should be user ng-model
+        }).then(function (resp) { //upload function returns a promise
+        	console.log(resp.data.file.path)
+            if(resp.data.error_code === 0){ //validate success
+                $scope.picture='http://localhost:3000/uploads/'+resp.data.file.filename;
+            } else {
+                $window.alert('an error occured');
+            }
+        }, function (resp) { //catch error
+            console.log('Error status: ' + resp.status);
+            $window.alert('Error status: ' + resp.status);
+        }, function (evt) { 
+            console.log(evt);
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            $scope.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+        });
+    };
 
 
-
-	NgMap.getMap().then(function(map) {
+	NgMap.getMap().then(function(map) {//creat a map  
       $scope.map = map;
     });
 
-    $scope.placeMarker = function(e) {
+    $scope.placeMarker = function(e) {// place a red marker on the map and get the game location from the marker position
       var marker = new google.maps.Marker({position: e.latLng, map: $scope.map});
       $scope.map.panTo(e.latLng);
       $scope.locationID={
@@ -47,7 +72,7 @@ angular.module('TeamUp.createGame',[/*'ngMap'*/])
       }
       $scope.getLocDetails();
     }
-    $scope.getLocDetails = function(){
+    $scope.getLocDetails = function(){// get the country and city name automatically from marker position on the map
 	    $.ajax({
 	        type: 'GET',
 	        dataType: "json",
@@ -97,10 +122,10 @@ angular.module('TeamUp.createGame',[/*'ngMap'*/])
 		newGame.picture	= $scope.picture || $scope.selectedCategory.picture;
 		newGame.date	= $scope.date;
 		newGame.numOfPlayers	= $scope.numOfPlayers;
-		newGame.category = $scope.selectedCategory._id;
-		console.log($scope.selectedCategory._id)
+		newGame.category = $scope.selectedCategory._i;
+		$scope.crGame(newGame)
+
 		console.log("new Game : ",newGame)
-		$scope.crGame(newGame);
 	}
 	$scope.crGame = function(game){
 		Game.addOne(game)
@@ -112,4 +137,4 @@ angular.module('TeamUp.createGame',[/*'ngMap'*/])
 			console.log(err);
 		})
 	}
-});
+}]);
