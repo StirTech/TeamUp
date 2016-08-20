@@ -3,6 +3,7 @@ angular.module('TeamUp.profile',[])
 .controller('profileController', function($scope, User, Game, Category, $location, $window, $routeParams){
 	
 	$scope.user = {}
+	$scope.newUser = {}
 	$scope.games = []
 	$scope.categories = []
 	$scope.lastGame = {}
@@ -10,6 +11,7 @@ angular.module('TeamUp.profile',[])
 	$scope.currentDate = Date.now()
 	$scope.pageId = $routeParams.id;
 	$scope.userId = $window.localStorage.userId;
+	$scope.editing = false
 	$scope.MissingInfo = [];
 
 	$scope.showUser = function (){
@@ -19,10 +21,12 @@ angular.module('TeamUp.profile',[])
 				$location.path('/404');
 			}
 			$scope.user = user;
+			$scope.newUser = user
 			$scope.copyData();
 		})
 		.then(function(){
 			$scope.getGames()
+			$scope.getCategories()
 		})
 		.catch(function (error) {
 			console.error(error)
@@ -61,7 +65,17 @@ angular.module('TeamUp.profile',[])
 	}
 
 	$scope.edit = function(){
-		$location.path('/profile/'+$window.localStorage.userId+'/edit');
+		$scope.editing = true
+	}
+
+	$scope.save = function(){
+		User.editUser($scope.newUser, $window.localStorage.userId)
+		.then(function(result){
+			$scope.editing = false
+		})
+		.catch(function(error){
+			console.log(error)
+		})
 	}
 	
 	var flag = true
@@ -99,6 +113,7 @@ angular.module('TeamUp.profile',[])
 		Category.getAll()
 		.then(function(categories){
 			$scope.categories = categories
+			console.log(categories)
 		})
 		.catch(function(err){
 			throw err
