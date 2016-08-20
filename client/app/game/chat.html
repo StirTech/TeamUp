@@ -1,0 +1,39 @@
+<md-dialog aria-label="Mango (Fruit)" style="width:50%">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools" style="background-color:#5ba1d5">
+        <h2>{{game.name}}</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="material-icons">clear</i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <md-content>
+          <md-list>
+            <md-list-item class="md-3-line" ng-repeat="message in messages">
+              <img ng-src="{{message.from.picture}}" class="md-avatar" alt="{{message.from.username}}">
+              <div class="md-list-item-text">
+                <h3>{{message.from.username}}</h3>
+                <h4>{{message.date | date : yyyy:MM:dd}}</h4>
+                <h4>{{message.text}}</p>
+              </div>
+              <md-divider md-inset ng-if="!$last"></md-divider>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+
+
+
+      <textarea class="messageBox" id="comment" name="comment" aria-required="true" ng-model="messageText"></textarea>
+      <md-button ng-click="sendMessage()">
+        Send
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
