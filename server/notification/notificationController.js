@@ -2,9 +2,11 @@ var Notification = require('./notificationModel.js');
 module.exports ={
 	insertNotification : function (req, res) {
 		var body = req.body;
+		console.log(body)
 		var newNotification = new Notification({
-			from : body.from, 
-			game : body.game,
+			from : body.from,
+			to   : body.to, 
+			game : req.params.id,
 			read : body.read,
 			text : body.text
 		})
@@ -22,7 +24,7 @@ module.exports ={
 		Notification.findOne({_id : req.body.notificationID}, function (err, notification) {
 			if(Notification){
 				notification.read = true;
-				Notification.save(function (err, readNotification) {
+				notification.save(function (err, readNotification) {
 					if(readNotification){
 						res.status(200).send(readNotification);
 					}else{
@@ -36,7 +38,7 @@ module.exports ={
 	},
 
 	getNotification : function (req, res) {
-		Notification.findOne({to : req.body.userId}, function (err, notification) {
+		Notification.findOne({to : req.params.id}, function (err, notification) {
 			if(notification){
 				res.status(200).send(notification)
 			}else{

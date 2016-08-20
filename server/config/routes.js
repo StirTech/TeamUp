@@ -43,7 +43,7 @@ module.exports = function(app, express) {
 	// Notification Route
 	app.post('/api/game/:id/insertNotification', notification.insertNotification);
 	app.post('/api/game/:id/isRead', notification.isRead);
-	app.get('/api/game/notification', notification.getNotification);
+	app.get('/api/game/:id/notification', notification.getNotification);
 
 	// category routes
 	app.get('/api/categories', category.getAll);
