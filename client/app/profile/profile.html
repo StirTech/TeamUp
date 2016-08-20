@@ -104,8 +104,8 @@
 	          						{{game}}
 	          					</div>
 	          					<div class="col-xs-12 col-md-8">
-	          						<input ng-if="user.interests.indexOf(game) === -1" type="button" value="Add" ng-click="addInterest(game)" class="btn btn-success" style="float: right">
-	          						<input ng-if="user.interests.indexOf(game) !== -1" type="button" value="Remove" ng-click="removeInterest(game)" class="btn btn-danger" style="float: right">
+	          						<input ng-if="user.interests.indexOf(game) === -1" type="button" value="Add" ng-click="newUser.interests.push(game)" class="btn btn-success" style="float: right">
+	          						<input ng-if="user.interests.indexOf(game) !== -1" type="button" value="Remove" ng-click="newUser.interests.splice(newUser.interests.indexOf(game), 1)" class="btn btn-danger" style="float: right">
 	          					</div>
 	          				</div>
 						  </div>
