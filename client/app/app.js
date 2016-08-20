@@ -65,10 +65,6 @@ angular.module('TeamUp', [
       templateUrl: 'app/profile/profile.html',
       controller: 'profileController',
     })
-    .when('/profile/:id/edit', {
-      templateUrl: 'app/profile/editProfile.html',
-      controller: 'editProfileController',
-    })
     .otherwise({
       redirectTo: '/home'
     });
