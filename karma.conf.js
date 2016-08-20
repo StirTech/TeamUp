@@ -23,8 +23,10 @@ module.exports = function(config) {
       'client/lib/angular-mocks/angular-mocks.js',
       'client/lib/ng-file-upload/ng-file-upload.min.js',
       'client/lib/ng-file-upload/ng-file-upload-shim.min.js',
-      'client/lib/angular-animate/*.js',
-      'client/lib/angular-messages/*.js',
+      'client/lib/angular-aria/angular-aria.js',
+      'client/lib/angular-animate/angular-animate.js',
+      'client/lib/angular-material/angular-material.js',
+      'client/lib/angular-messages/angular-messages.js',
 
       // our app code
       'client/app/app.js',
