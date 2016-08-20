@@ -78,24 +78,36 @@ angular.module('TeamUp.profile',[])
 		})
 	}
 	
-	var flag = true
 	$scope.getGames = function(){
+
 		for(var i = 0; i < $scope.user.games.length; i++){
 			Game.getOne($scope.user.games[i])
 			.then(function(game){
 				$scope.games.push(game)
 
-				
-				if($scope.games.length > 1 && flag){
-					var last = Date.parse($scope.games[$scope.games.length-1].date)
-					var next = Date.parse($scope.games[$scope.games.length-2].date)
-					
-					if(next > $scope.currentDate && last < $scope.currentDate){
-						$scope.lastGame = $scope.games[$scope.games.length-1]
-						$scope.nextGame = $scope.games[$scope.games.length-2]
-						flag = true
-					}
-					
+				if($scope.games.length === $scope.user.games.length){
+					var minArr = [], maxArr = []
+					$scope.games.forEach(function(entry){
+						if(Date.parse(entry.date) > $scope.currentDate){
+							minArr.push(entry)
+						} else if (Date.parse(entry.date) < $scope.currentDate) {
+							maxArr.push(entry)
+						}
+					})
+					var minD = minArr[0]
+					minArr.forEach(function(entry){
+						if(Date.parse(entry.date) < Date.parse(minD.date)){
+							minD = entry
+						}
+					})
+					var maxD = maxArr[0]
+					maxArr.forEach(function(entry){
+						if(Date.parse(entry.date) > Date.parse(maxD.date)){
+							maxD = entry
+						}
+					})
+					$scope.lastGame = maxD
+					$scope.nextGame = minD
 				}
 			})
 		}
@@ -113,7 +125,6 @@ angular.module('TeamUp.profile',[])
 		Category.getAll()
 		.then(function(categories){
 			$scope.categories = categories
-			console.log(categories)
 		})
 		.catch(function(err){
 			throw err
