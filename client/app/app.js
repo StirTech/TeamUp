@@ -8,7 +8,9 @@ angular.module('TeamUp', [
   'TeamUp.profile',
   'TeamUp.editProfile',
   'ngRoute',
-  'ngMap'
+  'ngMap',
+  'ngMaterial',
+  'ngMessages'
 ])
 
 
