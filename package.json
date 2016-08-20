@@ -56,11 +56,16 @@
     "supertest": "^2.0.0"
   },
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "browser-sync": "^2.14.0",
     "clone-stats": "^1.0.0",
     "express": "^4.14.0",
+    "fs": "0.0.2",
     "grunt": "^1.0.1",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-cssmin": "^1.0.1",
@@ -77,6 +82,7 @@
     "mocha": "^3.0.0",
     "mongoose": "^4.5.8",
     "morgan": "^1.7.0",
+    "multer": "^1.2.0",
     "q": "^2.0.3",
     "request": "^2.74.0"
   }
