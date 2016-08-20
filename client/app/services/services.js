@@ -56,11 +56,11 @@ angular.module('TeamUp.services',[])
 	var insertComment = function (comment) {
 		return $http({
 			method : 'POST',
-			url : '/api/game/'+comment.gameId+'/insertcomment',
+			url : '/api/game/'+comment.game+'/insertcomment',
 			data : comment
 		})
 		.then(function (res) {
-			return res;
+			return res.data;
 		})
 	}
 
@@ -165,7 +165,7 @@ angular.module('TeamUp.services',[])
 		return $http({
 			method : 'POST',
 			url : '/api/game/'+gameId+'/like',
-			data : userId
+			data : {userId:userId}
 		})
 		.then (function (res) {
 			return res;
@@ -176,7 +176,7 @@ angular.module('TeamUp.services',[])
 		return $http({
 			method : 'POST',
 			url : '/api/game/'+gameId+'/unlikeGame',
-			data : userId
+			data : {userId:userId}
 		})
 		.then(function (res) {
 			return res;

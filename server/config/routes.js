@@ -4,8 +4,11 @@ var comment = require ('../comment/commentController.js');
 var category = require('../category/categoryController.js');
 var rate = require('../rate/rateController.js');
 var notification = require('../notification/notificationController.js');
+var utils = require('./utils.js')
+
 
 var helpers = require('./helpers.js');
+
 
 module.exports = function(app, express) {
 
@@ -51,6 +54,9 @@ module.exports = function(app, express) {
 	app.post('/api/category', category.addCategory);
 	app.put('/api/category/:id/edit', category.editCategory);
 	app.delete('/api/category/:id/delete', category.deleteCategory);
+
+	//upload an image
+	app.post('/api/upload', utils.uploadImg);
 
 	//error handling
 	app.use(helpers.errorLogger);
