@@ -16,6 +16,12 @@
 	    <!-- Font Awesome -->
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	    
+	    <!-- Angular Material -->
+	    <link rel="stylesheet" href="/lib/angular-material/angular-material.css">
+
+	    <!-- Angular Material Icon -->
+	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 	    <!-- Custom CSS -->
 	    <link rel="stylesheet" href="styles/lightbox.css">
 	    <link rel="stylesheet" href="styles/style.css">
@@ -82,12 +88,12 @@
 
 
 		<div ng-view ></div>
-		
 
-		
-
+	    <script src="/lib/angular-aria/angular-aria.js"></script>
+	    <script src="/lib/angular-animate/angular-animate.js"></script>
+	    <script src="/lib/angular-material/angular-material.js"></script>
+	    <script src="/lib/angular-messages/angular-messages.js"></script>
 	    <script src="lib/angular-route/angular-route.js"></script>
-
 	    <script src="app/auth/auth.js"></script>
 	    <script src="app/game/createGame.js"></script>
 	    <script src="app/game/editGame.js"></script>
@@ -97,6 +103,9 @@
 	    <script src="app/profile/profile.js"></script>
 	    <script src="app/services/services.js"></script>
 	    <script src="app/app.js"></script>
+
+	    <!-- PubNub JavaScript SDK -->
+	    <script src="http://cdn.pubnub.com/pubnub-3.16.0.min.js"></script>
 
         <!-- Latest jQuery form server -->
 	    <script src="https://code.jquery.com/jquery.min.js"></script>
@@ -121,6 +130,9 @@
 	    
 	    <!-- Main Script -->
 	    <script src="js/main.js"></script>
+
+
+	    <script src="js/InitializePubNub.js"></script>
 	    
 	    <script src="https://maps.googleapis.com/maps/api/js?libraries=placeses,visualization,drawing,places,geometry&key=AIzaSyAwTc1-CRp3canFaf2KJts88n8Uaw7cHG8"></script>
 	</body>

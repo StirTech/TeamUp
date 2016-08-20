@@ -25,7 +25,15 @@ module.exports = {
 			if(err){
 				res.status(500).send('err');
 			}else{
-				res.json(allComment)
+				var players=[];
+				for (var i = 0; i < allComment.length; i++) {
+					Player.findOne({_id:allComment[i].from}).exec(function (err , player) {
+						players.push(player)
+						if(players.length===allComment.length){
+							res.json({allComment:allComment , players: players});
+						}
+					});
+				}
 			}
 		});
 	}
