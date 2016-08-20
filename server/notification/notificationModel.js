@@ -4,16 +4,19 @@ var notificationSchema = new mongoose.Schema({
     type:  mongoose.Schema.Types.ObjectId,
     ref : 'User'    
   },
-  to :{
-  	 type:  mongoose.Schema.Types.ObjectId,
-    ref : 'User' 
+  to :[{
+  	playerId:{
+      type:  mongoose.Schema.Types.ObjectId,
+      ref : 'User'
+    },
+    seen : Boolean
+  }],
+  notificationType : {
+    type : String
   },
   game:{
     type: mongoose.Schema.Types.ObjectId,
     ref:'Game'
-  },
-  read : {
-  	type : Boolean 
   },
   text :{
   	type : String
