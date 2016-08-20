@@ -21,6 +21,8 @@ module.exports = function(config) {
       'client/lib/ngmap/build/scripts/*.js',
       'client/lib/angular-route/angular-route.js',
       'client/lib/angular-mocks/angular-mocks.js',
+      'client/lib/ng-file-upload/ng-file-upload.min.js',
+      'client/lib/ng-file-upload/ng-file-upload-shim.min.js',
 
       // our app code
       'client/app/app.js',
