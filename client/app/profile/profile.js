@@ -1,6 +1,6 @@
 angular.module('TeamUp.profile',[])
 
-.controller('profileController', function($scope, User, Game, Category, $location, $window, $routeParams){
+.controller('profileController', function($scope, User, Game, Category, $location, $window, $routeParams, $interval){
 	
 	$scope.user = {}
 	$scope.newUser = {}
@@ -14,7 +14,7 @@ angular.module('TeamUp.profile',[])
 	$scope.editing = false
 	$scope.MissingInfo = [];
 
-	$scope.showUser = function (){
+	$scope.initialize = function (){
 		User.getUser($routeParams.id)
 		.then(function(user){
 			if(!user){
@@ -26,6 +26,7 @@ angular.module('TeamUp.profile',[])
 		})
 		.then(function(){
 			$scope.getGames()
+			$scope.showCount()
 			$scope.getCategories()
 		})
 		.catch(function (error) {
@@ -131,6 +132,33 @@ angular.module('TeamUp.profile',[])
 		})
 	}
 
-	$scope.showUser();
+	$scope.showCount = function(){
+	    var _second = 1000;
+	    var _minute = _second * 60;
+	    var _hour = _minute * 60;
+	    var _day = _hour * 24;
+
+	    function showRemaining() {
+	        var now = new Date();
+	        var distance = Date.parse($scope.nextGame.date) - Date.parse(now);
+	        if (distance < 0) {
+	            clearInterval($scope.timer);
+	            $scope.countdown = 'EXPIRED!';
+	            return;
+	        }
+	        var days = Math.floor(distance / _day);
+	        var hours = Math.floor((distance % _day) / _hour);
+	        var minutes = Math.floor((distance % _hour) / _minute);
+	        var seconds = Math.floor((distance % _minute) / _second);
+
+	        $scope.countdown = days + 'days ';
+	        $scope.countdown += hours + 'hrs ';
+	        $scope.countdown += minutes + 'mins ';
+	        $scope.countdown += seconds + 'secs';
+	    }
+	    $scope.timer = $interval(showRemaining, 1000);		
+	}
+
+	$scope.initialize();
 	
 });
