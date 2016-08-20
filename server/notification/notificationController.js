@@ -44,9 +44,15 @@ module.exports ={
 
 
 	isRead: function (req, res) {
-		Notification.findOne({_id : req.params.id}, function (err, notification) {
+		var userID = req.body.from
+		Notification.findOne({game : req.params.id}, function (err, notification) {
 			if(Notification){
-				notification.read = true;
+				for (var i = 0; i < notification.to.length; i++) {
+					console.log(notification.to[i].playerId,"        ",userID)
+					if(notification.to[i].playerId.toString() === userID){
+						notification.to[i].seen = true;
+					} 
+				}
 				notification.save(function (err, readNotification) {
 					if(readNotification){
 						res.status(200).send(readNotification);
