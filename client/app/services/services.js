@@ -1,7 +1,7 @@
 angular.module('TeamUp.services',[])
 
 //========================================================================
-/*                        UserAuth Factory                                   */
+/*                        UserAuth Factory                              */
 //========================================================================
 .factory('UserAuth',function ($http, $window) {
 
@@ -67,7 +67,7 @@ angular.module('TeamUp.services',[])
 	var getComment = function (gameId) {
 		return $http({
 			method : 'GET',
-			url : '/api/game/'+gameId+'/getComment'
+			url : '/api/game/' + gameId + '/getComment'
 		})
 		.then(function (res) {
 			return res;
@@ -78,6 +78,51 @@ angular.module('TeamUp.services',[])
 		getComment : getComment
 	}
 })
+//=========================================================================
+/*                        Notification Factory                           */
+//=========================================================================
+.factory('Notification', function ($http, $window) {
+	var insertNotification = function (gameId, notification) {
+		return $http({
+			method : 'POST',
+			url : '/api/game/' + gameId + '/insertNotification',
+			data : notification
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
+
+	var getNotification = function (gameId) {
+		return $http({
+			method : 'GET',
+			url : '/api/game/' + gameId + '/isRead'
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
+
+	var isRead = function (gameId, userId) {
+		return $http({
+			method : 'POST',
+			url : '/api/game/' + gameId + '/notification',
+			data : userId
+		})
+		.then(function (res) {
+			return res;
+		})
+	}
+
+	return {
+		insertNotification : insertNotification,
+		getNotification : getNotification,
+		isRead : isRead
+	}
+})
+
+
+
 //=========================================================================
 /*                        rate Factory                                   */
 //=========================================================================
