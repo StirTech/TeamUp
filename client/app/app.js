@@ -4,7 +4,6 @@ angular.module('TeamUp', [
   'TeamUp.games',
   'TeamUp.game',
   'TeamUp.createGame',
-  'TeamUp.editGame',
   'TeamUp.profile',
   'TeamUp.editProfile',
   'ngRoute',
