@@ -60,10 +60,15 @@
 				  	<input ng-if="userId == pageId && !editing" type="button" ng-click="edit()" class="btn btn-primary" value="Edit" style="float: right"/>
 				  	<input ng-if="userId == pageId && editing" type="button" ng-click="save()" class="btn btn-primary" value="Save" style="float: right"/>
 			  	</div>
+
 			  	<div class="row" style="padding: 2% 2%; margin: 2%;">
 				    <p ng-if="!editing"><strong>Email:</strong> {{user.email}}</p>
 					<p ng-if="!editing"><strong>Country:</strong> {{user.country}}</p>
 					<p ng-if="!editing"><strong>City:</strong> {{user.city}}</p>
+					<label ng-if="!editing">Interests:</label>
+					<div ng-if="!editing" ng-repeat="interest in user.interests">
+						{{interest}}
+					</div>
 
 					<div class="form-group">
 						<div class="col-xs-6" style="padding: 2%;">
@@ -85,7 +90,29 @@
 					<div class="form-group">
 					<input ng-if="editing" class="form-control" name="email" type="text" ng-model="newUser.email" placeholder="Email" value="newUser.email">
 					</div>
+				
+					<div class="row" ng-if="editing">
+						<label>Add to Interests:</label>
+					
+						<div class="panel panel-default" ng-repeat="category in categories">
+						  <div class="panel-heading">
+						    <h3 class="panel-title">{{category.name}}</h3>
+						  </div>
+						  <div class="panel-body">
+						    <div class="row"  ng-repeat="game in category.games" style="margin: 1%">
+	          					<div class="col-xs-6 col-md-4">
+	          						{{game}}
+	          					</div>
+	          					<div class="col-xs-12 col-md-8">
+	          						<input ng-if="user.interests.indexOf(game) === -1" type="button" value="Add" ng-click="addInterest(game)" class="btn btn-success" style="float: right">
+	          						<input ng-if="user.interests.indexOf(game) !== -1" type="button" value="Remove" ng-click="removeInterest(game)" class="btn btn-danger" style="float: right">
+	          					</div>
+	          				</div>
+						  </div>
+						</div>
+					</div>
 				</div>
+
 			</div>
 		  </div>
 
