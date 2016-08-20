@@ -32,12 +32,6 @@ describe('Routing', function () {
     expect($route.routes['/profile/:id'].templateUrl).to.equal('app/profile/profile.html');
   });
 
-  it('Should have /profile/:id/edit route, template, and controller', function () {
-    expect($route.routes['/profile/:id/edit']).to.be.defined;
-    expect($route.routes['/profile/:id/edit'].controller).to.equal('editProfileController');
-    expect($route.routes['/profile/:id/edit'].templateUrl).to.equal('app/profile/editProfile.html');
-  });
-
   it('Should have /createGame route, template, and controller', function () {
     expect($route.routes['/createGame']).to.be.defined;
     expect($route.routes['/createGame'].controller).to.equal('createGameController');

@@ -6,7 +6,6 @@ angular.module('TeamUp', [
   'TeamUp.createGame',
   'TeamUp.editGame',
   'TeamUp.profile',
-  'TeamUp.editProfile',
   'ngRoute',
   'ngMap',
   'ngMaterial',
@@ -65,10 +64,6 @@ angular.module('TeamUp', [
     .when('/profile/:id', {
       templateUrl: 'app/profile/profile.html',
       controller: 'profileController',
-    })
-    .when('/profile/:id/edit', {
-      templateUrl: 'app/profile/editProfile.html',
-      controller: 'editProfileController',
     })
     .otherwise({
       redirectTo: '/home'
