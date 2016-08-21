@@ -119,7 +119,7 @@
 		  <div class="tab-pane fade" id="past">
 	          <div class="row" ng-repeat="game in games | filter: pastGames | orderBy:'-date'" class="games" style="margin: 2%">
 	          	<div class="col-xs-6 col-md-4">
-	          		<img class="gamePic" src={{game.picture}} style="height: 125px; width: auto; margin: 0 auto; display: block;">
+	          		<img class="gamePic" ng-src={{game.picture}} style="height: 125px; width: auto; margin: 0 auto; display: block;">
 	          		<div style="text-align: center;">{{game.type}}</div>
 	          	</div>
 	          	<div class="col-xs-12 col-md-8">
@@ -151,7 +151,7 @@
 		  <div class="tab-pane fade" id="current">
 		    <div class="row" ng-repeat="game in games | filter: currentGames | orderBy:'date'" class="games" style="margin: 2%">
 	          	<div class="col-xs-6 col-md-4">
-	          		<img class="gamePic" src={{game.picture}} style="height: 125px; width: auto; margin: 0 auto; display: block;">
+	          		<img class="gamePic" ng-src={{game.picture}} style="height: 125px; width: auto; margin: 0 auto; display: block;">
 	          		<div style="text-align: center;">{{game.type}}</div>
 	          	</div>
 	          	<div class="col-xs-12 col-md-8">
