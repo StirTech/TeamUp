@@ -43,7 +43,7 @@ angular.module('TeamUp.createGame',[])
         }).then(function (resp) { //upload function returns a promise
         	console.log(resp.data.file.path)
             if(resp.data.error_code === 0){ //validate success
-                $scope.picture='http://localhost:3000/uploads/'+resp.data.file.filename;
+                $scope.picture='https://teamup-me.herokuapp.com/uploads/'+resp.data.file.filename;
             } else {
                 $window.alert('an error occured');
             }
@@ -76,7 +76,7 @@ angular.module('TeamUp.createGame',[])
 	    $.ajax({
 	        type: 'GET',
 	        dataType: "json",
-	        url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+$scope.locationID.lat+","+$scope.locationID.lng+"&sensor=false",
+	        url: "https://maps.googleapis.com/maps/api/geocode/json?latlng="+$scope.locationID.lat+","+$scope.locationID.lng+"&sensor=false",
 	        data: {},
 	        success: function(data) {
 	            $.each( data['results'],function(i, val) {
