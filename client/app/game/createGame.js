@@ -63,8 +63,17 @@ angular.module('TeamUp.createGame',[])
       $scope.map = map;
     });
 
+	$scope.removePin = function () {
+		if ($window.marker) {
+    		$window.marker.setMap(null);
+    	}
+	}
+	
     $scope.placeMarker = function(e) {// place a red marker on the map and get the game location from the marker position
-      var marker = new google.maps.Marker({position: e.latLng, map: $scope.map});
+    	if ($window.marker) {
+    		$window.marker.setMap(null);
+    	}
+      $window.marker = new google.maps.Marker({position: e.latLng, map: $scope.map});
       $scope.map.panTo(e.latLng);
       $scope.locationID={
       	lat:e.latLng.lat(),
