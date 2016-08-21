@@ -24,7 +24,7 @@
 
 	<div class="row">
 		<div class="col-xs-6">
-			<div class="panel panel-default">
+			<div class="panel panel-default" ng-if="lastGame.date != undefined">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">Last Game <span style="float:right;">{{lastGame.date| date:yyyy:MM:dd}}</span></h3> 
 			  </div>
@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<div class="col-xs-6">
-			<div class="panel panel-default">
+			<div class="panel panel-default" ng-if="lastGame.date != undefined">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">Next Game <span style="float:right;">{{countdown}}</span></h3> 
 			  </div>
