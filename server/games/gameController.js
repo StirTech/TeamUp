@@ -22,7 +22,6 @@ module.exports = {
 
 	createGame: function(req, res){
 		var game = req.body;
-		console.log(req.body)
 		var newGame = new Game ({
 			name: game.name, 
 			description : game.description, 
@@ -48,7 +47,6 @@ module.exports = {
 	insertPlayer: function(req , res){
 		var gameId=req.params.id;
 		var userId=req.body.userId;
-		console.log(userId);
 
 		Player.findOneAndUpdate({_id : userId},{ $pull : {games : gameId } } ).exec();
 		Player.findOneAndUpdate({_id : userId},{ $push : {games : gameId } } ).exec();
