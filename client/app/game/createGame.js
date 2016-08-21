@@ -1,18 +1,18 @@
 angular.module('TeamUp.createGame',[])
 
-.controller('createGameController',['$scope', '$window', 'Game', '$location', 'NgMap', 'Category', 'Upload',function( $scope, $window, Game, $location, NgMap, Category, Upload){
+.controller('createGameController', function( $scope, $window, Game, $location, NgMap, Category, Upload){
 	var newGame = {};
 	$scope.categories = [];
 	$scope.selectedCategory={};
 
 	// redirct to sinin page if the user didn't login yet
-	if($window.localStorage.userId===undefined)
+	if($window.localStorage.userId===undefined){
 		$location.path('signin');
-	
+	}
+
 	$scope.getCategories = function () {
 		Category.getAll()
 		.then(function (categories) {
-			console.log(categories);
 			$scope.categories=categories;
 		})
 		.catch(function (err) {
@@ -41,19 +41,15 @@ angular.module('TeamUp.createGame',[])
             url: '/api/upload', //webAPI exposed to upload the file
             data:{file:file} //pass file as data, should be user ng-model
         }).then(function (resp) { //upload function returns a promise
-        	console.log(resp.data.file.path)
             if(resp.data.error_code === 0){ //validate success
                 $scope.picture='https://teamup-me.herokuapp.com/uploads/'+resp.data.file.filename;
             } else {
                 $window.alert('an error occured');
             }
         }, function (resp) { //catch error
-            console.log('Error status: ' + resp.status);
             $window.alert('Error status: ' + resp.status);
         }, function (evt) { 
-            console.log(evt);
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
             $scope.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
         });
     };
@@ -88,8 +84,6 @@ angular.module('TeamUp.createGame',[])
 	                        else {
 	                            $scope.city="unknown";
 	                        }
-	                        console.log(i+", " + val['long_name']);
-	                        console.log(i+", " + val['types']);
 	                    }
 	                });
 	                $.each( val['address_components'],function(i, val) {
@@ -100,13 +94,10 @@ angular.module('TeamUp.createGame',[])
 	                        else {
 	                            $scope.country="unknown";
 	                        }
-	                        console.log(i+", " + val['long_name']);
-	                        console.log(i+", " + val['types']);
 	                    }
 	                });
 
 	            });
-	            console.log('Success');
 	        },
 	        error: function () { console.log('error'); } 
 	    }); 
@@ -125,16 +116,14 @@ angular.module('TeamUp.createGame',[])
 		newGame.category = $scope.selectedCategory._id;
 		$scope.crGame(newGame)
 
-		console.log("new Game : ",newGame)
 	}
 	$scope.crGame = function(game){
 		Game.addOne(game)
 		.then(function (game) {
-			console.log("game after create",game);
 			$location.path('game/'+game._id)
 		})
 		.catch(function (err) {
 			console.log(err);
 		})
 	}
-}]);
+});
