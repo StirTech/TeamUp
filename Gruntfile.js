@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     concat: { 
       dist_client: {
         files: {
-          'client/dist/app.js' : ['client/app/auth/*.js', 'client/app/game/*.js', 'client/app/profile/*.js', 'client/app/services/*.js', 'client/app/*.js'],
+          'client/dist/app.js' : ['client/app/auth/*.js', 'client/app/game/*.js', 'client/app/profile/*.js', 'client/app/category/*.js', 'client/app/services/*.js', 'client/app/*.js'],
           'client/dist/jsFiles.js' : ["client/js/jquery.sticky.js", "client/js/isotope.pkgd.min.js", "client/js/jquery.scrolly.js", "client/js/lightbox.min.js", "client/js/jquery.easing.1.3.min.js", "client/js/main.js", "client/js/InitializePubNub.js"]
         }
       }
