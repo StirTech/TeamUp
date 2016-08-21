@@ -122,7 +122,7 @@ angular.module('TeamUp.createGame',[])
 		newGame.picture	= $scope.picture || $scope.selectedCategory.picture;
 		newGame.date	= $scope.date;
 		newGame.numOfPlayers	= $scope.numOfPlayers;
-		newGame.category = $scope.selectedCategory._i;
+		newGame.category = $scope.selectedCategory._id;
 		$scope.crGame(newGame)
 
 		console.log("new Game : ",newGame)
