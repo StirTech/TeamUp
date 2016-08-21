@@ -286,8 +286,6 @@ angular.module('TeamUp.services',[])
 			});
 		},
 		removePlayer : function (gameId, userId) {
-			console.log(gameId);
-			console.log(userId);
 			return $http({
 				method : 'PUT',
 				url : '/api/game/removePlayer/'+gameId,
