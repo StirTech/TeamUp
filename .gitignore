@@ -20,6 +20,7 @@ db/
 client/lib/
 client/dist/
 coverage/
+uploads/
 
 # Build files
 dist/

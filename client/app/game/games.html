@@ -32,13 +32,19 @@
             </div>
         </div>
     </div>
+    <nav class="navbar navbar-light search-bar" style="background-color: #e3f2fd;">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="search-box form-control" placeholder="Search for..." ng-model="searchStr">
+                    <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-info search-box" type="button" ng-click="search(searchStr)"><span class="glyphicon glyphicon-search"></span>Go!</button>
+                    </span>
+                </div>
+            </div>
+    </nav>
     <div class="container" >
         <div class="row" style="text-align:center">
         </div>
-        <div class="bar">
-            <input type="text" ng-model="searchStr"/>
-            <button ng-click="search(searchStr)">Search</button>
-        </div> 
         <div ng-cloak>
             <md-content>
             <md-tabs md-dynamic-height md-border-bottom>
@@ -126,12 +132,10 @@
                 </md-button>
               </md-card-actions>
             </md-card>
-          </md-tab>
-        </md-tabs>
-      </md-content>
-    </div>
-   
-
+            </md-tab>
+            </md-tabs>
+            </md-content>
+        </div>
     </div>
 </div>
 
