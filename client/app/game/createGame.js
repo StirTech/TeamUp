@@ -133,13 +133,10 @@ angular.module('TeamUp.createGame',[])
 		newGame.numOfPlayers	= $scope.numOfPlayers;
 		newGame.category = $scope.selectedCategory._i;
 		$scope.crGame(newGame)
-
-		console.log("new Game : ",newGame)
 	}
 	$scope.crGame = function(game){
 		Game.addOne(game)
 		.then(function (game) {
-			console.log("game after create",game);
 			$location.path('game/'+game._id)
 		})
 		.catch(function (err) {

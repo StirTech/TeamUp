@@ -5,12 +5,14 @@ angular.module('TeamUp', [
   'TeamUp.game',
   'TeamUp.createGame',
   'TeamUp.editGame',
+  'TeamUp.category',
   'TeamUp.profile',
   'ngRoute',
   'ngMap',
   'ngMaterial',
   'ngMessages',
-  'ngFileUpload'
+  'ngFileUpload',
+  'TeamUp.find'
 ])
 
 
@@ -49,6 +51,10 @@ angular.module('TeamUp', [
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
     })
+    .when('/category', {
+      templateUrl: 'app/category/category.html',
+      controller: 'categoryController'
+    })
     .when('/createGame', {
       templateUrl: 'app/game/createGame.html',
       controller: 'createGameController'
@@ -64,6 +70,14 @@ angular.module('TeamUp', [
     .when('/profile/:id', {
       templateUrl: 'app/profile/profile.html',
       controller: 'profileController',
+    })
+    .when('/profile/:id/edit', {
+      templateUrl: 'app/profile/editProfile.html',
+      controller: 'editProfileController',
+    })
+    .when('/find', {
+      templateUrl: 'app/find/find.html',
+      controller: 'searchController',
     })
     .otherwise({
       redirectTo: '/home'

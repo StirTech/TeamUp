@@ -32,101 +32,110 @@
             </div>
         </div>
     </div>
-
-<div class="container" >
-    <div class="row" style="text-align:center">
-</div>
-<div ng-cloak>
-  <md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
-      <md-tab label="currentGames">
-        <md-card class="col-md-3"  ng-repeat="game in data.games | filter :currentGames" style="margin : 10px 0px 10px 0px;">
-          <div style="    height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a></div>
-          <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline">{{game.name}}</span>
-            </md-card-title-text>
-          </md-card-title>
-          <md-subhead>
-          <div style="font-size: 24px;"><i class="material-icons">class</i><span>{{game.type}}</span></div>
-          </md-subhead>
-          
-          <md-card-content>
-            <table class="table">
-              <tr>
-                <td># of Players :</td>
-                <td>{{game.numOfPlayers}}</td>
-              </tr>
-              <tr>
-                <td>Date :</td>
-                <td>{{game.date| date :yyyy:MM:dd}}</td>
-              </tr>
-            </table>
-            <!-- <p>Type : {{game.type}}</p>
-            <p># of Players : {{game.numOfPlayers}}</p> -->
-          </md-card-content>
-          <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-icon-button" aria-label="Share" style="color:#9b59b6">
-              {{game.likes.length}}
-            </md-button>
-            <md-button class="md-icon-button "  ng-if="isLogIn" aria-label="Favorite" >
-              <i class="material-icons {{game.loved}}"  id={{game._id}} ng-click="getLove($event)">favorite</i>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="Settings">
-              <a href="#/game/{{game._id}}"><i class="material-icons red">redo</i></md-icon></a>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="Settings" >
-              <i class="material-icons red" id={{game._id}} ng-click="fbshare($event)" >share</i>
-            </md-button>
-          </md-card-actions>
-        </md-card>
-      </md-tab>
-      <md-tab label="pastGames">
-        <md-card class="col-md-3"  ng-repeat="game in data.games | filter :pastGames" style="margin : 10px 0px 10px 0px;">
-          <div style="    height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a></div>
-          <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline">{{game.name}}</span>
-            </md-card-title-text>
-          </md-card-title>
-          <md-subhead>
-          <div style="font-size: 24px;"><i class="material-icons">class</i><span>{{game.type}}</span></div>
-          </md-subhead>
-          
-          <md-card-content>
-            <table class="table">
-              <tr>
-                <td># of Players :</td>
-                <td>{{game.numOfPlayers}}</td>
-              </tr>
-              <tr>
-                <td>Date :</td>
-                <td>{{game.date| date :yyyy:MM:dd}}</td>
-              </tr>
-            </table>
-            <!-- <p>Type : {{game.type}}</p>
-            <p># of Players : {{game.numOfPlayers}}</p> -->
-          </md-card-content>
-          <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-icon-button" aria-label="Share" style="color:#9b59b6">
-              {{game.likes.length}}
-            </md-button>
-            <md-button class="md-icon-button "  ng-if="isLogIn" aria-label="Favorite" >
-              <i class="material-icons {{game.loved}}"  id={{game._id}} ng-click="getLove($event)">favorite</i>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="Settings">
-              <a href="#/game/{{game._id}}"><i class="material-icons red">redo</i></md-icon></a>
-            </md-button>
-            <md-button class="md-icon-button" aria-label="Settings" >
-              <i class="material-icons red" id={{game._id}} ng-click="fbshare($event)" >share</i>
-            </md-button>
-          </md-card-actions>
-        </md-card>
-      </md-tab>
-    </md-tabs>
-  </md-content>
-</div>
-      
+    <nav class="navbar navbar-light search-bar" style="background-color: #e3f2fd;">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="search-box form-control" placeholder="Search for..." ng-model="searchStr">
+                    <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-info search-box" type="button" ng-click="search(searchStr)"><span class="glyphicon glyphicon-search"></span>Go!</button>
+                    </span>
+                </div>
+            </div>
+    </nav>
+    <div class="container" >
+        <div class="row" style="text-align:center">
+        </div>
+        <div ng-cloak>
+            <md-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="currentGames">
+            <md-card class="col-md-3"  ng-repeat="game in data.games | filter :currentGames" style="margin : 10px 0px 10px 0px;">
+                <div style="height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a>
+                </div>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{game.name}}</span>
+                </md-card-title-text>
+              </md-card-title>
+              <md-subhead>
+              <div style="font-size: 24px;"><i class="material-icons">class</i><span>{{game.type}}</span></div>
+              </md-subhead>
+              
+              <md-card-content>
+                <table class="table">
+                  <tr>
+                    <td># of Players :</td>
+                    <td>{{game.numOfPlayers}}</td>
+                  </tr>
+                  <tr>
+                    <td>Date :</td>
+                    <td>{{game.date| date :yyyy:MM:dd}}</td>
+                  </tr>
+                </table>
+                <!-- <p>Type : {{game.type}}</p>
+                <p># of Players : {{game.numOfPlayers}}</p> -->
+              </md-card-content>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-icon-button" aria-label="Share" style="color:#9b59b6">
+                  {{game.likes.length}}
+                </md-button>
+                <md-button class="md-icon-button "  ng-if="isLogIn" aria-label="Favorite" >
+                  <i class="material-icons {{game.loved}}"  id={{game._id}} ng-click="getLove($event)">favorite</i>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Settings">
+                  <a href="#/game/{{game._id}}"><i class="material-icons red">redo</i></md-icon></a>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Settings" >
+                  <i class="material-icons red" id={{game._id}} ng-click="fbshare($event)" >share</i>
+                </md-button>
+              </md-card-actions>
+                </md-card>
+                </md-tab>
+                <md-tab label="pastGames">
+                <md-card class="col-md-3"  ng-repeat="game in data.games | filter :pastGames" style="margin : 10px 0px 10px 0px;">
+                <div style="    height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a></div>
+                  <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{game.name}}</span>
+                </md-card-title-text>
+              </md-card-title>
+              <md-subhead>
+              <div style="font-size: 24px;"><i class="material-icons">class</i><span>{{game.type}}</span></div>
+              </md-subhead>
+              
+              <md-card-content>
+                <table class="table">
+                  <tr>
+                    <td># of Players :</td>
+                    <td>{{game.numOfPlayers}}</td>
+                  </tr>
+                  <tr>
+                    <td>Date :</td>
+                    <td>{{game.date| date :yyyy:MM:dd}}</td>
+                  </tr>
+                </table>
+                <!-- <p>Type : {{game.type}}</p>
+                <p># of Players : {{game.numOfPlayers}}</p> -->
+              </md-card-content>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button class="md-icon-button" aria-label="Share" style="color:#9b59b6">
+                  {{game.likes.length}}
+                </md-button>
+                <md-button class="md-icon-button "  ng-if="isLogIn" aria-label="Favorite" >
+                  <i class="material-icons {{game.loved}}"  id={{game._id}} ng-click="getLove($event)">favorite</i>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Settings">
+                  <a href="#/game/{{game._id}}"><i class="material-icons red">redo</i></md-icon></a>
+                </md-button>
+                <md-button class="md-icon-button" aria-label="Settings" >
+                  <i class="material-icons red" id={{game._id}} ng-click="fbshare($event)" >share</i>
+                </md-button>
+              </md-card-actions>
+            </md-card>
+            </md-tab>
+            </md-tabs>
+            </md-content>
+        </div>
     </div>
 </div>
 
