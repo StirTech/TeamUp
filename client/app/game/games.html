@@ -76,17 +76,16 @@
                 <p># of Players : {{game.numOfPlayers}}</p> -->
               </md-card-content>
               <md-card-actions layout="row" layout-align="end center">
-                <md-button class="md-icon-button" aria-label="Share" style="color:#9b59b6">
-                  {{game.likes.length}}
+                <md-button class="md-icon-button" aria-label="likes" style="font-size:1em; text-transform:none;color:#9b59b6; padding:0;">
+                  {{game.likes.length}} likes
                 </md-button>
-                <md-button class="md-icon-button "  ng-if="isLogIn" aria-label="Favorite" >
-                  <i class="material-icons {{game.loved}}"  id={{game._id}} ng-click="getLove($event)">favorite</i>
+                <md-button class="md-icon-button" ng-if="isLogIn" aria-label="Favorite" >
+                  <md-tooltip>like</md-tooltip>
+                  <i class="material-icons {{game.loved}}" id={{game._id}} ng-click="getLove($event)">favorite</i>
                 </md-button>
-                <md-button class="md-icon-button" aria-label="Settings">
-                  <a href="#/game/{{game._id}}"><i class="material-icons red">redo</i></md-icon></a>
-                </md-button>
-                <md-button class="md-icon-button" aria-label="Settings" >
-                  <i class="material-icons red" id={{game._id}} ng-click="fbshare($event)" >share</i>
+                <md-button class="md-icon-button" aria-label="Share">
+                    <md-tooltip>share on facebook</md-tooltip>
+                    <i class="material-icons red" id={{game._id}} ng-click="fbshare($event)">share</i>
                 </md-button>
               </md-card-actions>
                 </md-card>
@@ -118,17 +117,16 @@
                 <p># of Players : {{game.numOfPlayers}}</p> -->
               </md-card-content>
               <md-card-actions layout="row" layout-align="end center">
-                <md-button class="md-icon-button" aria-label="Share" style="color:#9b59b6">
-                  {{game.likes.length}}
+                <md-button class="md-icon-button" aria-label="likes" style="font-size:1em; text-transform:none;color:#9b59b6; padding:0;">
+                  {{game.likes.length}} likes
                 </md-button>
-                <md-button class="md-icon-button "  ng-if="isLogIn" aria-label="Favorite" >
-                  <i class="material-icons {{game.loved}}"  id={{game._id}} ng-click="getLove($event)">favorite</i>
+                <md-button class="md-icon-button" ng-if="isLogIn" aria-label="Favorite">
+                    <md-tooltip>like</md-tooltip>
+                    <i class="material-icons {{game.loved}}" id={{game._id}} ng-click="getLove($event)">favorite</i>
                 </md-button>
-                <md-button class="md-icon-button" aria-label="Settings">
-                  <a href="#/game/{{game._id}}"><i class="material-icons red">redo</i></md-icon></a>
-                </md-button>
-                <md-button class="md-icon-button" aria-label="Settings" >
-                  <i class="material-icons red" id={{game._id}} ng-click="fbshare($event)" >share</i>
+                <md-button class="md-icon-button" aria-label="share">
+                    <md-tooltip>share on facebook</md-tooltip>
+                    <i class="material-icons red" id={{game._id}} ng-click="fbshare($event)" >share</i>
                 </md-button>
               </md-card-actions>
             </md-card>
