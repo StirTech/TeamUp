@@ -791,8 +791,8 @@ HTMLJSCSS
 }
 
 .form-submit input[type="button"]:hover{
-    background-color: #ff6c6c;
-    border-color: #ff6c6c;
+    background-color: rgb(91, 161, 213);
+    border-color: rgb(91, 161, 213);
     color: #FFFFFF;
 }
 
@@ -818,3 +818,9 @@ HTMLJSCSS
     padding: 10px 15px;
     border-radius: 0;
 }
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus{
+    color: rgb(255, 255, 255);
+    background-color: rgb(155, 89, 182);
+}
+
