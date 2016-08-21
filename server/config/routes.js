@@ -22,6 +22,7 @@ module.exports = function(app, express) {
 	app.get('/api/user/:id', user.getUser);
 	app.put('/api/user/:id/edit', user.editUser );
 	app.post('/api/game/players', user.getPlayers);
+	app.get('/api/users',user.getUsers);
 	
 	// game routes
 	app.post('/api/game', game.createGame);

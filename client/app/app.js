@@ -10,7 +10,8 @@ angular.module('TeamUp', [
   'ngMap',
   'ngMaterial',
   'ngMessages',
-  'ngFileUpload'
+  'ngFileUpload',
+  'TeamUp.find'
 ])
 
 
@@ -64,6 +65,14 @@ angular.module('TeamUp', [
     .when('/profile/:id', {
       templateUrl: 'app/profile/profile.html',
       controller: 'profileController',
+    })
+    .when('/profile/:id/edit', {
+      templateUrl: 'app/profile/editProfile.html',
+      controller: 'editProfileController',
+    })
+    .when('/find', {
+      templateUrl: 'app/find/find.html',
+      controller: 'searchController',
     })
     .otherwise({
       redirectTo: '/home'

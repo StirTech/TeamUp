@@ -225,10 +225,20 @@ angular.module('TeamUp.services',[])
 			return res
 		})
 	}
+	var getAll = function(){
+		return $http({
+			method : 'GET',
+			url : '/api/users'
+		})
+		.then(function (res) {
+			return res.data;
+		});
+	}
 	return {
 		getUser:getUser,
 		editUser:editUser,
-		getPlayers:getPlayers
+		getPlayers:getPlayers,
+		getAll:getAll
 	}
 })
 

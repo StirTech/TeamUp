@@ -1,5 +1,4 @@
 angular.module('TeamUp.games',[])
-
 .controller('gamesController',function($scope, $location, Game, User, $window,Like,facebook,$routeParams){
 	$scope.data={};
 	$scope.type='';
@@ -12,7 +11,6 @@ angular.module('TeamUp.games',[])
 			$scope.isLogIn=true;
 		Game.getAll()
 		.then(function (games) {
-			console.log(games)
 			$scope.data.games = games;
 			for (var i = 0; i < games.length; i++) {
 				if(games[i].likes.indexOf($window.localStorage.userId)!==-1)
@@ -87,7 +85,10 @@ angular.module('TeamUp.games',[])
 
 	$scope.initaize();
 	
-	
-
-	
+	$scope.search = function(str){
+		$window.localStorage.query = str;
+		$location.path('/find');	
+	}	
 });
+
+

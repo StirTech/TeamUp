@@ -128,5 +128,13 @@ module.exports = {
 			res.status(500).send('playerIds not defined');
 		}
 		
+	},
+	getUsers: function(req, res){
+		User.find().exec(function (err,allUsers) {
+			if(err)
+				res.status(500).send('err');
+			else
+				res.status(200).send(allUsers);
+		});
 	}
 }
