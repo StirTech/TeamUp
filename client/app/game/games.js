@@ -12,7 +12,6 @@ angular.module('TeamUp.games',[])
 			$scope.isLogIn=true;
 		Game.getAll()
 		.then(function (games) {
-			console.log(games)
 			$scope.data.games = games;
 			for (var i = 0; i < games.length; i++) {
 				if(games[i].likes.indexOf($window.localStorage.userId)!==-1)
@@ -47,7 +46,6 @@ angular.module('TeamUp.games',[])
 					$scope.data.games[i].loved='red';
 					Like.likeGame($scope.data.games[i]._id,$window.localStorage.userId)
 					.then(function (res) {
-						console.log('like');
 						$scope.initaize();
 					})
 					.catch (function (err) {
@@ -58,7 +56,6 @@ angular.module('TeamUp.games',[])
 					$scope.data.games[i].loved='black';
 					Like.dislike($scope.data.games[i]._id,$window.localStorage.userId)
 					.then(function (res) {
-						console.log('dislik');
 						$scope.initaize();
 					})
 					.catch (function (err) {
