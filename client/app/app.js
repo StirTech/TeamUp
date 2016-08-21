@@ -5,6 +5,7 @@ angular.module('TeamUp', [
   'TeamUp.game',
   'TeamUp.createGame',
   'TeamUp.editGame',
+  'TeamUp.category',
   'TeamUp.profile',
   'ngRoute',
   'ngMap',
@@ -49,6 +50,10 @@ angular.module('TeamUp', [
     .when('/signup', {
       templateUrl: 'app/auth/signup.html',
       controller: 'AuthController'
+    })
+    .when('/category', {
+      templateUrl: 'app/category/category.html',
+      controller: 'categoryController'
     })
     .when('/createGame', {
       templateUrl: 'app/game/createGame.html',

@@ -5,7 +5,8 @@ module.exports = function(grunt) {
     concat: { 
       dist_client: {
         files: {
-          'client/dist/app.js' : ['client/app/**/*.js', 'client/app/*.js']
+          'client/dist/app.js' : ['client/app/auth/*.js', 'client/app/game/*.js', 'client/app/profile/*.js', 'client/app/category/*.js', 'client/app/find/*.js','client/app/services/*.js', 'client/app/*.js'],
+          'client/dist/jsFiles.js' : ["client/js/jquery.sticky.js", "client/js/isotope.pkgd.min.js", "client/js/jquery.scrolly.js", "client/js/lightbox.min.js", "client/js/jquery.easing.1.3.min.js", "client/js/main.js", "client/js/InitializePubNub.js"]
         }
       }
     },
@@ -25,22 +26,16 @@ module.exports = function(grunt) {
       }
     },
 
-    uglify: {
+    uglify: { 
+      options: {
+            mangle: false
+          },
       target: {
         files: {
-          'client/dist/app.min.js' : ['client/dist/app.js']
+         'client/dist/app.min.js' : ['client/dist/app.js']
         }
       }
     },
-
-    // eslint: {
-    //   files: {
-    //         options: {
-    //             useEslintrc: false
-    //         },
-    //       src: ['public/dist/*.js']
-    //   }
-    // },  
 
     cssmin: {
       target: {
@@ -103,14 +98,6 @@ module.exports = function(grunt) {
     grunt.task.run([ 'watch' ]);
   });
 
-
-  grunt.registerTask('upload', function(n) {
-    if (grunt.option('prod')) {
-      // add your production server task here
-    }
-    grunt.task.run([ 'server-dev' ]);
-  });
-
   ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
@@ -136,6 +123,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('karma', ['karma']);
 
-  grunt.registerTask('deploy', ['concat', 'uglify', 'cssmin']);
+  grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
 
 };
