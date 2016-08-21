@@ -1,5 +1,4 @@
 angular.module('TeamUp.games',[])
-
 .controller('gamesController',function($scope, $location, Game, User, $window,Like,facebook,$routeParams){
 	$scope.data={};
 	$scope.type='';
@@ -84,7 +83,10 @@ angular.module('TeamUp.games',[])
 
 	$scope.initaize();
 	
-	
-
-	
+	$scope.search = function(str){
+		$window.localStorage.query = str;
+		$location.path('/find');	
+	}	
 });
+
+
