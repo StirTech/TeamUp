@@ -12,9 +12,8 @@
 
 ## Production Url
 
-```sh
 [teamup-me.herokuapp.com](teamup-me.herokuapp.com)
-```
+
 
 ## Table of Contents
 
