@@ -37,7 +37,7 @@
 	</head>
 
 	<body >
-	        <div class="header-area">
+	    <!-- <div class="header-area">
 	        <div class="container">
 	            <div class="row">
 	                <div class="col-md-3">
@@ -60,30 +60,59 @@
 	                        <div class="navbar-collapse collapse">
 	                            <ul class="nav navbar-nav navbar-right" ng-controller="HeaderController" ng-switch on="loggedIN">
 	                                <li><a href="#/home">Home</a></li>
-									
 									<li><a href="#createGame" data-target="#createGame">Create Game</a></li>
 									<li ><i class="material-icons" style="    margin-right: 5px;font-size: 50px;">blur_on</i></li>
-									
-									<li>
-										<div class="btn-group">
-										  <img ng-src="{{profilePicture}}" style="border-radius: 50%;margin: 0 auto 14px; border: 2px solid #eeeeee; padding: 5px;max-width: 100%; width:50px" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										  <ul class="dropdown-menu">
-										    <li ng-switch-when="false"><a href="#/signin" data-target="#signin">Signin</a></li>
-											<li ng-switch-when="false"><a href="#/signup" data-target="#signup">Signup</a></li>
-											<li ng-switch-when="true"><a href="#/profile/{{userId}}" data-target="#profile">Profile</a></li>
-										    <li ng-switch-when="true"><a ng-click="logout()"> logOut</a></li>
-										  </ul>
-										</div>
-									</li>
+									<li ng-switch-when="false"><a href="#/signin" data-target="#signin">Signin</a></li>
+									<li ng-switch-when="false"><a href="#/signup" data-target="#signup">Signup</a></li>
+									<li><a href="#/profile/{{userId}}" data-target="#profile"><img ng-src="{{profilePicture}}" style="border-radius: 50%;margin: 0 auto 14px; border: 2px solid #eeeeee; padding: 5px;max-width: 100%; width:50px" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a></li>
+									<li><a ng-click="logout()"> logOut</a></li>
 	                            </ul>
-										<!-- <img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" style="border-radius: 50%;margin: 0 auto 14px; border: 2px solid #eeeeee; padding: 5px;max-width: 100%; width:50px" "> -->
-									
 	                        </div>                         
 	                    </div>
 	                </div>
 	            </div>
 	        </div>
-	    </div> <!-- End header area -->
+	    </div>  --><!-- End header area -->
+
+	    <header id="header" ng-controller="HeaderController">
+		    <nav class="navbar navbar-inverse" role="banner" style="background-color: #EEEEEE;border-color:#EEEEEE;
+		    border-radius: 0px;    margin-bottom: 0px; ">
+		        <div class="container">
+		            <div class="navbar-header">
+		                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		                    <span class="sr-only">Toggle navigation</span>
+		                    <span class="icon-bar"></span>
+		                    <span class="icon-bar"></span>
+		                    <span class="icon-bar"></span>
+		                </button>
+
+		                <a class="navbar-brand" href="#/home" style="padding: 8px 15px;">
+		                    <h2 style="color:rgb(155, 89, 182)">TeamUp</h2>
+		                </a>
+
+		            </div>
+		            <div class="collapse navbar-collapse">
+		                <ul class="nav navbar-nav navbar-right my-account" style="margin-left:10px;" ng-switch on="loggedIN">
+		                    <li ng-switch-when="false" ng-class="getClass('/signin')"><a href="#/signin">SignIn</a></li>
+		                    <li ng-switch-when="false" ng-class="getClass('/signup')" class="signup"><a href="#/signup">SignUp</a></li>
+		                    <li ng-switch-when="true" style="padding: 0"><a href="#/profile/{{userId}}" style="margin: 0;padding: 0;padding-right: 0px;padding-left: 10px;"><img ng-src="{{profilePicture}}" style=" max-width: 100%; width:50px ; padding:0;border-radius: 50%;" class="btn btn-default" aria-haspopup="true" aria-expanded="false"></a></li>
+		                    <li ng-switch-when="true"><a ng-click="logout()"> logOut</a></li>
+						</ul>
+		                <ul id="menu-top-menu" class="menu nav navbar-nav navbar-right">
+		                	<li id="menu-item-800" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-12 current_page_item menu-item-800 "
+		                	ng-class="getClass('/home')"
+		                	>
+		                		<a title="Home" href="#/home">Home</a>
+		                	</li>
+							<li id="menu-item-47515" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-47515" ng-class="getClass('/createGame')">
+								<a title="Themes" href="#/createGame">New Game</a>
+							</li>
+							
+						</ul>
+		            </div>
+		        </div>
+		    </nav>
+		</header>
 	    
 
 
@@ -112,23 +141,6 @@
 	    <!-- Bootstrap JS form CDN -->
 	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	    
-	    <!-- jQuery sticky menu -->
-	    <script src="js/jquery.sticky.js"></script>
-	    
-	    <!-- jQuery Isotope -->
-	    <script src="js/isotope.pkgd.min.js"></script>
-	    
-	    <!-- jQuery Parallax -->
-	    <script src="js/jquery.scrolly.js"></script>
-	    
-	    <!-- jQuery lightbox -->
-	    <script src="js/lightbox.min.js"></script>
-	    
-	    <!-- jQuery easing -->
-	    <script src="js/jquery.easing.1.3.min.js"></script>
-	    
-	    <!-- Main Script -->
-	    <script src="js/main.js"></script>
 
 
 	    <script src="js/InitializePubNub.js"></script>
