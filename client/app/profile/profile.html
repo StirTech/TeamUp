@@ -29,7 +29,7 @@
 			    <h3 class="panel-title">Last Game <span style="float:right;">{{lastGame.date| date:yyyy:MM:dd}}</span></h3> 
 			  </div>
 			  <div class="panel-body">
-			    {{lastGame.name}}
+			    <a href="#/game/{{lastGame._id}}">{{lastGame.name}}</a>
 			  </div>
 			</div>
 		</div>
@@ -39,7 +39,7 @@
 			    <h3 class="panel-title">Next Game <span style="float:right;">{{countdown}}</span></h3> 
 			  </div>
 			  <div class="panel-body">
-			    {{nextGame.name}}
+			    <a href="#/game/{{nextGame._id}}">{{nextGame.name}}</a>
 			  </div>
 			</div>
 		</div>
@@ -119,8 +119,8 @@
 		  <div class="tab-pane fade" id="past">
 	          <div class="row" ng-repeat="game in games | filter: pastGames | orderBy:'-date'" class="games" style="margin: 2%">
 	          	<div class="col-xs-6 col-md-4">
-	          		<img class="gamePic" ng-src={{game.picture}} style="height: 125px; width: auto; margin: 0 auto; display: block;">
-	          		<div style="text-align: center;">{{game.type}}</div>
+	          		<a href="#/game/{{game._id}}"><img class="gamePic" ng-src={{game.picture}} style="height: 125px; width: auto; margin: 0 auto; display: block;">
+	          		<div style="text-align: center;">{{game.type}}</div></a>
 	          	</div>
 	          	<div class="col-xs-12 col-md-8">
 	          		<div class="row">
@@ -151,8 +151,8 @@
 		  <div class="tab-pane fade" id="current">
 		    <div class="row" ng-repeat="game in games | filter: currentGames | orderBy:'date'" class="games" style="margin: 2%">
 	          	<div class="col-xs-6 col-md-4">
-	          		<img class="gamePic" ng-src={{game.picture}} style="height: 125px; width: auto; margin: 0 auto; display: block;">
-	          		<div style="text-align: center;">{{game.type}}</div>
+	          		<a href="#/game/{{game._id}}"><img class="gamePic" ng-src={{game.picture}} style="height: 125px; width: auto; margin: 0 auto; display: block;">
+	          		<div style="text-align: center;">{{game.type}}</div></a>
 	          	</div>
 	          	<div class="col-xs-12 col-md-8">
 	          		<div class="row">
