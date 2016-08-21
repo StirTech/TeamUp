@@ -17,6 +17,11 @@ angular.module('TeamUp', [
 .controller('HeaderController',function ($scope, $window, $location, UserAuth, User) {
   $scope.userId=$window.localStorage.userId;
   $scope.profilePicture="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg";
+  $scope.active="";
+  $scope.getClass = function (path) {
+  return ($location.path().substr(0, path.length) === path) ? 'active' : '';
+}
+
   if($window.localStorage.isLogin){ 
     $scope.loggedIN=true;
     User.getUser($window.localStorage.userId)
@@ -32,7 +37,7 @@ angular.module('TeamUp', [
     $scope.loggedIN=false;
     $window.localStorage.clear();
     $window.localStorage.loggedIN=false;
-    $location.path('/home')
+    $location.path('#/home');
   }
 })
 .config(function ($routeProvider, $httpProvider) {
