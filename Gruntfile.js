@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     concat: { 
       dist_client: {
         files: {
-          'client/dist/app.js' : ['client/app/**/*.js', 'client/app/*.js']
+          'client/dist/app.js' : ['client/app/auth/*.js', 'client/app/game/*.js', 'client/app/profile/*.js', 'client/app/services/*.js', 'client/app/*.js']
         }
       }
     },
@@ -25,22 +25,16 @@ module.exports = function(grunt) {
       }
     },
 
-    uglify: {
+    uglify: { 
+      options: {
+            mangle: false
+          },
       target: {
         files: {
-          'client/dist/app.min.js' : ['client/dist/app.js']
+         'client/dist/app.min.js' : ['client/dist/app.js']
         }
       }
     },
-
-    // eslint: {
-    //   files: {
-    //         options: {
-    //             useEslintrc: false
-    //         },
-    //       src: ['public/dist/*.js']
-    //   }
-    // },  
 
     cssmin: {
       target: {
@@ -136,6 +130,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('karma', ['karma']);
 
-  grunt.registerTask('deploy', ['concat', 'uglify', 'cssmin']);
+  grunt.registerTask('default', ['concat', 'uglify', 'cssmin']);
 
 };
