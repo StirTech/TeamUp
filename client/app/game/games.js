@@ -84,7 +84,7 @@ angular.module('TeamUp.games',[])
 	$scope.nextWeek.setDate($scope.nextWeek.getDate() + 14);
 
 	$scope.gamesToday = function(game){
-		return Date.parse(game.date) < Date.parse($scope.today) && Date.parse(game.date) > Date.now()
+		return Date.parse(game.date) < Date.parse($scope.today) && Date.parse(game.date) >= Date.now()
 	}
 
 	$scope.gamesTomorrow = function(game){
