@@ -6,7 +6,7 @@ module.exports = {
 	getAll : function(req, res, next){
 		Category.find().exec(function (err,allCategories) {
 			if(err)
-				res.status(500).send('err');
+				res.status(500).send(err);
 			else
 				res.status(200).send(allCategories);
 		});
@@ -15,7 +15,7 @@ module.exports = {
 	getCategory : function(req, res, next){
 		Category.findOne({ _id : req.params.id }).exec(function (err, category){
 			if(err)
-				res.status(500).send('err');
+				res.status(500).send(err);
 			else
 				res.status(200).send(category);
 		})
@@ -69,5 +69,24 @@ module.exports = {
 				console.log(err)
 			}
 		})
+	},
+
+	getGamesByCategory : function(req, res, next){
+		Game.find({ category : req.params.id }).exec(function (err, games) {
+			if(err)
+				res.status(500).send(err);
+			else
+				res.status(200).send(games);
+		});
+	},
+
+	getGamesByType : function(req, res, next){
+		Game.find({ type : req.params.type }).exec(function (err, games) {
+			if(err)
+				res.status(500).send(err);
+			else
+				res.status(200).send(games);
+		});	
 	}
+
 }
