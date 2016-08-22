@@ -26,6 +26,8 @@ angular.module('TeamUp.games',[])
 				if($scope.data.types.indexOf(games[i].type)===-1)
 					$scope.data.types.push(games[i].type);
 			}
+		}).then(function(){
+			$scope.locate();
 		})
 		.catch(function (err) {
 			console.log(err);
@@ -119,14 +121,14 @@ angular.module('TeamUp.games',[])
         	enableHighAccuracy: true
     	};
         navigator.geolocation.getCurrentPosition(function(pos) {
-            $scope.position = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);               
+            $scope.position = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+           	$scope.position = JSON.stringify($scope.position)  
+           	$scope.position = JSON.parse($scope.position)  
         }, 
         function(error) {                    
             alert('Unable to get location: ' + error.message);
         }, options);        
     }
-
-    $scope.locate();
 
     $scope.calculateDistance = function(gameloc){
     	
@@ -151,32 +153,34 @@ angular.module('TeamUp.games',[])
 		return getDistanceFromLatLonInKm($scope.position.lat, $scope.position.lng, gameloc.lat, gameloc.lng)
     }
 
+    $scope.distance = 'Any Distance';
+
     $scope.distances = {
-    	'2' : distance2km = function(game) {
+    	'2 km' : distance2km = function(game) {
 		    	return $scope.calculateDistance(game.locationID) <= 2
 		    },
-		'5' : distance5km = function(game) {
-		    	return 2 < $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 5
+		'5 km' : distance5km = function(game) {
+		    	return $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 5
 		    },
-		'10': distance10km = function(game) {
-		    	return 5 < $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 10
+		'10 km': distance10km = function(game) {
+		    	return $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 10
 		    },
-		'25': distance25km = function(game) {
-		    	return 10 < $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 25
+		'25 km': distance25km = function(game) {
+		    	return $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 25
 		    },
-		'50' : distance50km = function(game) {
-		    	return 25 < $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 50
+		'50 km' : distance50km = function(game) {
+		    	return $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 50
 		    },
-		'100' : distance100km = function(game) {
-		    	return 50 < $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 100
+		'100 km' : distance100km = function(game) {
+		    	return $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 100
 		    },
-		'any' : anyDistance = function(game){
+		'Any Distance' : anyDistance = function(game){
 		    	return true
 		    }
     }
 
-    $scope.chooseDistance = function(choice, game){
-    	return $scope[choice](game)
+    $scope.filterDistance = function(game){
+    	return $scope.distances[$scope.distance](game)
     }
 
 });

@@ -39,7 +39,23 @@
                     <span class="input-group-btn">
                     <button class="btn btn-secondary btn-info search-box" type="button" ng-click="search(searchStr)"><span class="glyphicon glyphicon-search"></span></button>
                     </span>
+                    
                 </div>
+            </div>
+            <div class="btn-group" class="col-lg-4 col-md-offset-4">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{distance}} <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href ng-click="distance = '2 km'">2 Km</a></li>
+                <li><a href ng-click="distance = '5 km'">5 Km</a></li>
+                <li><a href ng-click="distance = '10 km'">10 Km</a></li>
+                <li><a href ng-click="distance = '25 km'">25 Km</a></li>
+                <li><a href ng-click="distance = '50 km'">50 Km</a></li>
+                <li><a href ng-click="distance = '100 km'">100 Km</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href ng-click="distance = 'Any Distance'">Any Distance</a></li>
+              </ul>
             </div>
     </nav>
     <div class="container" >
@@ -49,7 +65,7 @@
             <md-content>
             <md-tabs md-dynamic-height md-border-bottom>
             <md-tab label="Today">
-            <md-card class="col-md-3"  ng-repeat="game in data.games | filter: gamesToday" style="margin : 10px 0px 10px 0px;">
+            <md-card class="col-md-3"  ng-repeat="game in data.games | filter: gamesToday | filter: filterDistance" style="margin : 10px 0px 10px 0px;">
                 <div style="height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a>
                 </div>
               <md-card-title>
@@ -91,7 +107,7 @@
                 </md-card>
                 </md-tab>
                 <md-tab label="Tomorrow">
-                <md-card class="col-md-3"  ng-repeat="game in data.games | filter: gamesTomorrow" style="margin : 10px 0px 10px 0px;">
+                <md-card class="col-md-3"  ng-repeat="game in data.games | filter: gamesTomorrow | filter: filterDistance" style="margin : 10px 0px 10px 0px;">
                 <div style="    height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a></div>
                   <md-card-title>
                 <md-card-title-text>
@@ -132,7 +148,7 @@
             </md-card>
             </md-tab>
             <md-tab label="This Week">
-                <md-card class="col-md-3"  ng-repeat="game in data.games | filter: gamesThisWeek" style="margin : 10px 0px 10px 0px;">
+                <md-card class="col-md-3"  ng-repeat="game in data.games | filter: gamesThisWeek | filter: filterDistance" style="margin : 10px 0px 10px 0px;">
                 <div style="    height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a></div>
                   <md-card-title>
                 <md-card-title-text>
@@ -173,7 +189,7 @@
             </md-card>
             </md-tab>
             <md-tab label="Next Week">
-                <md-card class="col-md-3"  ng-repeat="game in data.games | filter: gamesNextWeek" style="margin : 10px 0px 10px 0px;">
+                <md-card class="col-md-3"  ng-repeat="game in data.games | filter: gamesNextWeek | filter: filterDistance" style="margin : 10px 0px 10px 0px;">
                 <div style="    height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a></div>
                   <md-card-title>
                 <md-card-title-text>
@@ -214,7 +230,7 @@
             </md-card>
             </md-tab>
             <md-tab label="More">
-                <md-card class="col-md-3"  ng-repeat="game in data.games | filter: moreGames" style="margin : 10px 0px 10px 0px;">
+                <md-card class="col-md-3"  ng-repeat="game in data.games | filter: moreGames | filter: filterDistance" style="margin : 10px 0px 10px 0px;">
                 <div style="    height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a></div>
                   <md-card-title>
                 <md-card-title-text>
