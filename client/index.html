@@ -56,6 +56,14 @@
 		                    <li ng-switch-when="false" ng-class="getClass('/signin')"><a href="#/signin">SignIn</a></li>
 		                    <li ng-switch-when="false" ng-class="getClass('/signup')" class="signup"><a href="#/signup">SignUp</a></li>
 		                    <li ng-switch-when="true" style="padding: 0"><a href="#/profile/{{userId}}" style="margin: 0;padding: 0;padding-right: 0px;padding-left: 10px;"><img ng-src="{{profilePicture}}" style=" max-width: 100%; width:50px ; padding:0;border-radius: 50%;" class="btn btn-default" aria-haspopup="true" aria-expanded="false"></a></li>
+		                    <li ng-switch-when="true" id="menu-item-802" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-802 dropdown" ><i class="material-icons " data-toggle="dropdown" aria-haspopup="true" style="padding-top: 7px;padding-left: 10px;font-size: 35px;">blur_on</i>
+
+								<ul role="menu" class=" dropdown-menu">
+									<li ng-repeat="notification in notifications | orderBy:'-date' |  limitTo : 10" id="menu-item-47600" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-47600"><a title="" href='#/game/{{notification.game}}'>{{notification.text}}</a></li>
+								</ul>
+							</li>
+
+
 		                    <li ng-switch-when="true"><a ng-click="logout()"> logOut</a></li>
 						</ul>
 		                <ul id="menu-top-menu" class="menu nav navbar-nav navbar-right">
@@ -79,7 +87,18 @@
 	    <script src="/lib/angular-animate/angular-animate.js"></script>
 	    <script src="/lib/angular-material/angular-material.js"></script>
 	    <script src="/lib/angular-messages/angular-messages.js"></script>
-	    <script src="lib/angular-route/angular-route.js"></script>
+	    <script src="/lib/angular-route/angular-route.js"></script>
+
+<!-- 	    <script src="/app/auth/auth.js"></script>
+	    <script src="/app/category/category.js"></script>
+	    <script src="/app/find/find.js"></script>
+	    <script src="/app/game/game.js"></script>
+	    <script src="/app/game/createGame.js"></script>
+	    <script src="/app/game/editGame.js"></script>
+	    <script src="/app/game/games.js"></script>
+	    <script src="/app/profile/profile.js"></script>
+	    <script src="/app/services/services.js"></script>
+	    <script src="/app/app.js"></script> -->
 	    <script src="../dist/app.min.js"></script>
 
 	    <!-- PubNub JavaScript SDK -->

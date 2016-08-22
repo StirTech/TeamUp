@@ -12,7 +12,7 @@
   "scripts": {
     "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
     "test": "node_modules/.bin/_mocha server/spec/*.js && karma start",
-    "postinstall": "npm install -g bower; bower install && grunt",
+    "postinstall": "npm install -g bower; bower install && npm install -g grunt-cli && grunt",
     "coverage": "istanbul cover -x '*Spec.js' %APPDATA%/npm/node_modules/mocha/bin/_mocha -- -R spec ./server/spec/**/*.js"
   },
   "pre-commit": "lint",
