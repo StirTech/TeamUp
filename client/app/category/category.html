@@ -1,10 +1,76 @@
 <div class="container">
-	<div class="col-xs-6 col-md-4">
-		<ul class="nav nav-pills nav-stacked nav-pills-stacked-example" ng-repeat="category in categories"> 
-			<li role="presentation"><a href="#">{{category.name}}</a></li>
+
+	<div class="row">
+		<div class="col-xs-6 col-md-4" ng-repeat="category in categories" style="text-align: center;">
+			<a href ng:click="selection.value = $index"> <img ng-src="{{category.picture}}" style="height: 200px; width: auto; margin: 5%" class="img-rounded"></a>
+		</div>
+	</div>
+
+	<div class="row">
+		<ul class="nav nav-tabs nav-justified">
+			<li role="presentation" class="dropdown" ng-repeat="category in categories">
+			    <a class="dropdown-toggle" data-toggle="dropdown" href role="button" aria-haspopup="true" aria-expanded="false" ng-click="getCat(category._id)">
+			      {{category.name}} <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+			      <li ng-repeat="game in category.games">
+			      	<a href ng-click="getType(game)">{{game}}</a>
+			      </li>
+			    </ul>
+			</li>	  
 		</ul>
 	</div>
-	<div class="col-xs-12 col-sm-6 col-md-8">
 
+	<div ng-cloak>
+	<md-content>
+	<md-card class="col-md-3 ng-scope" ng-repeat="game in games | filter: byCategoryOrType" style="margin: 10px 0px;">
+        <div style="height: 231px;">
+	        <a href="#/game/{{game._id}}">
+	        	<img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out">
+	        </a>
+        </div>
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline ng-binding">{{game.name}}</span>
+			</md-card-title-text>
+		</md-card-title>
+		<md-subhead>
+			<div style="font-size: 24px;"><i class="material-icons">class</i><span class="ng-binding">{{game.type}}</span></div>
+		</md-subhead>
+
+		<md-card-content>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td># of Players :</td>
+						<td class="ng-binding">{{game.numOfPlayers}}</td>
+					</tr>
+					<tr>
+						<td>Date :</td>
+						<td class="ng-binding">{{game.date| date :yyyy:MM:dd}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-card-content>
+
+		<md-card-actions layout="row" layout-align="end center" class="layout-align-end-center layout-row">
+			<md-button class="md-icon-button md-button md-ink-ripple" type="button" ng-transclude="" aria-label="likes" style="font-size:1em; text-transform:none;color:#9b59b6;padding:0;">
+				<span class="ng-binding ng-scope">{{game.likes.length}} likes</span>
+			</md-button>
+
+			<md-button class="md-icon-button" ng-if="isLogIn" aria-label="Favorite" >
+                <md-tooltip>like</md-tooltip>
+                <i class="material-icons {{game.loved}}" id={{game._id}} ng-click="getLove($event)">favorite</i>
+            </md-button>
+                
+            <md-button class="md-icon-button" aria-label="Share">
+                <md-tooltip>share on facebook</md-tooltip>
+                <i class="material-icons red" id={{game._id}} ng-click="fbshare($event)">share</i>
+            </md-button>
+
+		</md-card-actions>
+    </md-card>
+    </md-content>
 	</div>
+
 </div>
