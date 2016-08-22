@@ -160,8 +160,6 @@ angular.module('TeamUp.auth', [])
         .catch(function (err) {
             $scope.msgB = true;
             $scope.msg = "User already exists"
-            console.log($scope.msg);
-            console.log($scope.msgB)
         })
     }
 
