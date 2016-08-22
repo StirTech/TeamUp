@@ -160,19 +160,19 @@ angular.module('TeamUp.games',[])
 		    	return $scope.calculateDistance(game.locationID) <= 2
 		    },
 		'5 km' : distance5km = function(game) {
-		    	return $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 5
+		    	return $scope.calculateDistance(game.locationID) <= 5
 		    },
 		'10 km': distance10km = function(game) {
-		    	return $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 10
+		    	return $scope.calculateDistance(game.locationID) <= 10
 		    },
 		'25 km': distance25km = function(game) {
-		    	return $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 25
+		    	return $scope.calculateDistance(game.locationID) <= 25
 		    },
 		'50 km' : distance50km = function(game) {
-		    	return $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 50
+		    	return $scope.calculateDistance(game.locationID) <= 50
 		    },
 		'100 km' : distance100km = function(game) {
-		    	return $scope.calculateDistance(game.locationID) && $scope.calculateDistance(game.locationID) <= 100
+		    	return $scope.calculateDistance(game.locationID) <= 100
 		    },
 		'Any Distance' : anyDistance = function(game){
 		    	return true
