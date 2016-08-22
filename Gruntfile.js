@@ -108,7 +108,7 @@ module.exports = function(grunt) {
   ]);
 
   //grunt.registerTask('heroku:development', 'cssmin');
-  grunt.registerTask('heroku:production', ['concat', 'uglify', 'cssmin']);
+  //grunt.registerTask('heroku:production', ['concat', 'uglify', 'cssmin']);
 
   grunt.registerTask('build', [
   ]);
