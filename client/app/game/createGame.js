@@ -58,7 +58,6 @@ angular.module('TeamUp.createGame',[])
             $scope.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
         });
     };
-    //$scope.$watch('google', function(google){ $scope.map = NgMap.initMap('map'); });
 	
 		NgMap.getMap().then(function(map) {//creat a map  
 	      $scope.map = map;
