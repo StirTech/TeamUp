@@ -16,24 +16,40 @@ angular.module('TeamUp', [
 ])
 
 
-.controller('HeaderController',function ($scope, $window, $location, UserAuth, User) {
+.controller('HeaderController',function ($scope, $window, $location, UserAuth, User, Notification) {
   $scope.userId=$window.localStorage.userId;
   $scope.profilePicture="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg";
-  $scope.active="";
-  $scope.getClass = function (path) {
-  return ($location.path().substr(0, path.length) === path) ? 'active' : '';
-}
+  $scope.notifications=[];
+  
 
   if($window.localStorage.isLogin){ 
     $scope.loggedIN=true;
     User.getUser($window.localStorage.userId)
     .then(function (user) {
       $scope.profilePicture=user.picture;
+      for (var i = 0; i < user.games.length; i++) {
+        Notification.getNotification(user.games[i])
+        .then(function (notification) {
+          for (var i = 0; i < notification.data.length; i++) {
+            if(notification.data[i].from !== $window.localStorage.userId)
+              $scope.notifications.push(notification.data[i]);
+          }
+        })
+        .catch(function (err) {
+          console.log(err)
+        })
+
+      }
     })
 
-  }else
+  }
+  else
     $scope.loggedIN=false;
 
+  $scope.getClass = function (path) {
+    return ($location.path().substr(0, path.length) === path) ? 'active' : '';
+  }
+  
   $scope.logout = function () {
     $scope.profilePicture="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg";
     $scope.loggedIN=false;
