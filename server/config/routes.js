@@ -56,6 +56,8 @@ module.exports = function(app, express) {
 	app.put('/api/category/:id/edit', category.editCategory);
 	app.delete('/api/category/:id/delete', category.deleteCategory);
 
+	app.get('/api/category/:id/games', category.getGamesByCategory)
+
 	//upload an image
 	app.post('/api/upload', utils.uploadImg);
 
