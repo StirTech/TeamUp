@@ -1,11 +1,13 @@
 angular.module('TeamUp.games',[])
 .controller('gamesController',function($scope, $location, Game, User, $window,Like,facebook,$routeParams){
+	
 	$scope.data={};
 	$scope.type='';
 	$scope.needPlayer=0;
 	$scope.loved="red";
 	$scope.isLogIn=false;
 	$scope.filterDate;
+
 	$scope.initaize = function () {
 		if($window.localStorage.userId)
 			$scope.isLogIn=true;
@@ -29,15 +31,18 @@ angular.module('TeamUp.games',[])
 			console.log(err);
 		});
 	};
+
 	$scope.viewGame = function (gameId) {
 		$location.path('/game/'+gameId);
 	}
+
 	$scope.showType = function ($event) {
 		if($event.target.id==="All")
 			$scope.type='';
 		else
 			$scope.type=$event.target.id;
 	}
+
 	$scope.getLove = function (event) {
 		for (var i = 0; i < $scope.data.games.length; i++) {
 			if($scope.data.games[i]._id===event.target.id){
@@ -109,6 +114,19 @@ angular.module('TeamUp.games',[])
 		$window.localStorage.query = str;
 		$location.path('/find');	
 	}	
+
+    $scope.locate = function(){
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            $scope.position = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+            console.log(JSON.stringify($scope.position));                  
+        }, 
+        function(error) {                    
+            alert('Unable to get location: ' + error.message);
+        }, options);        
+    }
+
+    $scope.locate();
+    
 });
 
 
