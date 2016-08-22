@@ -21,7 +21,6 @@ angular.module('TeamUp.category',[])
 	}
 
 	$scope.byCategoryOrType = function(game){
-		console.log($scope.type.filter, $scope.cat.filter)
 		if($scope.type.filter){
 			return game.type === $scope.type.value
 		} else if ($scope.cat.filter){
