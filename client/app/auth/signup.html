@@ -21,30 +21,6 @@
                 <div class="u-form-group">
                     <input type="email" ng-model="user.email" placeholder="Email" data-container="body" data-toggle="popover" data-placement="left" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."/>
                 </div>
-                <div class="col-md-4" class="u-form-group" >
-                	<div class="image-cropper"><img class="img-circle" src="{{picture}}" ngf-select 
-                                    ng-model="file" 
-                                    name="file" 
-                                    ngf-pattern="'image/*'"
-                                    accept="image/*" 
-                                    ngf-max-size="1MB" 
-                                    ng-change="submit()"></div>
-                    <div class="col-md-6">
-                                    <input 
-                                    type="file" 
-                                    ngf-select 
-                                    ng-model="file" 
-                                    name="file" 
-                                    ngf-pattern="'image/*'"
-                                    accept="image/*" 
-                                    ngf-max-size="1MB" 
-                                    ng-change="submit()"
-                                    />
-                                    <p ng-show="file.$error.maxSize">File too large 
-                                    {{file.size / 1000000|number:1}}MB: max 20M</p>
-                                    <p>{{progress}}</p>
-                    </div>
-                </div>
                 <div class="u-form-group">
                     <button ng-click="signup(user)" type="submit">Sign Up</button>
                 </div>
@@ -64,7 +40,16 @@
                     <div ng-if="msgB" style="margin-left:50%;font-size:30px;">user already exiset</div>
                 </div>
             </form>
-            </div>
+        </div>
+        <div class="image-cropper col-md-4" >
+            <img class="img-circle" src="{{picture}}" ngf-select 
+                ng-model="file" 
+                name="file" 
+                ngf-pattern="'image/*'"
+                accept="image/*" 
+                ngf-max-size="1MB" 
+                ng-change="submit()">
+        </div>
     </div>
 </div>
 
