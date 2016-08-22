@@ -150,6 +150,7 @@ angular.module('TeamUp.auth', [])
 
 
     $scope.signup = function (newUser) {
+        $scope.msgB = false;
         UserAuth.addNewUser(newUser)
         .then(function (user) {
             $scope.signin({
@@ -157,7 +158,8 @@ angular.module('TeamUp.auth', [])
                             password:newUser.password});
         })
         .catch(function (err) {
-            console.log(err);
+            $scope.msgB = true;
+            $scope.msg = "User already exists"
         })
     }
 

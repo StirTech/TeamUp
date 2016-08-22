@@ -73,12 +73,34 @@ angular.module('TeamUp.games',[])
 		}
 	};
 
-	$scope.pastGames = function(game){
-		return Date.parse(game.date) < Date.now()
+	$scope.today = new Date()
+	$scope.tomorrow = new Date()
+	$scope.thisWeek = new Date()
+	$scope.nextWeek = new Date()
+
+	$scope.today.setDate($scope.today.getDate() + 1);
+	$scope.tomorrow.setDate($scope.tomorrow.getDate() + 2);
+	$scope.thisWeek.setDate($scope.thisWeek.getDate() + 7);
+	$scope.nextWeek.setDate($scope.nextWeek.getDate() + 14);
+
+	$scope.gamesToday = function(game){
+		return Date.parse(game.date) < Date.parse($scope.today)
 	}
 
-	$scope.currentGames = function(game){
-		return Date.parse(game.date) > Date.now()
+	$scope.gamesTomorrow = function(game){
+		return Date.parse(game.date) > Date.parse($scope.today) && Date.parse(game.date) < Date.parse($scope.tomorrow)
+	}
+
+	$scope.gamesThisWeek = function(game){
+		return Date.parse(game.date) > Date.parse($scope.tomorrow) && Date.parse(game.date) < Date.parse($scope.thisWeek)
+	}
+
+	$scope.gamesNextWeek = function(game){
+		return Date.parse(game.date) > Date.parse($scope.thisWeek) && Date.parse(game.date) < Date.parse($scope.nextWeek)
+	}
+
+	$scope.moreGames = function(game){
+		return Date.parse(game.date) > Date.parse($scope.nextWeek)
 	}
 
 	$scope.initaize();
