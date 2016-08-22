@@ -4,17 +4,17 @@ angular.module('TeamUp.createGame',[])
 	var newGame = {};
 	$scope.categories = [];
 	$scope.selectedCategory={};
-	$scope.removePin();
 
 	// redirct to sinin page if the user didn't login yet
 	if($window.localStorage.userId===undefined){
 		$location.path('signin');
 	}
-	if($window.marker!==undefined){
-		$window.marker=undefined
+
+	$scope.initialize = function(){
+		$scope.removePin();
+		$scope.getCategories();
 	}
-	$route.reload();
-	$window.location.reload(true)
+
 	$scope.getCategories = function () {
 		Category.getAll()
 		.then(function (categories) {
@@ -23,9 +23,7 @@ angular.module('TeamUp.createGame',[])
 		.catch(function (err) {
 			console.log(err);
 		})
-	};
-
-	$scope.getCategories();
+	};	
 
 	$scope.update =function () {
 		for (var i = 0; i < $scope.categories.length; i++) {
@@ -59,11 +57,6 @@ angular.module('TeamUp.createGame',[])
         });
     };
 	
-		NgMap.getMap().then(function(map) {//creat a map  
-	      $scope.map = map;
-	      console.log(map)
-	    });
-
 	$scope.removePin = function () {
 		if ($window.marker) {
     		$window.marker.setMap(null);
@@ -140,4 +133,5 @@ angular.module('TeamUp.createGame',[])
 			console.log(err);
 		})
 	}
+	$scope.initialize()
 });

@@ -847,3 +847,8 @@ HTMLJSCSS
 .search-bar{
     padding: 2em;
 }
+#map {
+    width: 100%;
+    height: 20em;
+}
+
