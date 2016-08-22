@@ -47,17 +47,18 @@ angular.module('TeamUp.find',[])
         console.log($scope.result)              
     }
     $scope.initialize();
-    $scope.tab=1;
-    $scope.filtText="games";
+    var options = {
+        enableHighAccuracy: true
+    };
+    $scope.locate = function(){
+        navigator.geolocation.getCurrentPosition(function(pos) {
+            $scope.position = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+            console.log(JSON.stringify($scope.position));                  
+        }, 
+        function(error) {                    
+            alert('Unable to get location: ' + error.message);
+        }, options);        
+    }
+    $scope.locate();
 
-    $scope.select=function(setTab){
-        $scope.tab=setTab;
-        if(setTab===1)
-           $scope.filtText="games"
-        if(setTab===2)
-           $scope.filtText="users"
-    }
-    $scope.isSelected=function(check){
-        return ($scope.tab===check);
-    }
 })
