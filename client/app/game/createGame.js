@@ -56,12 +56,14 @@ angular.module('TeamUp.createGame',[])
             $scope.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
         });
     };
+
+
+
+	NgMap.getMap().then(function(map) {//creat a map  
+      $scope.map = map;
+    });
+
 	
-	$scope.removePin = function () {
-		if ($window.marker) {
-    		$window.marker.setMap(null);
-    	}
-	}
 	
     $scope.placeMarker = function(e) {// place a red marker on the map and get the game location from the marker position
     	if ($window.marker) {
