@@ -45,7 +45,6 @@ angular.module('TeamUp.games',[])
 					$scope.data.games[i].loved='red';
 					Like.likeGame($scope.data.games[i]._id,$window.localStorage.userId)
 					.then(function (res) {
-						console.log('like');
 						$scope.initaize();
 					})
 					.catch (function (err) {
@@ -56,7 +55,6 @@ angular.module('TeamUp.games',[])
 					$scope.data.games[i].loved='black';
 					Like.dislike($scope.data.games[i]._id,$window.localStorage.userId)
 					.then(function (res) {
-						console.log('dislik');
 						$scope.initaize();
 					})
 					.catch (function (err) {

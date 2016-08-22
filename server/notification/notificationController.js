@@ -44,6 +44,7 @@ module.exports ={
 
 
 	isRead: function (req, res) {
+		console.log(req.body.from)
 		var userID = req.body.from
 		Notification.findOne({game : req.params.id}, function (err, notification) {
 			if(Notification){

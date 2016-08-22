@@ -8,12 +8,9 @@ angular.module('TeamUp.editGame',[])
 	$scope.initialize = function () {
 		Game.getOne($routeParams.id)
 		.then(function (game) {
-			console.log(game);
 			$scope.game=game;
-
 			Category.getAll()
 			.then(function (categories) {
-				console.log(categories);
 				$scope.categories=categories;
 				for (var i = 0; i < $scope.categories.length; i++) {
 					if(game.category===$scope.categories[i]._id){
@@ -40,10 +37,6 @@ angular.module('TeamUp.editGame',[])
 			}
 		}
 	}
-
-	
-
-
 
 	$scope.editGame = function () {
 		Game.editOne($routeParams.id,$scope.game)

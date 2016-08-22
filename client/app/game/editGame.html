@@ -36,16 +36,7 @@
                                 
                             </div>
                             <div class="col-md-6">
-                                <p><label for="name">Country</label><input ng-model="game.country" placeholder="Type game country" type="text"  size="30" value="" required/></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p><label for="name">City</label><input ng-model="game.city" placeholder="Type game city" type="text"  size="30" value="" required/></p>
-                            </div>
-                            <div class="col-md-6">
                                 <p><label for="name">Number of Players</label><input ng-model="game.numOfPlayers" type="number" name="name"  min="2" max="99" value="" required/></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p><label for="name">Date</label><input ng-model="game.date | date : yyyy-MM-dd" value="{{game.date | date : yyyy-MM-dd}}" type="date" size="30" value="" required/></p>
                             </div>
                             <div class="col-md-6">
                                 <p><label for="name">Image URL</label><input ng-model="game.picture"  placeholder="Type game img URL" type="text"/></p>
@@ -57,10 +48,11 @@
                                 </ng-map>
                             </div>
 
-
-                            <div class="col-md-12">
-                                <input id="submit" type="submit" name="submit" value="Edit" ng-click="editGame()">Edit Game
-                                </input>
+                            <div class="row" style="margin-top:10px">
+                                <div class="col-md-12">
+                                    <input id="submit" type="submit" name="submit" value="Edit" ng-click="editGame()">
+                                    </input>
+                                </div>
                             </div>
                     </form>	
                 </div>                     
