@@ -73,14 +73,6 @@ angular.module('TeamUp.games',[])
 		}
 	};
 
-	// $scope.pastGames = function(game){
-	// 	return Date.parse(game.date) < Date.now()
-	// }
-
-	// $scope.currentGames = function(game){
-	// 	return Date.parse(game.date) > Date.now()
-	// }
-
 	$scope.today = new Date()
 	$scope.tomorrow = new Date()
 	$scope.thisWeek = new Date()
