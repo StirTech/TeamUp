@@ -855,3 +855,21 @@ HTMLJSCSS
     height: 20em;
 }
 
+.image-cropper {
+    width: 30em;
+    height: 30em;
+    position: relative;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    margin: 0 auto 14px; border: 2px solid #eeeeee; padding: 5px;max-width: 80%;
+}
+.img-circle {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;   
+}
