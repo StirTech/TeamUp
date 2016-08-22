@@ -6,7 +6,7 @@ module.exports = {
 	getAll : function(req, res, next){
 		Category.find().exec(function (err,allCategories) {
 			if(err)
-				res.status(500).send('err');
+				res.status(500).send(err);
 			else
 				res.status(200).send(allCategories);
 		});
@@ -15,7 +15,7 @@ module.exports = {
 	getCategory : function(req, res, next){
 		Category.findOne({ _id : req.params.id }).exec(function (err, category){
 			if(err)
-				res.status(500).send('err');
+				res.status(500).send(err);
 			else
 				res.status(200).send(category);
 		})
@@ -39,7 +39,7 @@ module.exports = {
 	},
 
 	editCategory : function(req, res, next){
-		Category.findOne({_id: req.params.id}, function(err, category){
+		Category.findOne({ _id: req.params.id }, function(err, category){
 	      if(err){
 	        res.status(500).send(err);
 	      } else if (!category){
@@ -70,4 +70,5 @@ module.exports = {
 			}
 		})
 	}
+
 }
