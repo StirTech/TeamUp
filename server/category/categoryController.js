@@ -69,24 +69,6 @@ module.exports = {
 				console.log(err)
 			}
 		})
-	},
-
-	getGamesByCategory : function(req, res, next){
-		Game.find({ category : req.params.id }).exec(function (err, games) {
-			if(err)
-				res.status(500).send(err);
-			else
-				res.status(200).send(games);
-		});
-	},
-
-	getGamesByType : function(req, res, next){
-		Game.find({ type : req.params.type }).exec(function (err, games) {
-			if(err)
-				res.status(500).send(err);
-			else
-				res.status(200).send(games);
-		});	
 	}
 
 }
