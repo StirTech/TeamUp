@@ -39,7 +39,7 @@ module.exports = {
 	},
 
 	editCategory : function(req, res, next){
-		Category.findOne({_id: req.params.id}, function(err, category){
+		Category.findOne({ _id: req.params.id }, function(err, category){
 	      if(err){
 	        res.status(500).send(err);
 	      } else if (!category){
