@@ -20,6 +20,26 @@ angular.module('TeamUp.category',[])
 		})
 	}
 
+	$scope.byCategoryOrType = function(game){
+		console.log($scope.type.filter, $scope.cat.filter)
+		if($scope.type.filter){
+			return game.type === $scope.type.value
+		} else if ($scope.cat.filter){
+			return game.category === $scope.cat.value
+		}
+	}
+
+	$scope.getCat = function(categoryId){
+		$scope.type.filter = false
+		$scope.cat.value = categoryId
+		$scope.cat.filter = true
+	}
+
+	$scope.getType = function(type){
+		$scope.cat.filter = false
+		$scope.type.value = type
+		$scope.type.filter = true
+	}
 
 	$scope.getGames = function(){
 		Game.getAll()
