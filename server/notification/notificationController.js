@@ -20,25 +20,11 @@ module.exports ={
 		})
 
 		newNotification.save(function (err, notification) {
-			if(notification){
-				if(this.players.length > 0){ 
-					for (var i = 0; i < this.players.length; i++) {
-						notification.to.push({playerId: players[i] , seen: false})
-					}
-					notification.save(function (err, saved) {
-						if(saved){
-							console.log("notification saved");
-						}else{
-							res.status(500).send(err);
-						}
-					});
-				}else{
-					res.status(500).send("no players ");
-				}
+			if(notification)
 				res.status(200).send(notification);
-			}else{
+			else
 				res.status(500).send(err);
-			}
+			
 		});
 	},
 
@@ -69,7 +55,7 @@ module.exports ={
 
 	getNotification : function (req, res) {
 
-		Notification.findOne({game : req.params.id}, function (err, notification) {
+		Notification.find({game : req.params.id}, function (err, notification) {
 			if(notification){
 				res.status(200).send(notification)
 			}else{

@@ -1,6 +1,6 @@
 angular.module('TeamUp.game',[])
 
-.controller('gameController',function($scope, Game, User, facebook, $routeParams, $location, $window, $interval, Category, Comment, $mdDialog){
+.controller('gameController',function($scope, Game, User, facebook, $routeParams, $location, $window, $interval, Category, Comment, $mdDialog, Notification){
 	$scope.game={};
 	$scope.owner ={};
 	$scope.category ={};
@@ -43,6 +43,13 @@ angular.module('TeamUp.game',[])
 			.catch(function (err) {
 				console.log(err)
 			})
+			User.getUser($window.localStorage.userId)
+			.then(function (user) {
+				$scope.currentUser=user;
+			})
+			.catch(function (err) {
+				console.log(err)
+			})
 			Category.getCategory(game.category)
 			.then(function (category) {
 				$scope.category=category
@@ -54,9 +61,6 @@ angular.module('TeamUp.game',[])
 			.then(function (data) {
 				$scope.comments=data.data.allComment;
 				$scope.userComments=data.data.players;
-			})
-			.catch(function (err) {
-				console.log(err)
 			})
 			if($scope.game.players.indexOf($window.localStorage.userId)!==-1){
 				$scope.joinButton="leave";
@@ -98,6 +102,18 @@ angular.module('TeamUp.game',[])
 			return;
 		}
 		if($scope.game.players.indexOf($window.localStorage.userId)===-1){
+			var newNotification = {
+				from : $window.localStorage.userId,
+				type : 'Join',
+				text : $scope.currentUser.username + " Join " + $scope.game.name
+			}
+			Notification.insertNotification($routeParams.id,newNotification)
+			.then(function (notif) {
+				console.log(notif.data)
+			})
+			.catch(function (err) {
+				console.log(err)
+			})
 			$scope.joinButton="Leave"
 			$scope.joined=true;
 			Game.insertPlayer($scope.game._id,$window.localStorage.userId)
@@ -110,6 +126,18 @@ angular.module('TeamUp.game',[])
 			})
 		}
 		else {
+			var newNotification = {
+				from : $window.localStorage.userId,
+				type : 'Leave',
+				text : $scope.currentUser.username + " Leave " + $scope.game.name
+			}
+			Notification.insertNotification($routeParams.id,newNotification)
+			.then(function (notif) {
+				console.log(notif.data)
+			})
+			.catch(function (err) {
+				console.log(err)
+			})
 			$scope.closed=false;
 			$scope.joinButton="Join";
 			$scope.joined=false;
