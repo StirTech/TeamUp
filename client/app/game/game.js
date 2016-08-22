@@ -13,6 +13,10 @@ angular.module('TeamUp.game',[])
 	$scope.comments={};
 	$scope.userComments=[];
 	$scope.commentText="";
+	$scope.joined=false;
+	$scope.editIf=false;
+
+
 
 
 
@@ -20,10 +24,18 @@ angular.module('TeamUp.game',[])
         $scope.show = !$scope.show;
     };
 
+    $scope.editGame = function () {
+    	$location.path('game/'+$scope.game._id+'/edit')
+    }
+
 	$scope.initlize = function () {
 		Game.getOne($routeParams.id)
 		.then(function (game) {
 			$scope.game=game;
+			if($scope.game.players.indexOf($window.localStorage.userId)>-1)
+				$scope.joined=true;
+			if($scope.game.owner===$window.localStorage.userId)
+				$scope.editIf=true;
 			User.getUser(game.owner)
 			.then(function (user) {
 				$scope.owner=user
@@ -82,12 +94,12 @@ angular.module('TeamUp.game',[])
 
 	$scope.joinGame =function () {
 		if($window.localStorage.userId===undefined){
-			console.log('signin')
 			$location.path('/signin');
 			return;
 		}
 		if($scope.game.players.indexOf($window.localStorage.userId)===-1){
 			$scope.joinButton="Leave"
+			$scope.joined=true;
 			Game.insertPlayer($scope.game._id,$window.localStorage.userId)
 			.then(function (game) {
 				$scope.game=game;
@@ -100,6 +112,7 @@ angular.module('TeamUp.game',[])
 		else {
 			$scope.closed=false;
 			$scope.joinButton="Join";
+			$scope.joined=false;
 			Game.removePlayer($scope.game._id,$window.localStorage.userId)
 			.then(function(game) {
 				$scope.initlize();
@@ -196,7 +209,6 @@ angular.module('TeamUp.game',[])
 
 			User.getUser($window.localStorage.userId)
 			.then(function (user) {
-				console.log(user);
 				$scope.currentUser=user;
 			})
 			.catch(function (err) {
@@ -207,7 +219,6 @@ angular.module('TeamUp.game',[])
 				pubnub.history({
 			    channel : "TeamUp"+game._id,
 			    callback : function(m){
-			        console.log(m[0]);
 			        $scope.messages=m[0];
 			    },
 			    count : 100, // 100 is the default
@@ -226,7 +237,6 @@ angular.module('TeamUp.game',[])
 			});
 
 			$scope.sendMessage = function () {
-				console.log($scope.messageText);
 				var newMessage = {
 					from : $scope.currentUser,
 					text : $scope.messageText,
@@ -236,7 +246,6 @@ angular.module('TeamUp.game',[])
 				    channel : "TeamUp"+game._id,
 				    message : newMessage,
 				    callback : function(m){
-				        console.log(m)
 				    }
 				});
 			}				

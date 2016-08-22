@@ -58,8 +58,10 @@
                     </directions>
                 </ng-map>
             </div>
-            <button ng-click="toggle()">Get directions</button>
-
+            <div></div>
+            <p class="form-submit col-md-12">
+                <input name="submit" type="button" ng-click="toggle()" id="submit" class="submit" value="Get directions">
+            </p>
 
 
 
@@ -72,7 +74,7 @@
             <li class="comment even thread-even depth-1" ng-repeat="comment in comments" id="li-comment-2" >
                 <div id="comment-2" class="comment-body media">
                     <div class="comment-avartar pull-left">
-                        <img alt="" src="{{userComments[$index].picture}}" srcset="http://0.gravatar.com/avatar/9d74f95c80ffd22bb2407f764dbe9a43?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">
+                        <img alt="" ng-src="{{userComments[$index].picture}}"  class="avatar avatar-70 photo" height="70" width="70">
 
                     </div>
                     <div class="comment-context media-body">
@@ -94,7 +96,7 @@
 
         <div id="respond" class="comment-respond">
             <h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/cherry-wp/responsive-wordpress-theme/#respond" style="display:none;">Cancel reply</a></small></h3>
-            <form action="http://demo.shapedtheme.com/cherry-wp/wp-comments-post.php" method="post" id="commentform" class="comment-form row" novalidate="">
+            <form  id="commentform" class="comment-form row" novalidate="">
                 <div class="clearfix"></div>
                 <div class="col-md-12">
                     <label class="text-uppercase">Comment</label>
@@ -112,9 +114,10 @@
 
 		<div class="col-md-3">
 			<div class="primary-sidebar widget-area" role="complementary">
+                <button ng-click="editGame()" ng-if="editIf" class=" widget-title text-uppercase text-center  "  style="width: 100%;position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;    background-color: #06a206;color: #fff;"><span>Edit</span></button>
 				<button ng-click="joinGame()" ng-model="joinButton" ng-if="joinButtonIf"  class=" widget-title text-uppercase text-center  "  style="width: 100%;position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;    background-color: #9b59b6;color: #fff;"><span>{{joinButton}}</span></button>
                 <button  ng-if="closed"  class=" widget-title text-uppercase text-center  "  style="width: 100%;position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;    background-color:#b70000 ;color: #fff;"><span>Closed</span></button>
-                <button class=" widget-title text-uppercase text-center" ng-click="showAdvanced($event)" style="width: 100%;position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;background-color:#5ba1d5 ;color: #fff;"><span>CHAT</span></button>
+                <button ng-if="joined" class=" widget-title text-uppercase text-center" ng-click="showAdvanced($event)" style="width: 100%;position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;background-color:#5ba1d5 ;color: #fff;"><span>CHAT</span></button>
 		        <h2 class="widget-title text-uppercase text-center" style="    position: relative;font-size: 20px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;"><span>Players</span></h2>
 		        <aside class="widget about-me-widget" ng-repeat="player in game.plyersObjs">
                         <div class="text-center about-me-widget-img">

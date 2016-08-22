@@ -96,7 +96,7 @@ angular.module('TeamUp.services',[])
 	var getNotification = function (gameId) {
 		return $http({
 			method : 'GET',
-			url : '/api/game/' + gameId + '/isRead'
+			url : '/api/game/' + gameId + '/notification'
 		})
 		.then(function (res) {
 			return res;
@@ -106,7 +106,7 @@ angular.module('TeamUp.services',[])
 	var isRead = function (gameId, userId) {
 		return $http({
 			method : 'POST',
-			url : '/api/game/' + gameId + '/notification',
+			url : '/api/game/' + gameId + '/isRead',
 			data : userId
 		})
 		.then(function (res) {
@@ -296,8 +296,6 @@ angular.module('TeamUp.services',[])
 			});
 		},
 		removePlayer : function (gameId, userId) {
-			console.log(gameId);
-			console.log(userId);
 			return $http({
 				method : 'PUT',
 				url : '/api/game/removePlayer/'+gameId,
