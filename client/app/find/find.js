@@ -47,8 +47,5 @@ angular.module('TeamUp.find',[])
         console.log($scope.result)              
     }
     $scope.initialize();
-    var options = {
-        enableHighAccuracy: true
-    };
 
 })
