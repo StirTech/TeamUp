@@ -1,10 +1,28 @@
 <div class="container">
-	<div class="col-xs-6 col-md-4">
-		<ul class="nav nav-pills nav-stacked nav-pills-stacked-example" ng-repeat="category in categories"> 
-			<li role="presentation"><a href="#">{{category.name}}</a></li>
+
+	<div class="row">
+		<div class="col-xs-6 col-md-4" ng-repeat="category in categories" style="text-align: center;">
+			<a href ng:click="selection.value = $index"> <img ng-src="{{category.picture}}" style="height: 200px; width: auto; margin: 5%" class="img-rounded"></a>
+		</div>
+	</div>
+
+	<div class="row">
+		<ul class="nav nav-tabs nav-justified">
+			<li role="presentation" class="dropdown" ng-repeat="category in categories">
+			    <a class="dropdown-toggle" data-toggle="dropdown" href role="button" aria-haspopup="true" aria-expanded="false">
+			      {{category.name}} <span class="caret"></span>
+			    </a>
+			    <ul class="dropdown-menu">
+			      <li ng-repeat="game in category.games">
+			      	<a href>{{game}}</a>
+			      </li>
+			    </ul>
+			</li>	  
 		</ul>
 	</div>
-	<div class="col-xs-12 col-sm-6 col-md-8">
 
+	<div class="row">
+		<!-- games render based on type or category -->
 	</div>
+
 </div>
