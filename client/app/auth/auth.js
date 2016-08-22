@@ -1,6 +1,6 @@
 angular.module('TeamUp.auth', [])
-  .controller('AuthController', function ($scope, $window, $location, UserAuth, $route ) {
-    //===============================================================================================
+  .controller('AuthController', function ($scope, $window, $location, UserAuth, $route, Upload) {
+     //===============================================================================================
     /*                                        facrbook Auth                                        */
     //===============================================================================================
     $scope.facebookUser = {};
@@ -132,8 +132,11 @@ angular.module('TeamUp.auth', [])
       })
     };
 
+    $scope.picture = "https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg";
     $scope.signup = function (newUser) {
         $scope.msgB = false;
+        newUser.picture = $scope.picture;
+        console.log(newUser)
         UserAuth.addNewUser(newUser)
         .then(function (user) {
             $scope.signin({
@@ -155,4 +158,28 @@ angular.module('TeamUp.auth', [])
       }
       console.log($window.islogin)
     }
+    $scope.submit = function(){ //function to call on upload 
+        if ($scope.file) { //check if file is loaded
+            $scope.upload($scope.file); //call upload function
+        }
+    }
+    $scope.upload = function (file) {//upload an image to the game
+        Upload.upload({
+            url: '/api/upload', //webAPI exposed to upload the file
+            data:{file:file} //pass file as data, should be user ng-model
+        }).then(function (resp) { //upload function returns a promise
+            if(resp.data.error_code === 0){ //validate success
+                $scope.picture='http://localhost:3000/uploads/'+resp.data.file.filename;
+            } else {
+                $window.alert('an error occured');
+            }
+        }, function (resp) { //catch error
+            $window.alert('Error status: ' + resp.status);
+        }, function (evt) { 
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            $scope.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+        });
+    };
 })
+
+
