@@ -47,17 +47,5 @@ angular.module('TeamUp.find',[])
         console.log($scope.result)              
     }
     $scope.initialize();
-    $scope.tab=1;
-    $scope.filtText="games";
 
-    $scope.select=function(setTab){
-        $scope.tab=setTab;
-        if(setTab===1)
-           $scope.filtText="games"
-        if(setTab===2)
-           $scope.filtText="users"
-    }
-    $scope.isSelected=function(check){
-        return ($scope.tab===check);
-    }
 })
