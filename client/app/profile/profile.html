@@ -1,5 +1,7 @@
 <div class="container">
-	<div class="row" style=" margin-left: 2%">
+	
+	<div class="row" style=" margin-left: 2%" ng-if="userId == pageId">
+		
 		<div ng-repeat="(k,value) in  MissingInfo  | limitTo : 1 ">
 			<div class="panel-group" >
 				<div class="panel panel-primary" style="width:30%">			
@@ -18,7 +20,7 @@
 			<div style="text-align: center; padding: 120px 0"><h1>{{user.firstName}} {{user.lastName}}</h1></div>
 		</div>
 		<div class="col-xs-6">
-			<img class="profilePic" src={{user.picture}} style="height: 250px; width: auto; margin: 0 auto; display: block;">
+			<img class="profilePic" src={{user.picture}} style="height: 250px; width: auto; margin: 0 auto; display: block; padding: 5% 0%;">
 		</div>
 	</div>
 
