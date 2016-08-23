@@ -150,7 +150,7 @@ angular.module('TeamUp.games',[])
 
 		return getDistanceFromLatLonInKm($scope.position.lat, $scope.position.lng, gameloc.lat, gameloc.lng)
     }
-
+    $scope.distance = "Any Distance";
     $scope.distances = {
     	'2' : distance2km = function(game) {
 		    	return $scope.calculateDistance(game.locationID) <= 2
