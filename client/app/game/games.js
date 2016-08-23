@@ -26,6 +26,8 @@ angular.module('TeamUp.games',[])
 				if($scope.data.types.indexOf(games[i].type)===-1)
 					$scope.data.types.push(games[i].type);
 			}
+		}).then(function(){
+			$scope.locate();
 		})
 		.catch(function (err) {
 			console.log(err);
@@ -83,12 +85,19 @@ angular.module('TeamUp.games',[])
 	$scope.thisWeek = new Date()
 	$scope.nextWeek = new Date()
 
+	$scope.yesterday = new Date()
+
+	$scope.yesterday.setDate($scope.yesterday.getDate() - 1)	
 	$scope.tomorrow.setDate($scope.tomorrow.getDate() + 1);
 	$scope.thisWeek.setDate($scope.thisWeek.getDate() + 7);
 	$scope.nextWeek.setDate($scope.nextWeek.getDate() + 14);
 
+	$scope.allGames = function(game){
+		return Date.parse(game.date) > Date.parse($scope.yesterday)
+	}
+
 	$scope.gamesToday = function(game){
-		return Date.parse(game.date) <= Date.parse($scope.today)
+		return Date.parse(game.date) > Date.parse($scope.yesterday) && Date.parse(game.date) <= Date.parse($scope.today)
 	}
 
 	$scope.gamesTomorrow = function(game){
@@ -119,14 +128,14 @@ angular.module('TeamUp.games',[])
         	enableHighAccuracy: true
     	};
         navigator.geolocation.getCurrentPosition(function(pos) {
-            $scope.position = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);               
+            $scope.position = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+           	$scope.position = JSON.stringify($scope.position)  
+           	$scope.position = JSON.parse($scope.position)  
         }, 
         function(error) {                    
             alert('Unable to get location: ' + error.message);
         }, options);        
     }
-
-    $scope.locate();
 
     $scope.calculateDistance = function(gameloc){
     	
@@ -150,7 +159,9 @@ angular.module('TeamUp.games',[])
 
 		return getDistanceFromLatLonInKm($scope.position.lat, $scope.position.lng, gameloc.lat, gameloc.lng)
     }
-    $scope.distance = "Any Distance";
+
+    $scope.distance = 'Any Distance';
+
     $scope.distances = {
 
     	'2 km' : distance2km = function(game) {
@@ -171,15 +182,13 @@ angular.module('TeamUp.games',[])
 		'100 km' : distance100km = function(game) {
 		    	return $scope.calculateDistance(game.locationID) <= 100
 		    },
-		'any' : anyDistance = function(game){
+		'Any Distance' : anyDistance = function(game){
 		    	return true
 		    }
     }
 
-    $scope.chooseDistance = function(game){
-    	return $scope[$scope.distance](game)
+    $scope.filterDistance = function(game){
+    	return $scope.distances[$scope.distance](game)
     }
 
 });
-
-
