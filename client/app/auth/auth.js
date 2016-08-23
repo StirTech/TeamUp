@@ -1,15 +1,5 @@
 angular.module('TeamUp.auth', [])
-
-
-  
-
-
-
   .controller('AuthController', function ($scope, $window, $location, UserAuth, $route ) {
-  
-
-
-
     //===============================================================================================
     /*                                        facrbook Auth                                        */
     //===============================================================================================
@@ -75,7 +65,6 @@ angular.module('TeamUp.auth', [])
         }
     };
 
-
     // Google Plus Login
     $scope.gplusLogin = function () {
         var myParams = {
@@ -118,14 +107,9 @@ angular.module('TeamUp.auth', [])
         }
     };
 
- 
-
-
-
  //===============================================================================================
  /*                                         AuthController                                       */
  //===============================================================================================
-
     $scope.signin = function (user) {
       UserAuth.signUser(user)
       .then(function (data) {
@@ -148,14 +132,14 @@ angular.module('TeamUp.auth', [])
       })
     };
 
-
     $scope.signup = function (newUser) {
         $scope.msgB = false;
         UserAuth.addNewUser(newUser)
         .then(function (user) {
             $scope.signin({
-                            username:newUser.username,
-                            password:newUser.password});
+                username:newUser.username,
+                password:newUser.password
+            });
         })
         .catch(function (err) {
             $scope.msgB = true;
@@ -163,10 +147,7 @@ angular.module('TeamUp.auth', [])
         })
     }
 
-   
-
     $scope.islogin = function () {
-   
       if($window.localStorage['token']  || $window.localStorage['facebookState'] === "connected"){
         $window.islogin = true;
       }else{

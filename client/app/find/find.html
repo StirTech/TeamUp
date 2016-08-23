@@ -1,49 +1,41 @@
+<div data-velocity="-.2" class="overlay-bg" style="background-image: url(/img/slide-bg.jpg)"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div id="slide-list" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="slide-text-wrapper">
+                                <div class="slide-text">
+                                    <h2 style="color:#fff">Gather your teammates</h2>
+                                    <p>neighbors getting together to learn something, do something, share something…</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-text-wrapper">
+                                <div class="slide-text">
+                                    <h2 style="color:#fff">TeamUp are</h2>
+                                    <p>neighbors getting together to learn something, do something, share something…</p>
+                                    <a href="#/createGame" class="readmore">GATHER NOW</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                      <ol class="carousel-indicators">
+                        <li data-target="#slide-list" data-slide-to="0" class="active"></li>
+                        <li data-target="#slide-list" data-slide-to="1"></li>
+                      </ol>
+                </div>                     
+            </div>
+        </div>
+    </div>
+    
 <div class="container">
 	<h4>Search results:</h4>
 	<p>{{result.users.length+result.games.length}} matches found:</p>
-	<ul class="nav nav-tabs nav-justified">
-		<li role="presentation" class="active">
-			<a href="/find/#games" data-toggle="tab" aria-expanded="true">Games ({{result.games.length}} results)</a>				
-		</li>
-		<li role="presentation">
-			<a href="/find/#users" data-toggle="tab" aria-expanded="false">Users ({{result.users.length}} results)</a>			
-		</li>
-	</ul>
-	<ul class="tab-pane fade active in" id="games">
-		<li ng-repeat="game in result.games">
-			{{game.name}}
-			<div style="height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a>
-            </div>
-			<table class="table">
-              <tr>
-                <td># of Players :</td>
-                <td>{{game.numOfPlayers}}</td>
-              </tr>
-              <tr>
-                <td>Date :</td>
-                <td>{{game.date| date :yyyy:MM:dd}}</td>
-              </tr>
-            </table>
-		</li>
-	</ul>
-	<ul class="tab-pane fade" id="users">
-		<li ng-repeat="user in result.users" style="height: 20em; width: 30%;">
-			<!-- <a href="#/user/{{user._id}}"> --><h5>{{user.username}}</h5><!-- </a> -->
-			<table class="table">
-				<thead>
-					<th><!-- <a href="#/user/{{user._id}}"> -->{{user.firstName}} {{user.lastName}}<!-- </a> --></th>
-				</thead>
-				<tr>
-					<td>
-						<div style="width: 40%;"><!-- <a href="#/user/{{user._id}}"> --><img ng-src="{{user.picture}}" alt="{{user.username}}"><!-- </a> -->
-		                </div>
-					</td>
-                    <td>{{user.numOfPlayers}}</td>
-                    <td>{{user.city}}, {{user.country}}</td>
-				</tr>
-              	<tr>
-              	</tr>
-            </table>
-		</li>
-	</ul>		
+
+
+	
 </div>
