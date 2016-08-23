@@ -65,7 +65,7 @@
             <md-content>
             <md-tabs md-dynamic-height md-border-bottom>
             <md-tab label="All">
-            <md-card class="col-md-3"  ng-repeat="game in data.games | filter: filterDistance" style="margin : 10px 0px 10px 0px;">
+            <md-card class="col-md-3"  ng-repeat="game in data.games | filter: allGames | filter: filterDistance" style="margin : 10px 0px 10px 0px;">
                 <div style="height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a>
                 </div>
               <md-card-title>
