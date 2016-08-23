@@ -152,6 +152,7 @@ angular.module('TeamUp.games',[])
     }
     $scope.distance = "Any Distance";
     $scope.distances = {
+
     	'2 km' : distance2km = function(game) {
 		    	return $scope.calculateDistance(game.locationID) <= 2
 		    },
