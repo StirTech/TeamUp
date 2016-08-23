@@ -25,25 +25,31 @@
                     <button ng-click="signup(user)" type="submit">Sign Up</button>
                 </div>
                 <div class="u-form-group">
-	                <button ng-click="fbLogin()" style="background-color:#49639F ; width : 50% ; float: left">
-	                    <i class="fa fa-facebook fa-lg" style="padding-left:20"></i>
-	                    facebook Login
-	                </button>
-	            </div>
-	            <div class="u-form-group"  >
-	                <button ng-click="fbLogin()" ng-click="fbLogin()" style="background-color:#DF4A32; width : 50%">
-	                    <i class="fa fa-google-plus fa-lg"></i>
-	                    Google Login
-	                </button>
-	            </div>
+                    <button ng-click="fbLogin()" style="background-color:#49639F ; width : 50% ; float: left">
+                        <i class="fa fa-facebook fa-lg" style="padding-left:20"></i>
+                        facebook Login
+                    </button>
+                </div>
+                <div class="u-form-group"  >
+                    <button ng-click="fbLogin()" ng-click="fbLogin()" style="background-color:#DF4A32; width : 50%">
+                        <i class="fa fa-google-plus fa-lg"></i>
+                        Google Login
+                    </button>
+                </div>
                 <div>
                     <div ng-if="msgB" style="margin-left:50%;font-size:30px;">user already exiset</div>
                 </div>
             </form>
-            </div>
-            <div class="col-md-4 " >
-            	<img src="https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg" style="border-radius: 50%;margin: 0 auto 14px; border: 2px solid #eeeeee; padding: 5px;max-width: 80%; ">
-            </div>
+        </div>
+        <div class="image-cropper col-md-4" >
+            <img class="img-circle" src="{{picture}}" ngf-select 
+                ng-model="file" 
+                name="file" 
+                ngf-pattern="'image/*'"
+                accept="image/*" 
+                ngf-max-size="1MB" 
+                ng-change="submit()">
+        </div>
     </div>
 </div>
 
