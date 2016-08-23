@@ -85,12 +85,19 @@ angular.module('TeamUp.games',[])
 	$scope.thisWeek = new Date()
 	$scope.nextWeek = new Date()
 
+	$scope.yesterday = new Date()
+
+	$scope.yesterday.setDate($scope.yesterday.getDate() - 1)	
 	$scope.tomorrow.setDate($scope.tomorrow.getDate() + 1);
 	$scope.thisWeek.setDate($scope.thisWeek.getDate() + 7);
 	$scope.nextWeek.setDate($scope.nextWeek.getDate() + 14);
 
+	$scope.allGames = function(game){
+		return Date.parse(game.date) > Date.parse($scope.yesterday)
+	}
+
 	$scope.gamesToday = function(game){
-		return Date.parse(game.date) <= Date.parse($scope.today)
+		return Date.parse(game.date) > Date.parse($scope.yesterday) && Date.parse(game.date) <= Date.parse($scope.today)
 	}
 
 	$scope.gamesTomorrow = function(game){
@@ -185,5 +192,3 @@ angular.module('TeamUp.games',[])
     }
 
 });
-
-
