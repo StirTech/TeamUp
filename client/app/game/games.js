@@ -152,7 +152,7 @@ angular.module('TeamUp.games',[])
     }
     $scope.distance = "Any Distance";
     $scope.distances = {
-    	'2' : distance2km = function(game) {
+    	'2 km' : distance2km = function(game) {
 		    	return $scope.calculateDistance(game.locationID) <= 2
 		    },
 		'5 km' : distance5km = function(game) {
@@ -175,8 +175,8 @@ angular.module('TeamUp.games',[])
 		    }
     }
 
-    $scope.chooseDistance = function(choice, game){
-    	return $scope[choice](game)
+    $scope.chooseDistance = function(game){
+    	return $scope[$scope.distance](game)
     }
 
 });
