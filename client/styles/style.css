@@ -872,6 +872,31 @@ HTMLJSCSS
     display: inline;
     margin: 0 auto;
     height: 100%;
-    width: auto;
-   
+    width: auto;   
 }
+.countDown {
+    display: inline;
+}
+.countBox{
+    display: inline-block;
+    border: 2px solid #eeeeee;
+    background-color:  #e91e63;
+    color: white;
+    font-weight: bold;
+}
+.gameCounter p{
+    background-color: #2b2d7b;
+    height: 20%;
+    color: white;
+    padding: 0.5em;
+    font-weight: bold;
+    margin: 0.2em;
+}
+.gameCounter{
+   text-align: center;
+}
+.gameCounter span {
+    font-weight: bold;
+    display: block;
+}
+

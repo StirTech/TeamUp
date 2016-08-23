@@ -162,17 +162,20 @@ angular.module('TeamUp.game',[])
 	        if (distance < 0) {
 	            clearInterval($scope.timer);
 	            $scope.countdown = 'EXPIRED!';
+	            $scope.showCount = false;
 	            return;
 	        }
-	        var days = Math.floor(distance / _day);
-	        var hours = Math.floor((distance % _day) / _hour);
-	        var minutes = Math.floor((distance % _hour) / _minute);
-	        var seconds = Math.floor((distance % _minute) / _second);
-
-	        $scope.countdown = days + 'days ';
-	        $scope.countdown += hours + 'hrs ';
-	        $scope.countdown += minutes + 'mins ';
-	        $scope.countdown += seconds + 'secs';
+	        else{
+		        $scope.showCount = true;
+		        var days = Math.floor(distance / _day);
+		        var hours = Math.floor((distance % _day) / _hour);
+		        var minutes = Math.floor((distance % _hour) / _minute);
+		        var seconds = Math.floor((distance % _minute) / _second);
+		        $scope.days = days;
+		        $scope.hours = hours;
+		        $scope.minutes = minutes;
+		        $scope.seconds = seconds;
+	        }
 	    }
 	    $scope.timer = $interval(showRemaining, 1000);		
 	}
