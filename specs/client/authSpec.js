@@ -1,5 +1,5 @@
 describe('AuthController', function () {
-  var $scope, $rootScope, createController, Links, $httpBackend;
+  var $scope, $rootScope, createController, $httpBackend;
 
   // using angular mocks, we can inject the injector
   // to retrieve our dependencies

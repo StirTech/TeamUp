@@ -5,25 +5,26 @@ module.exports = {
 
 	getAll : function(req, res, next){
 		Category.find().exec(function (err,allCategories) {
-			if(err)
+			if(err){
 				res.status(500).send(err);
-			else
+			}else{
 				res.status(200).send(allCategories);
+			}
 		});
 	},
 
 	getCategory : function(req, res, next){
 		Category.findOne({ _id : req.params.id }).exec(function (err, category){
-			if(err)
+			if(err){
 				res.status(500).send(err);
-			else
+			}else{
 				res.status(200).send(category);
+			}
 		})
 	},
 
 	addCategory : function(req, res, next){
 		var category = req.body
-
 		var newCategory = new Category({
 			name : category.name,
 			games : category.games,
@@ -31,25 +32,24 @@ module.exports = {
 		})
 
 		newCategory.save(function(err, newCategory){
-			if(err)
+			if(err){
 				res.status(500).send(err);
-			else
+			}else{
 				res.status(201).send(newCategory);
+			}
 		})
 	},
 
 	editCategory : function(req, res, next){
 		Category.findOne({ _id: req.params.id }, function(err, category){
 	      if(err){
-	        res.status(500).send(err);
+	      	res.status(500).send(err);
 	      } else if (!category){
 	        res.status(500).send(new Error ('Category does not exist'));
 	      } else {
-
 	        category.name = req.body.name || category.name;
 	        category.games = req.body.games || category.games;
 	        category.picture = req.body.picture || category.picture;
-
 	        category.save(function(err, savedCategory){
 	          if(err){
 	            res.status(500).send(err);
