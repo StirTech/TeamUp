@@ -3,6 +3,7 @@ var Game = require('../games/gameModel.js');
 
 module.exports ={
 	 players : [],
+	
 	insertNotification : function (req, res) {
 		Game.findOne({_id : req.params.id}, function (err, game) {
 			if(game){
@@ -19,23 +20,22 @@ module.exports ={
 			text : body.text
 		})
 
-		newNotification.save(function (err, notification) {
-			if(notification)
+		newNotification.save(function(err, notification) {
+			if(notification){
 				res.status(200).send(notification);
-			else
+			}else{
 				res.status(500).send(err);
-			
+			}
 		});
 	},
 
 
-	isRead: function (req, res) {
+	isRead : function (req, res) {
 		console.log(req.body.from)
 		var userID = req.body.from
 		Notification.findOne({game : req.params.id}, function (err, notification) {
 			if(Notification){
 				for (var i = 0; i < notification.to.length; i++) {
-					console.log(notification.to[i].playerId,"        ",userID)
 					if(notification.to[i].playerId.toString() === userID){
 						notification.to[i].seen = true;
 					} 
@@ -54,7 +54,6 @@ module.exports ={
 	},
 
 	getNotification : function (req, res) {
-
 		Notification.find({game : req.params.id}, function (err, notification) {
 			if(notification){
 				res.status(200).send(notification)

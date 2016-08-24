@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
+
 var notificationSchema = new mongoose.Schema({
   from : {
-    type:  mongoose.Schema.Types.ObjectId,
+    type :  mongoose.Schema.Types.ObjectId,
     ref : 'User'    
   },
-  to :[{
-  	playerId:{
-      type:  mongoose.Schema.Types.ObjectId,
+  to : [{
+  	playerId : {
+      type :  mongoose.Schema.Types.ObjectId,
       ref : 'User'
     },
     seen : Boolean
@@ -14,19 +15,18 @@ var notificationSchema = new mongoose.Schema({
   notificationType : {
     type : String
   },
-  game:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'Game'
+  game : {
+    type : mongoose.Schema.Types.ObjectId,
+    ref :'Game'
   },
-  text :{
+  text : {
   	type : String
   },
-  date :{
-  	type: Date,
-  	default: Date.now
+  date : {
+  	type : Date,
+  	default : Date.now
   }
 });
-
 
 var Notification = mongoose.model('Notification', notificationSchema);
 module.exports = Notification;

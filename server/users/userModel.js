@@ -3,47 +3,47 @@ var bcrypt = require('bcrypt-nodejs');
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true
+  username : {
+    type : String,
+    required : true,
+    unique : true
   },
-  firstName: {
-    type: String,
-    required: true
+  firstName : {
+    type : String,
+    required : true
   },
-  lastName: {
-    type: String,
-    required: true
+  lastName : {
+    type : String,
+    required : true
   },
-  password: {
-    type: String
+  password : {
+    type : String
   },
-  email: {
-    type: String,
-    required: true
+  email : {
+    type : String,
+    required : true
   },
-  country: {
-    type: String
+  country : {
+    type : String
   },
-  city: {
-    type: String
+  city : {
+    type : String
   },
-  rate: {
-    type: String
+  rate : {
+    type : String
   },
-  interests: [{
-      type: String
+  interests : [{
+      type : String
     }],
-  fb_ID:{
-    type:String
+  fb_ID : {
+    type : String
   },
-  picture: {
-    type: String
+  picture : {
+    type : String
   },
-  games:[{
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'Game'
+  games : [{
+    type : mongoose.Schema.Types.ObjectId,
+    ref : 'Game'
   }]
 });
 
@@ -60,7 +60,6 @@ User.comparePassword = function(candidatePassword, savedPassword, res, cb){
   });
 };
 
-// saving the password adding salt and hashing it 
 UserSchema.pre('save', function (next) {
   var user = this;
   if (!user.isModified('password')) {

@@ -2,25 +2,27 @@ var Game = require('./gameModel.js');
 var Player = require('../users/userModel.js');
 
 module.exports = {
-	getAllGames: function (req,res) {
-		Game.find().exec(function (err,allGames) {
-			if(err)
+	getAllGames : function (req, res) {
+		Game.find().exec(function (err, allGames) {
+			if(err){
 				res.status(500).send('err');
-			else
+			}else{
 				res.status(200).send(allGames);
+			}
 		});
 	},
 
-	getGame: function(req, res){
+	getGame : function(req, res){
 		Game.findOne({_id:req.params.id}).exec(function (err, game){
-			if(err)
+			if(err){
 				res.status(500).send('err');
-			else
+			}else{
 				res.status(200).send(game);
+			}
 		})
 	},
 
-	createGame: function(req, res){
+	createGame : function(req, res){
 		var game = req.body;
 		var newGame = new Game ({
 			name: game.name, 
@@ -37,33 +39,32 @@ module.exports = {
 			category : game.category
 		})
 		newGame.save(function(err, newGame){
-			if(err)
+			if(err){
 				res.status(500).send(err);
-			else
+			}else{
 				res.status(201).send(newGame);
+			}
 		})
 	},
 
-	insertPlayer: function(req , res){
-		var gameId=req.params.id;
-		var userId=req.body.userId;
+	insertPlayer : function(req, res){
+		var gameId = req.params.id;
+		var userId = req.body.userId;
 
 		Player.findOneAndUpdate({_id : userId},{ $pull : {games : gameId } } ).exec();
 		Player.findOneAndUpdate({_id : userId},{ $push : {games : gameId } } ).exec();
-
-
 		Game.findOneAndUpdate({ _id : gameId},{$pull: {players : userId}}).exec();
 		Game.findOneAndUpdate({ _id : gameId},{$push: {players : userId}},{new : true}).exec(function (err , game) {
-			if(err)
+			if(err){
 				res.status(500).send('err');
-			else{
+			}else{
 				res.status(201).send(game)
 			}
 		})
 	},
 
-	editGame: function(req, res){
-		var game=req.body;
+	editGame : function(req, res){
+		var game = req.body;
 		Game.findOneAndUpdate({_id:req.params.id},{$set:{
 			name: game.name, 
 			description : game.description, 
@@ -79,32 +80,33 @@ module.exports = {
 			category : game.category
 			}})
 		.exec(function(err, data){
-			if(err)
+			if(err){
 				res.status(500).send(err);
-			else
+			}else{
 				res.status(200).send(data);
+			}
 		})
 	},
 
-	removePlayer: function(req , res){
-		var gameId=req.params.id;
-		var userId=req.body.userId;
+	removePlayer : function(req, res){
+		var gameId = req.params.id;
+		var userId = req.body.userId;
 		Player.findOneAndUpdate({_id : userId},{ $pull : {games : gameId } } ).exec()
-		Game.findOneAndUpdate({ _id : gameId},{$pull: {players : userId}},{new : true}).exec(function (err , data) {
-			if(err)
+		Game.findOneAndUpdate({ _id : gameId},{$pull: {players : userId}},{new : true}).exec(function (err, data) {
+			if(err){
 				res.status(500).send(err);
-			else{
+			}else{
 				res.status(200).send(data);
 			}
 		});
 	},
 
 	likeGame : function (req, res) {
-		var gameId=req.params.id;
-		var userId=req.body.userId;
+		var gameId = req.params.id;
+		var userId = req.body.userId;
 
 		Game.findOneAndUpdate({ _id : gameId},{$pull: {likes : userId}}).exec();
-		Game.findOneAndUpdate({ _id : gameId},{$push: {likes : userId}},{new : true}).exec(function (err , game) {
+		Game.findOneAndUpdate({ _id : gameId},{$push: {likes : userId}},{new : true}).exec(function (err, game) {
 			if(err){
 				res.status(500).send('err');
 			}else{
@@ -114,9 +116,9 @@ module.exports = {
 	},
 
 	unlikeGame : function (req, res) {
-		var gameId=req.params.id;
-		var userId=req.body.userId;
-		Game.findOneAndUpdate({ _id : gameId},{$pull: {likes : userId}},{new : true}).exec(function (err , data) {
+		var gameId = req.params.id;
+		var userId = req.body.userId;
+		Game.findOneAndUpdate({ _id : gameId},{$pull: {likes : userId}},{new : true}).exec(function (err, data) {
 			if(err){
 				res.status(500).send(err);
 			}else{

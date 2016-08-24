@@ -9,9 +9,8 @@ module.exports = {
 			text : req.body.text,
 			game : req.params.id
 		});
-		//create comment
 		newComment.save(function (err,comment) {
-		  if (comment) {
+		  if(comment){
 			res.status(201).send(comment);
 		  	console.log("comment saved");
 		  }else {

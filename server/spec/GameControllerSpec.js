@@ -27,6 +27,7 @@ describe('gameController', function () {
 				city : "Damascus",
 				date : new Date()
 	}
+
 	beforeEach(function(done){
 		newGame = new Game({
 			name : "Test GAME",
@@ -41,6 +42,7 @@ describe('gameController', function () {
 		});	
 		done();	
 	});
+	
 	afterEach(function(done){
 		//delete the game from the database
 		Game.remove({name :'Test GAME'}).exec();

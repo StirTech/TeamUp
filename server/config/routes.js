@@ -4,15 +4,11 @@ var comment = require ('../comment/commentController.js');
 var category = require('../category/categoryController.js');
 var rate = require('../rate/rateController.js');
 var notification = require('../notification/notificationController.js');
-var utils = require('./utils.js')
-
-
+var utils = require('./utils.js');
 var helpers = require('./helpers.js');
 
-
 module.exports = function(app, express) {
-
-
+	
 	// auth routes
 	app.post('/api/users/signup', user.signup);
 	app.post('/api/users/signin', user.signin);
