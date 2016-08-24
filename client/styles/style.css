@@ -855,3 +855,48 @@ HTMLJSCSS
     height: 20em;
 }
 
+.image-cropper {
+    width: 20em;
+    height:20em;
+    overflow: hidden;
+    position: relative;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    border: 2px solid #eeeeee; padding: 5px;
+
+}
+.img-circle {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;   
+}
+.countDown {
+    display: inline;
+}
+.countBox{
+    display: inline-block;
+    border: 2px solid #eeeeee;
+    background-color:  #e91e63;
+    color: white;
+    font-weight: bold;
+}
+.gameCounter p{
+    background-color: #2b2d7b;
+    height: 20%;
+    color: white;
+    padding: 0.5em;
+    font-weight: bold;
+    margin: 0.2em;
+}
+.gameCounter{
+   text-align: center;
+}
+.gameCounter span {
+    font-weight: bold;
+    display: block;
+}
+

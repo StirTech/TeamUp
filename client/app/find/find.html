@@ -1,49 +1,99 @@
-<div class="container">
-	<h4>Search results:</h4>
-	<p>{{result.users.length+result.games.length}} matches found:</p>
-	<ul class="nav nav-tabs nav-justified">
-		<li role="presentation" class="active">
-			<a href="/find/#games" data-toggle="tab" aria-expanded="true">Games ({{result.games.length}} results)</a>				
-		</li>
-		<li role="presentation">
-			<a href="/find/#users" data-toggle="tab" aria-expanded="false">Users ({{result.users.length}} results)</a>			
-		</li>
-	</ul>
-	<ul class="tab-pane fade active in" id="games">
-		<li ng-repeat="game in result.games">
-			{{game.name}}
-			<div style="height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a>
+<div class="slider-area">
+    <div data-velocity="-.2" class="overlay-bg" style="background-image: url(/img/slide-bg.jpg) "></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div id="slide-list" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="slide-text-wrapper">
+                                <div class="slide-text">
+                                    <h2 style="color:#fff">Gather your teammates</h2>
+                                    <p>neighbors getting together to learn something, do something, share something…</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="slide-text-wrapper">
+                                <div class="slide-text">
+                                    <h2 style="color:#fff">TeamUp are</h2>
+                                    <p>neighbors getting together to learn something, do something, share something…</p>
+                                    <a href="#/createGame" class="readmore">GATHER NOW</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                      <ol class="carousel-indicators">
+                        <li data-target="#slide-list" data-slide-to="0" class="active"></li>
+                        <li data-target="#slide-list" data-slide-to="1"></li>
+                      </ol>
+                </div>                     
             </div>
-			<table class="table">
-              <tr>
-                <td># of Players :</td>
-                <td>{{game.numOfPlayers}}</td>
-              </tr>
-              <tr>
-                <td>Date :</td>
-                <td>{{game.date| date :yyyy:MM:dd}}</td>
-              </tr>
-            </table>
-		</li>
-	</ul>
-	<ul class="tab-pane fade" id="users">
-		<li ng-repeat="user in result.users" style="height: 20em; width: 30%;">
-			<!-- <a href="#/user/{{user._id}}"> --><h5>{{user.username}}</h5><!-- </a> -->
-			<table class="table">
-				<thead>
-					<th><!-- <a href="#/user/{{user._id}}"> -->{{user.firstName}} {{user.lastName}}<!-- </a> --></th>
-				</thead>
-				<tr>
-					<td>
-						<div style="width: 40%;"><!-- <a href="#/user/{{user._id}}"> --><img ng-src="{{user.picture}}" alt="{{user.username}}"><!-- </a> -->
-		                </div>
-					</td>
-                    <td>{{user.numOfPlayers}}</td>
-                    <td>{{user.city}}, {{user.country}}</td>
-				</tr>
-              	<tr>
-              	</tr>
-            </table>
-		</li>
-	</ul>		
+        </div>
+    </div>
+    <nav class="navbar navbar-light search-bar">
+            <div class="col-lg-4 col-md-offset-4">
+                <div class="input-group">
+                    <input type="text" class="search-box form-control" placeholder="Search for..." ng-model="searchStr">
+                    <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-info search-box" type="button" ng-click="search(searchStr)"><span class="glyphicon glyphicon-search"></span></button>
+                    </span>
+                    
+                </div>
+            </div>
+    </nav>
+    <div class="container" >
+        <div class="row" style="text-align:center">
+        </div>
+        <div ng-cloak>
+            <md-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="Games ({{result.games.length}})">
+                <md-card class="col-md-3"  ng-repeat="game in result.games" style="margin : 10px 0px 10px 0px;">
+                    <div style="height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a>
+                    </div>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">{{game.name}}</span>
+                    </md-card-title-text>
+                  </md-card-title>
+                  <md-subhead>
+                  <div style="font-size: 24px;"><i class="material-icons">class</i><span>{{game.type}}</span></div>
+                  </md-subhead>
+                  
+                  <md-card-content>
+                    <table class="table">
+                      <tr>
+                        <td># of Players :</td>
+                        <td>{{game.numOfPlayers}}</td>
+                      </tr>
+                      <tr>
+                        <td>Date :</td>
+                        <td>{{game.date| date :yyyy:MM:dd}}</td>
+                      </tr>
+                    </table>
+                    <!-- <p>Type : {{game.type}}</p>
+                    <p># of Players : {{game.numOfPlayers}}</p> -->
+                  </md-card-content>
+                    </md-card>
+                </md-tab>
+                <md-tab label="Users  ({{result.users.length}})">
+                <md-card class="col-md-3"  ng-repeat="user in result.users" style="margin : 10px 0px 10px 0px;">
+                    <div style="height: 231px;"><a href="#/profile/{{user._id}}"><img ng-src="{{user.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a>
+                    </div>
+                  <md-card-title>
+                  <md-card-title-text>
+                    <div style="font-size: 24px; text-align:center"><a href="#/profile/{{user._id}}"><span>{{user.firstName}} {{user.lastName}}</span></a></div>
+                  </md-card-title-text>
+                  </md-card-title>
+                    </md-card>
+
+
+                </md-tab>
+                </md-tab>
+            </md-tabs>
+            </md-content>
+        </div>
+    </div>
 </div>
