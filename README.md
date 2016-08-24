@@ -12,7 +12,7 @@
 
 ## Production Url
 
-[teamup-me.herokuapp.com](http://teamup-me.herokuapp.com)
+[teamup-me.herokuapp.com](https://teamup-me.herokuapp.com)
 
 
 ## Table of Contents
