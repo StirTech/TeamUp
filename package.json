@@ -13,7 +13,8 @@
     "start": "./node_modules/.bin/nodemon --ignore node_modules server/server.js",
     "test": "node_modules/.bin/_mocha server/spec/*.js && karma start",
     "postinstall": "npm install -g bower; bower install && npm install -g grunt-cli && grunt",
-    "coverage": "istanbul cover -x '*Spec.js' %APPDATA%/npm/node_modules/mocha/bin/_mocha -- -R spec ./server/spec/**/*.js"
+    "coverage": "istanbul cover -x '*Spec.js' %APPDATA%/npm/node_modules/mocha/bin/_mocha -- -R spec ./server/spec/**/*.js",
+    "lint": "eslint ./"
   },
   "pre-commit": "lint",
   "repository": {
@@ -26,6 +27,7 @@
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "clone-stats": "0.0.1",
+    "eslint": "^3.3.1",
     "grunt": "^0.4.4",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-concat": "^0.3.0",

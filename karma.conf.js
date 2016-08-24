@@ -36,7 +36,6 @@ module.exports = function(config) {
       'specs/client/routingSpec.js',
       'specs/client/servicesSpec.js',
       'specs/client/profileSpec.js',
-      'specs/client/editProfileSpec.js'
     ],
 
 
