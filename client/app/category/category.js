@@ -1,7 +1,5 @@
 angular.module('TeamUp.category',[])
-
 .controller('categoryController', function($scope, Category, Game, $location, $window, $routeParams, $interval){
-
 	$scope.categories = []
 	$scope.games = []
 	$scope.type = {value: '', filter: false}
@@ -52,4 +50,3 @@ angular.module('TeamUp.category',[])
 
 	$scope.initialize()
 })
-	

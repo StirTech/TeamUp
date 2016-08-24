@@ -3,9 +3,30 @@
         <div class="col-md-9">
             <header class="entry-header text-center">
                 <h2 class="widget-title text-uppercase text-center" style="    position: relative;font-size: 29px;margin-top: 15px;margin-bottom: 15px;letter-spacing: 1px;border: 2px solid #eeeeee;padding: 9px 5px;line-height: 22px;"><span>{{game.name}}</span></h2>
-                <div>{{countdown}}</div>
-        		<div class="by-on">
+                <div class="by-on">
                     By <a href="#/profile/{{owner._id}}" title="Posts by Kate" rel="author">{{owner.username}} </a> - {{game.date | date : yyyy:MM:dd}} 
+                </div>
+                <div ng-hide="showCount" class="gameCounter" >
+                    <div><p style="background-color:  #e91e63">{{countdown}}</p></div>
+                </div>
+                <div ng-show="showCount" class="col-md-6 col-md-offset-3 gameCounter">
+                    <span>Game starts in:</span>
+                    <div class="countBox" >
+                        <div class="countDown">{{days}}</div>                      
+                    <p>Days</p>
+                    </div>
+                    <div class="countBox" >
+                        <div class="countDown">{{hours}}</div>    
+                    <p>Hours</p>
+                    </div>
+                    <div class="countBox" >
+                        <div class="countDown">{{minutes}}</div>                       
+                    <p>Minutes</p>
+                    </div>
+                    <div class="countBox" >
+                        <div class="countDown">{{seconds}}</div>                        
+                    <p>Seconds</p>                        
+                    </div>
                 </div>
     		</header>
 			<div class="post-thumb">

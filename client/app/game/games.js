@@ -192,5 +192,3 @@ angular.module('TeamUp.games',[])
     }
 
 });
-
-

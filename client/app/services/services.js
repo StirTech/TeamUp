@@ -16,7 +16,6 @@ angular.module('TeamUp.services',[])
 	      return res.data;
 	    })
 	}
-	//
 	// this function to sign user
 	var fbSignin = function (facebookID) {
 		return $http({
@@ -28,7 +27,6 @@ angular.module('TeamUp.services',[])
 			return res.data;
 		})
 	}
-
 	// this function to sign user
 	var signUser = function (user) {
 		return $http({

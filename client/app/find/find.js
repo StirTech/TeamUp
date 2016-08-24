@@ -14,7 +14,7 @@ angular.module('TeamUp.find',[])
                     $scope.data.types.push(games[i].type);
             }
         })
-        .catch(function (err) {
+        .catch(function (err) { 
             console.log(err);
         });
         User.getAll()
@@ -26,10 +26,11 @@ angular.module('TeamUp.find',[])
             console.log(err);
         })
     };
-    $scope.getResult = function(){
+    $scope.getResult = function(str){
         var users = $scope.data.users;
         var games = $scope.data.games;
-        var searchStr = $window.localStorage.query.toLowerCase()
+        var searchStr = str || $window.localStorage.query.toLowerCase();
+        console.log(searchStr);
         $scope.result = {
             games:[],
             users:[]
@@ -46,6 +47,12 @@ angular.module('TeamUp.find',[])
         }
         console.log($scope.result)              
     }
+
+    
+    $scope.search = function(str){
+        $scope.getResult(str);
+    }
+
     $scope.initialize();
 
 })
