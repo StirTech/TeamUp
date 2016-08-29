@@ -11,56 +11,50 @@
             <div class="col-md-12">
                 <div class="form-content">
                     <form id="contact" name="contact" method="post">  
-                            <div class="col-md-12">
-                                <p><label for="name">Game Name</label><input ng-model="game.name" placeholder="Type game name" type="text" size="30" value="" required/></p>
-                            </div>
+                        <div class="col-md-12">
+                            <p><label for="name">Game Name</label><input ng-model="game.name" placeholder="Type game name" type="text" size="30" value="" required/></p>
+                        </div>
                             <!-- for Category selection -->
-                            <div class="col-md-6">
-                                <p><label for="name">Category</label>
-                                <select ng-model="game.category" ng-change="update()">
-                                  <option value="{{game.category}}">{{selectedCategory.name}}</option> <!-- not selected / blank option -->
-                                  <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
-                                </select></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p><label for="name">Type</label>
-                                <select ng-model="game.type" >
-                                  <option value="{{game.type}}">{{game.type}}</option> <!-- not selected / blank option -->
-                                  <option ng-repeat="child in childs" value="{{child}}">{{child}}</option>
-                                </select></p>
-                            </div>
-
+                        <div class="col-md-6">
+                            <p><label for="name">Category</label>
+                            <select ng-model="game.category" ng-change="update()">
+                              <option value="{{game.category}}">{{selectedCategory.name}}</option> <!-- not selected / blank option -->
+                              <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
+                            </select></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><label for="name">Type</label>
+                            <select ng-model="game.type" >
+                              <option value="{{game.type}}">{{game.type}}</option> <!-- not selected / blank option -->
+                              <option ng-repeat="child in childs" value="{{child}}">{{child}}</option>
+                            </select></p>
+                        </div>
+                        <div class="col-md-12">
+                            <p><label for="message">Descrrption</label><textarea ng-model="game.description" placeholder="Game Descrrption" required></textarea></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><label for="name">Number of Players</label><input ng-model="game.numOfPlayers" type="number" name="name"  min="2" max="99" value="" required/></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><label for="name">Image URL</label><input ng-model="game.picture"  placeholder="Type game img URL" type="text"/></p>
+                        </div>
+                        <div >
+                            <br/>
+                            Click map to place markers
+                            <ng-map zoom="16" center="current-location" on-click="placeMarker()">
+                            </ng-map>
+                        </div>
+                        <div class="row" style="margin-top:10px">
                             <div class="col-md-12">
-                                
-                                <p><label for="message">Descrrption</label><textarea ng-model="game.description" placeholder="Game Descrrption" required></textarea></p>
-                                
+                                <input id="submit" type="submit" name="submit" value="Edit" ng-click="editGame()">
                             </div>
-                            <div class="col-md-6">
-                                <p><label for="name">Number of Players</label><input ng-model="game.numOfPlayers" type="number" name="name"  min="2" max="99" value="" required/></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p><label for="name">Image URL</label><input ng-model="game.picture"  placeholder="Type game img URL" type="text"/></p>
-                            </div>
-                            <div >
-                                <br/>
-                                Click map to place markers
-                                <ng-map zoom="16" center="current-location" on-click="placeMarker()">
-                                </ng-map>
-                            </div>
-
-                            <div class="row" style="margin-top:10px">
-                                <div class="col-md-12">
-                                    <input id="submit" type="submit" name="submit" value="Edit" ng-click="editGame()">
-                                    </input>
-                                </div>
-                            </div>
+                        </div>
                     </form>	
                 </div>                     
             </div>
         </div>
     </div>
 </div> <!-- End contact area -->
-
 <footer class="footer-copyright" style="    margin-top: 35px;">
     <div class="container">
         <div class="row">
