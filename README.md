@@ -12,13 +12,15 @@
 
 ## Production Url
 
-[teamup-me.herokuapp.com](http://teamup-me.herokuapp.com)
+[teamup-me.herokuapp.com](https://teamup-me.herokuapp.com)
 
 
 ## Table of Contents
 
 1. [Features](#Features)
-1. [Usage](#Usage)
+1. [Architecture](#architecture)
+	1. [Tech Stack](#tech-stack)
+    1. [System Architecture](#system-architecture)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
@@ -32,17 +34,34 @@
 ### Summary:
 A webapp that helps you find people who want to play a game, whether it's sports or anything else. You can even join games people have started. (meetup for games)
 
-#### Problem: How do I find players to join me in a game, if everyone I now is too busy?
+#### Problem: How do I find players to join me in a game if everyone I now is too busy?
 
 ##### Well it's not easy:
-- The only real option is going to a place frequented by people who play the game you want and hope they'll allow you to join.
+- The only real option is going to a place frequented by people who play the game and hope they'll allow you to join in.
 
 ## Our Solution:
 A website where people can go and post their games online, and join games that are nearby.
 
-## Usage
+## Architecture
 
->  instructions (to be added)
+### Tech Stack
+
+1) Front-End
+- Angular
+- Pubnub
+
+2) Back-End
+- Node/Express
+- Mongoose
+- MongoDB
+
+3) Testing
+- Mocha
+- Chai
+- Karma
+
+4) Deployment
+- Heroku
 
 ## Requirements
 
@@ -70,6 +89,12 @@ npm test
 ### Running Locally
 
 From within the root directory:
+
+```sh
+mongod
+```
+
+In another terminal:
 
 ```sh
 npm start
