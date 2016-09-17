@@ -18,7 +18,7 @@
               <div class="md-list-item-text">
                 <h3>{{message.from.username}}</h3>
                 <h4>{{message.date | date : yyyy:MM:dd}}</h4>
-                <h4>{{message.text}}</p>
+                <h4>{{message.text}}</h4>
               </div>
               <md-divider md-inset ng-if="!$last"></md-divider>
             </md-list-item>
@@ -27,13 +27,8 @@
       </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
-
-
-
       <textarea class="messageBox" id="comment" name="comment" aria-required="true" ng-model="messageText"></textarea>
-      <md-button ng-click="sendMessage()">
-        Send
-      </md-button>
+      <md-button ng-click="sendMessage()">Send</md-button>
     </md-dialog-actions>
   </form>
 </md-dialog>

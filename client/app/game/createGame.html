@@ -11,141 +11,81 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-content">
- <!--                    <form  name="upload_form" ng-model="upload_form">
-                        
-                        Multiple files
-                        <div class="button" ngf-select ng-model=".files" ngf-multiple="true">Select</div>
-                        Drop files: <div ngf-drop ng-model="up.files" class="drop-box">Drop</div>
-                        <button type="submit" ng-click="submit()">submit</button>
-                        
-                    </form> -->
                     <form id="contact" name="contact" method="post">  
-                            <div class="col-md-12">
-                                <p><label for="name">Game Name</label><input ng-model="name" placeholder="Type game name" type="text" size="30" value="" required/></p>
-                            </div>
+                        <div class="col-md-12">
+                            <p><label for="name">Game Name</label><input ng-model="name" placeholder="Type game name" type="text" size="30" value="" required/></p>
+                        </div>
                             <!-- for Category selection -->
-                            <div class="col-md-6">
-                                <p><label for="name">Category</label>
-                                <select ng-model="category" ng-change="update()">
-                                  <option value="">---Please select---</option> <!-- not selected / blank option -->
-                                  <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
-                                </select></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p><label for="name">Type</label>
-                                <select ng-model="type" >
-                                  <option value="">---Please select---</option> <!-- not selected / blank option -->
-                                  <option ng-repeat="child in childs" value="{{child}}">{{child}}</option>
-                                </select></p>
-                            </div>
-
-                            <div class="col-md-12">
-                                
-                                <p><label for="message">Descrrption</label><textarea ng-model="description" placeholder="Game Descrrption" required></textarea></p>
-                                
-                            </div>
-                            <div class="col-md-6">
-                                <p><label for="name">Number of Players</label><input ng-model="numOfPlayers" type="number" name="name"  min="2" max="99" value="" required/></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p><label for="name">Date</label><input ng-model="date" type="date" size="30" value="" required/></p>
-                            </div>
-                            <div class="col-md-6">
-                                <input 
-                                type="file" 
-                                ngf-select 
-                                ng-model="file" 
-                                name="file" 
-                                ngf-pattern="'image/*'"
-                                accept="image/*" 
-                                ngf-max-size="0.3MB" 
-                                ng-change="submit()"
-                                />
-                                <img style="width:100px;" ng-show="!!file" ngf-thumbnail="file"/><br>
-                                <i ng-show="file.$error.maxSize">File too large 
-                                {{file.size / 1000000|number:1}}MB: max 20M</i>
-                                <p>{{progress}}</p>
-                            </div>
-<!--                             <div class="col-md-6">
-                                <p><label for="name">Location</label><input ng-model="locationID" placeholder="Type game location" type="text" size="30" value="" required/></p>
-                            </div> -->
-                                
-                            <div >
-                                <br/>
-                                Click map to place markers
-                                <ng-map id="map" zoom="16" center="current-location" on-click="placeMarker()">
-                                </ng-map>
-                            </div>
-
-
+                        <div class="col-md-6">
+                            <p><label for="name">Category</label>
+                            <select ng-model="category" ng-change="update()">
+                              <option value="">---Please select---</option> <!-- not selected / blank option -->
+                              <option ng-repeat="category in categories" value="{{category.name}}">{{category.name}}</option>
+                            </select></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><label for="name">Type</label>
+                            <select ng-model="type" >
+                              <option value="">---Please select---</option> <!-- not selected / blank option -->
+                              <option ng-repeat="child in childs" value="{{child}}">{{child}}</option>
+                            </select></p>
+                        </div>
+                        <div class="col-md-12">                           
+                            <p><label for="message">Descrrption</label><textarea ng-model="description" placeholder="Game Descrrption" required></textarea></p>    
+                        </div>
+                        <div class="col-md-6">
+                            <p><label for="name">Number of Players</label><input ng-model="numOfPlayers" type="number" name="name"  min="2" max="99" value="" required/></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><label for="name">Date</label><input ng-model="date" type="date" size="30" value="" required/></p>
+                        </div>
+                        <div class="col-md-6">
+                            <input 
+                            type="file" 
+                            ngf-select 
+                            ng-model="file" 
+                            name="file" 
+                            ngf-pattern="'image/*'"
+                            accept="image/*" 
+                            ngf-max-size="0.3MB" 
+                            ng-change="submit()"/>
+                            <img style="width:100px;" ng-show="!!file" ngf-thumbnail="file"/><br>
+                            <i ng-show="file.$error.maxSize">File too large 
+                            {{file.size / 1000000|number:1}}MB: max 20M</i>
+                            <p>{{progress}}</p>
+                        </div>
+                        <div >
+                            <br/>
+                            Click map to place markers
+                            <ng-map id="map" zoom="16" center="current-location" on-click="placeMarker()">
+                            </ng-map>
+                        </div>
                     </form>
-
                 </div>                     
-                            <div class="col-md-12">
-                                <input id="submit" type="submit" name="submit" value="Create" ng-click="getGameData()"/>
-                            </div>
+                <div class="col-md-12">
+                    <input id="submit" type="submit" name="submit" value="Create" ng-click="getGameData()"/>
+                </div>
             </div>
         </div>
     </div>
 </div> <!-- End contact area -->
-
 <footer class="footer-copyright">
-	        <div class="container">
-	            <div class="row">
-	                <div class="col-md-8">
-	                    <div class="copyright-text">
-	                        <p>Copyright © 2016 - TeamUp | All Rights Reserved </p>
-	                    </div>
-	                </div>
-	                
-
-	                <div class="col-md-4">
-	                    <div class="social-footer text-right">
-	                        <a href=""><i class="fa fa-facebook"></i></a>
-	                        <a href=""><i class="fa fa-twitter"></i></a>
-	                        <a href=""><i class="fa fa-pinterest"></i></a>
-	                        <a href=""><i class="fa fa-linkedin"></i></a>
-	                        <a href=""><i class="fa fa-google-plus"></i></a>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>            
-	    </footer> <!-- End footer bottom --> 
-
-
-
-<!-- 
-<div id='container'>
-  	<form name='createGame'>
-		<div>
-			name:<input type="text" name="name" placeholder="Game name" ng-model="name"><br>
-			type:<input type="text" name="gameType" placeholder="Game type" ng-model="type"><br>
-			description:<input type="text" name="gameDescription" placeholder="description" ng-model="description"><br>
-			Location:<input type="text" name="gameLocation" placeholder="locationID" ng-model="locationID"><br>
-			Country:<input type="text" name="gameCountry" placeholder="Country" ng-model="country"><br>
-			City:<input type="text" name="gameCity" placeholder="City" ng-model="city"><br>
-			picture: <input type="text" name="gamePicture" placeholder="pic" ng-model="picture"><br>
-			Date and time:<input type="text" name="gameDate" placeholder="set game date and time" ng-model="date"><br>
-			<div class="dropdown">
-				<a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
-	        		<div class="input-group">
-	        			<input type="text" class="form-control" data-ng-model="data.dateDropDownInput"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-	        		</div>
-      			</a>
-      			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-        			<datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
-      			</ul>
-    		</div> 
-			Number of players:<input type="text" name="numOfPlayers" placeholder="" ng-model="numOfPlayers"><br>
-			<button ng-click='getGameData()'>Create Game</button>
-			<div ng-controller="EventArgumentsController as vm">
-				<br/>
-				Click map to place markers
-				<ng-map zoom="16" center="current-location" on-click="vm.placeMarker()">
-				</ng-map>
-    		</div>
-		</div>
-	</form>
-</div>
- -->
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="copyright-text">
+                    <p>Copyright © 2016 - TeamUp | All Rights Reserved</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="social-footer text-right">
+                    <a href=""><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-pinterest"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                    <a href=""><i class="fa fa-google-plus"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>            
+</footer> <!-- End footer bottom --> 

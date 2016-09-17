@@ -1,5 +1,5 @@
 <div class="slider-area">
-    <div data-velocity="-.2" class="overlay-bg" style="background-image: url(/img/slide-bg.jpg) "></div>
+    <div data-velocity="-.2" class="overlay-bg" style="background-image: url(/img/slide-bg.jpg)"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -23,76 +23,69 @@
                             </div>
                         </div>
                     </div>
-
-                      <ol class="carousel-indicators">
+                    <ol class="carousel-indicators">
                         <li data-target="#slide-list" data-slide-to="0" class="active"></li>
                         <li data-target="#slide-list" data-slide-to="1"></li>
-                      </ol>
+                    </ol>
                 </div>                     
             </div>
         </div>
     </div>
     <nav class="navbar navbar-light search-bar">
-            <div class="col-lg-4 col-md-offset-4">
-                <div class="input-group">
-                    <input type="text" class="search-box form-control" placeholder="Search for..." ng-model="searchStr">
-                    <span class="input-group-btn">
+        <div class="col-lg-4 col-md-offset-4">
+            <div class="input-group">
+                <input type="text" class="search-box form-control" placeholder="Search for..." ng-model="searchStr">
+                <span class="input-group-btn">
                     <button class="btn btn-secondary btn-info search-box" type="button" ng-click="search(searchStr)"><span class="glyphicon glyphicon-search"></span></button>
-                    </span>
-                    
-                </div>
+                </span>     
             </div>
+        </div>
     </nav>
-    <div class="container" >
+    <div class="container">
         <div class="row" style="text-align:center">
         </div>
         <div ng-cloak>
             <md-content>
-            <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="Games ({{result.games.length}})">
-                <md-card class="col-md-3"  ng-repeat="game in result.games" style="margin : 10px 0px 10px 0px;">
-                    <div style="height: 231px;"><a href="#/game/{{game._id}}"><img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a>
-                    </div>
-                  <md-card-title>
-                    <md-card-title-text>
-                      <span class="md-headline">{{game.name}}</span>
-                    </md-card-title-text>
-                  </md-card-title>
-                  <md-subhead>
-                  <div style="font-size: 24px;"><i class="material-icons">class</i><span>{{game.type}}</span></div>
-                  </md-subhead>
-                  
-                  <md-card-content>
-                    <table class="table">
-                      <tr>
-                        <td># of Players :</td>
-                        <td>{{game.numOfPlayers}}</td>
-                      </tr>
-                      <tr>
-                        <td>Date :</td>
-                        <td>{{game.date| date :yyyy:MM:dd}}</td>
-                      </tr>
-                    </table>
-                    <!-- <p>Type : {{game.type}}</p>
-                    <p># of Players : {{game.numOfPlayers}}</p> -->
-                  </md-card-content>
-                    </md-card>
-                </md-tab>
-                <md-tab label="Users  ({{result.users.length}})">
-                <md-card class="col-md-3"  ng-repeat="user in result.users" style="margin : 10px 0px 10px 0px;">
-                    <div style="height: 231px;"><a href="#/profile/{{user._id}}"><img ng-src="{{user.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a>
-                    </div>
-                  <md-card-title>
-                  <md-card-title-text>
-                    <div style="font-size: 24px; text-align:center"><a href="#/profile/{{user._id}}"><span>{{user.firstName}} {{user.lastName}}</span></a></div>
-                  </md-card-title-text>
-                  </md-card-title>
-                    </md-card>
-
-
-                </md-tab>
-                </md-tab>
-            </md-tabs>
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="Games ({{result.games.length}})">
+                        <md-card class="col-md-3"  ng-repeat="game in result.games" style="margin : 10px 0px 10px 0px;">
+                            <div style="height: 231px;"><a href="#/game/{{game._id}}">
+                                <img ng-src="{{game.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a>
+                            </div>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{game.name}}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-subhead>
+                                <div style="font-size: 24px;"><i class="material-icons">class</i><span>{{game.type}}</span></div>
+                            </md-subhead>         
+                            <md-card-content>
+                                <table class="table">
+                                  <tr>
+                                    <td># of Players :</td>
+                                    <td>{{game.numOfPlayers}}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Date :</td>
+                                    <td>{{game.date| date :yyyy:MM:dd}}</td>
+                                  </tr>
+                                </table>
+                            </md-card-content>
+                        </md-card>
+                    </md-tab>
+                    <md-tab label="Users  ({{result.users.length}})">
+                        <md-card class="col-md-3"  ng-repeat="user in result.users" style="margin : 10px 0px 10px 0px;">
+                            <div style="height: 231px;"><a href="#/profile/{{user._id}}"><img ng-src="{{user.picture}}" style="width: 100%;height: width;text-align:center" class="md-card-image" alt="Washed Out"></a>
+                            </div>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <div style="font-size: 24px; text-align:center"><a href="#/profile/{{user._id}}"><span>{{user.firstName}} {{user.lastName}}</span></a></div>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </md-card>
+                    </md-tab>
+                </md-tabs>
             </md-content>
         </div>
     </div>

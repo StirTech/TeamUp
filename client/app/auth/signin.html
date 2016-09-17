@@ -1,31 +1,31 @@
 <div class="row" id="signin">
-    <video  id="bgvid" playsinline autoplay muted style="transform: translateX(-50%) translateY(-50%);">
+    <video id="bgvid" playsinline autoplay muted style="transform: translateX(-50%) translateY(-50%);">
         <source src="../img/video.webm" type="video/webm">
         <source src="../img/video.mp4" type="video/mp4">
     </video>
-    <div class="container" style="margin-top:5% ;width : 80%">
-            <div class="col-md-6">
-                <div class="u-form-group">
-                    <input type="text" ng-model="user.username" placeholder="username"/>
-                </div>
-                <div class="u-form-group">
-                    <input type="password" ng-model="user.password" placeholder="Password"/>
-                </div>
-                <div class="u-form-group">
-                    <button ng-click="signin(user)">Log In</button>
-                </div>
-                <div class="u-form-group">
-                    <button ng-click="fbLogin()" style="background-color:#49639F ; width : 50% ; float: left">
-                        <i class="fa fa-facebook fa-lg" style="padding-left:20"></i>
-                        facebook Login
-                    </button>
-                </div>
-                <div class="u-form-group"  >
-                    <button ng-click="fbLogin()" ng-click="fbLogin()" style="background-color:#DF4A32; width : 50%">
-                        <i class="fa fa-google-plus fa-lg"></i>
-                        Google Login
-                    </button>
-                </div>
+    <div class="container" style="margin-top:5%;width : 80%">
+        <div class="col-md-6">
+            <div class="u-form-group">
+                <input type="text" ng-model="user.username" placeholder="username"/>
             </div>
+            <div class="u-form-group">
+                <input type="password" ng-model="user.password" placeholder="Password"/>
+            </div>
+            <div class="u-form-group">
+                <button ng-click="signin(user)">Log In</button>
+            </div>
+            <div class="u-form-group">
+                <button ng-click="fbLogin()" style="background-color:#49639F ; width : 50% ; float: left">
+                    <i class="fa fa-facebook fa-lg" style="padding-left:20"></i>
+                    facebook Login
+                </button>
+            </div>
+            <div class="u-form-group">
+                <button ng-click="fbLogin()" ng-click="fbLogin()" style="background-color:#DF4A32; width : 50%">
+                    <i class="fa fa-google-plus fa-lg"></i>
+                    Google Login
+                </button>
+            </div>
+        </div>
     </div>
 </div>
